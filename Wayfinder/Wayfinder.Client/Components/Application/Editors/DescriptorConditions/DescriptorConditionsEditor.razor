@@ -20,13 +20,11 @@
             Tree=@this.CurrentConditions
             OnSelectTree=@(e => this.SelectedConditionTree = e) />
 
-    @if( this.SelectedConditionTree is not null ) {
-        <component-label>Add condition</component-label>
-        <DescriptorEditor
-                Disabled=@this.Disabled
-                Abridged=@true
-                CanSearch=@true CanCreate=@true CanEdit=@false
-                OnDescriptorSelect=@(async e => await this.AddDescriptorToCurrentTree_UI_Async(e)) />
-    }
+    <component-label>Add condition</component-label>
+    <DescriptorEditor
+            Disabled=@(this.Disabled || this.SelectedConditionTree is null)
+            Abridged=@true
+            CanSearch=@true CanCreate=@true CanEdit=@false
+            OnDescriptorSelect=@(async e => await this.AddDescriptorToCurrentTree_UI_Async(e)) />
 </div>
 

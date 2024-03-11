@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
-namespace Wayfinder.Client.Components.Application.Views;
+namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
 public partial class ScheduleDisplay {

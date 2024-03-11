@@ -2,7 +2,7 @@
 using Wayfinder.Client.Data;
 
 
-namespace Wayfinder.Client.Components.Application.Views;
+namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
 public partial class ScheduleDisplay {

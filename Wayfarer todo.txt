@@ -5,6 +5,7 @@ v1
 ...
 -	Implement prompting
 -	Implement UI components
+	-	DescriptorDisplay
 	-	Create condensed Descriptor in-line view element
 	-	Goal input
 		-	Add description input
@@ -17,18 +18,15 @@ v1
 -	Add @attributes to components
 -	@Usage test
 -	Define UI components 2
+	-	Plan timeline
 	-	Descriptor data input 2
-		//-	Main panel
-		//	-	Subtype picker (area, range, address)
-		//	-	Type checkboxes (place, time, fixed scalar, list of terms, formula)
-		//	-	Context (context term) input (earth, custom term, etc.)
+		-	Add context term to data inputs
 		-	Data input components
 			-	Address input
 			-	Area input
 			-	Range input
 			-	Term list input
 			-	Range input
-	-	Plan timeline
 -	Fix Descriptor Conditions input
 
 

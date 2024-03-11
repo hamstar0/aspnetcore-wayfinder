@@ -5,19 +5,16 @@
 
 
 
-<div component-name="DescriptorConditionsTreeEditor"
+<div component-name="DescriptorConditionsTreeDisplay"
         style=@this.Style
-        class="basic @(this.Disabled ? "disabled" : null)"
-        @onclick=@(e => this.OnSelectTree(this.Tree))>
+        class="basic" >
     @for( int i=0; i<this.Tree.Children.Count; i++ ) {
         IBoolean node = this.Tree.Children[i];
 
         @if( node is BooleanTree<DescriptorEntry> ) {
-            <DescriptorConditionsTreeEditor
-                    Disabled=@this.Disabled
+            <DescriptorConditionsTreeDisplay
                     Style="padding-left: 8px; display: inline-block;"
-                    Tree=@((BooleanTree<DescriptorEntry>)node)
-                    OnSelectTree=@this.OnSelectTree />
+                    Tree=@((BooleanTree<DescriptorEntry>)node) />
         } else {
             <div>
                 <DescriptorDisplay
@@ -30,18 +27,12 @@
             </div>
         }
     }
-
-    @if( this.Tree.Children.Count > 0 ) {
-        @if( this.Tree.IsAnd ) {
-            <button disabled=@this.Disabled
-                    @onclick=@(async e => await this.AddTree_UI_Async(false))>
-                OR
-            </button>
-        } else {
-            <button disabled=@this.Disabled
-                    @onclick=@(async e => await this.AddTree_UI_Async(true))>
-                AND
-            </button>
-        }
-    }
 </div>
+
+@code {
+    [Parameter, EditorRequired]
+    public BooleanTree<DescriptorEntry> Tree { get; set; } = null!;
+
+    [Parameter]
+    public string? Style { get; set; } = null;
+}

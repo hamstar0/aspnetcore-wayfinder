@@ -31,16 +31,15 @@ public partial class DescriptorConditionsEditor
 
 
 
-    public async Task AddDescriptorToCurrentTree_UI_Async(DescriptorEntry entry)
-    {
-        if (Disabled) { return; }
-        if (SelectedConditionTree is null) { return; }
+    public async Task AddDescriptorToCurrentTree_UI_Async( DescriptorEntry entry ) {
+        if( this.Disabled ) { return; }
+        if( this.SelectedConditionTree is null ) { return; }
 
-        bool found = SelectedConditionTree.Children
-            .Select(e => e as DescriptorEntry)
-            .Any(e => e?.Id == entry.Id);
-        if (found) { return; }
+        bool found = this.SelectedConditionTree.Children
+            .Select( e => e as DescriptorEntry )
+            .Any( e => e?.Id == entry.Id );
+        if( found ) { return; }
 
-        SelectedConditionTree.Add(entry, SelectedConditionTree.IsAnd);
+        this.SelectedConditionTree.Add( entry, this.SelectedConditionTree.IsAnd );
     }
 }

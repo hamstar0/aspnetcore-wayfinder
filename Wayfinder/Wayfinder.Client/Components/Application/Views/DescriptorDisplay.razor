@@ -3,11 +3,13 @@
 
 
 @if( this.OnClick is not null ) {
-    <div component-name="DescriptorDisplay" class="basic" @onclick=@(async e => await this.OnClick(e))>
+    <div component-name="DescriptorDisplay"
+            class="basic" @onclick=@(async e => await this.OnClick(e))
+            style=@this.Style>
         @this.Descriptor.ToString()
     </div>
 } else {
-    <div component-name="DescriptorDisplay" class="basic">
+    <div component-name="DescriptorDisplay" class="basic" style=@this.Style>
         @this.Descriptor.ToString()
     </div>
 }
@@ -21,6 +23,9 @@
     //[Inject]
     //public ClientDataAccess Data { get; set; } = null!;
 
+
+    [Parameter]
+    public string? Style { get; set; } = null;
 
     [Parameter, EditorRequired]
     public DescriptorEntry Descriptor { get; set; } = null!;
