@@ -1,0 +1,30 @@
+﻿@using Wayfinder.Shared.Data.Entries.Descriptor;
+
+
+
+@if( this.OnClick is not null ) {
+    <div component-name="DescriptorDisplay" class="basic" @onclick=@(async e => await this.OnClick(e))>
+        @this.Descriptor.ToString()
+    </div>
+} else {
+    <div component-name="DescriptorDisplay" class="basic">
+        @this.Descriptor.ToString()
+    </div>
+}
+
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public DescriptorEntry Descriptor { get; set; } = null!;
+
+    [Parameter]
+    public Func<MouseEventArgs, Task>? OnClick { get; set; } = null;
+}

@@ -1,0 +1,39 @@
+﻿@using Wayfinder.Shared.Data;
+@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Data.Entries.Descriptor;
+@using Wayfinder.Client.Data;
+@using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.Collections;
+@using Wayfinder.Client.Components.Application.Editors.Descriptor;
+
+
+
+<div component-name="GoalEditor"
+        class="basic @(this.Disabled ? "disabled" : null)">
+    <input type="text" style="display: block;"
+            disabled=@this.Disabled
+            placeholder="Enter name of goal"
+            @ref=this.InputElement
+            @onfocusin=@(e => this.IsSeachFocused = true)
+            @onfocusout=@(e => this.IsSeachFocused = false)
+            @onkeydown=@(async e => await this.InteractSearchResults_UI_Async( e ))
+            @oninput=@(async e => await this.UpdateGoalSearchResults_UI_Async( e.Value?.ToString() ?? "" ))
+            @onchange=@(async e => await this.SubmitNewGoal_UI_Async()) />
+    <DescriptorEditor Disabled=@this.Disabled
+            Label="Describe goal"
+            CanCreate=@true CanEdit=@false CanSearch=@true
+            OnDescriptorSelect=@(async d => this.Needed = d) />
+    <button style="display: block;" disabled=@this.Disabled
+            @onclick=@(async () => await this.SubmitNewGoal_UI_Async())>
+        Submit
+    </button>
+
+    <div>
+        <div style=" position: absolute; display: inline-block;">
+            @if( this.IsSeachFocused ) {
+                <GoalEntryListDisplay Goals=@this.SearchOptions />
+            }
+       </div>
+    </div>
+</div>
+

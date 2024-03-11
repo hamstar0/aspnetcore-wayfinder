@@ -1,0 +1,56 @@
+﻿@using Wayfinder.Shared.Libraries.BooleanTree;
+@using Wayfinder.Shared.Data;
+@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Data.Entries.Descriptor;
+@using Wayfinder.Client.Data;
+@using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.Collections;
+@using Wayfinder.Client.Components.Application.Pickers;
+@using Wayfinder.Client.Components.Application.Editors.Schedule;
+@using Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
+
+
+
+<div component-name="DescriptorEditor" class="basic @(this.Disabled ? "disabled" : null)">
+    @if( this.Label is not null ) {
+        <h4>@this.Label</h4>
+    }
+
+    <TermEditor Disabled=@this.Disabled
+                Label="Subject"
+                Description="Enter 'subject' term being 'described'"
+                OnTermSelect='async term => await this.SetTermA_UI_Async(term)' />
+
+    <TermEditor Disabled=@this.Disabled
+                Label="Relationship"
+                Description="Enter term that is describing the 'subject'"
+                OnTermSelect='async term => await this.SetTermB_UI_Async(term)' />
+
+    @if( this.Abridged ) {
+        <ScheduleDisplay Schedule=@(this.Schedule ?? new ScheduleEntry()) />
+    } else {
+        <ScheduleEditor Disabled=@this.Disabled 
+                        OnEditSubmit='async sched => await this.SetSchedule_UI_Async(sched)' />
+    }
+
+    <DescriptorConditionsEditor Disabled=@this.Disabled
+                OnEditSubmit='async conds => await this.SetConditions_UI_Async(conds)' />
+
+    @if( this.CanSearch ) {
+        <div>   @* <- Not superfluous *@
+            <div style="position: absolute; display: inline-block;">
+                <DescriptorEntryListDisplay
+                        Descriptors="@this.SearchOptions"
+                        OnClickEach='async (e, m) => await this.SelectSearchResults_UI_Async(e)' />
+            </div>
+        </div>
+    }
+
+    @if( !this.SubmitOnEditOnly ) {
+        <button disabled='@this.CanSubmitDescriptorFields()'
+                @onclick='async e => await this.SubmitDescriptor_UI_Async()'>
+            Submit
+        </button>
+    }
+</div>
+

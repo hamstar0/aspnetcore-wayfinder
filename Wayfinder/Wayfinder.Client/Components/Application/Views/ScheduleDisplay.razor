@@ -1,0 +1,64 @@
+﻿@using System.Net.Http;
+@using System.Net.Http.Json;
+@using Wayfinder.Shared.Data.Entries.Descriptor;
+@using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
+@using Wayfinder.Client.Data;
+@using Wayfinder.Client.Components.Standard;
+@using Wayfinder.Client.Components.Application.Editors.DescriptorData;
+@using Wayfinder.Client.Components.Application.Pickers;
+
+
+
+<div component-name="ScheduleDisplay"
+        class="basic schedule-component-container">
+    <div>
+        <button @onclick=@(e => this.ScrollLeft_UI())>
+            &larr;
+        </button>
+        <button @onclick=@(e => this.ScrollRight_UI())>
+            &rarr;
+        </button>
+        <button @onclick=@(e => this.Zoom_UI(this.ZoomScale * 0.5d))>
+            +
+        </button>
+        <button @onclick=@(e => this.Zoom_UI(this.ZoomScale * 2d))>
+            -
+        </button>
+    </div>
+
+    <div class="schedule-component" style="max-width: @(ScheduleDisplay.MaxElementWidth)px;">
+        @if( this.CanDisplayMinuteMarkers() ) {
+            @foreach( (int x, string label) in this.GetTimeUnitMinuteMarkers(ScheduleDisplay.MaxElementWidth) ) {
+                <div class="timeline_minute" style="left: @(x)px;">@label</div>
+            }
+        }
+        @if( this.CanDisplayHourMarkers() ) {
+            @foreach( (int x, string label) in this.GetTimeUnitHourMarkers(ScheduleDisplay.MaxElementWidth) ) {
+                <div class="timeline_hour" style="left: @(x)px;">@label</div>
+            }
+        }
+        @if( this.CanDisplayDayMarkers() ) {
+            @foreach( (int x, string label) in this.GetTimeUnitDayMarkers(ScheduleDisplay.MaxElementWidth) ) {
+                <div class="timeline_day" style="left: @(x)px;">@label</div>
+            }
+        }
+        @if( this.CanDisplayMonthMarkers() ) {
+            @foreach( (int x, string label) in this.GetTimeUnitMonthMarkers(ScheduleDisplay.MaxElementWidth) ) {
+                <div class="timeline_month" style="left: @(x)px;">@label</div>
+            }
+        }
+        @if( this.CanDisplayYearMarkers() ) {
+            @foreach( (int x, string label) in this.GetTimeUnitYearMarkers(ScheduleDisplay.MaxElementWidth) ) {
+                <div class="timeline_year" style="left: @(x)px;">@label</div>
+            }
+        }
+        
+        @foreach( ScheduleEventEntry schedEvent in this.GetVisibleScheduleEvents() ) {
+            <div class="timeline_seg"
+                    style= "left: @(this.ComputeSegOffset(schedEvent))px;
+                            width: @(this.ComputeSegWidth(schedEvent))px;">
+            </div>
+        }
+    </div>
+</div>
+

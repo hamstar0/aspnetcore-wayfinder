@@ -1,0 +1,57 @@
+﻿@using Wayfinder.Shared.Data.Entries.Descriptor;
+
+
+
+<div component-name="DescriptorDataTypePicker" class="basic @(this.Disabled ? "disabled" : null)">
+    <component-label>Choose data type:</component-label>
+    <div style="display: inline-block;" class="input-group-btn dropdown">
+        <button type="button"
+                disabled=@this.Disabled
+                class="btn dropdown-toggle"
+                style="background-color:white; border-right:none;"
+                data-bs-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+            @foreach( (DescriptorDataType dt, string tn) in DescriptorDataEntry.DataTypeNames ) {
+                if( this.RangeTypesOnly && !DescriptorDataEntry.RangeTypes.Contains(dt) ) {
+                    continue;
+                }
+
+                <li class="dropdown-item" @onclick=@(async () => await this.OnTypeChoice_UI_Async(dt))>
+                    @tn
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
+    public bool RangeTypesOnly { get; set; } = false;
+
+    [Parameter, EditorRequired]
+    public Func<DescriptorDataType, Task> OnTypeChoice { get; set; } = null!;
+
+
+    private async Task OnTypeChoice_UI_Async( DescriptorDataType dataType ) {
+        if( this.Disabled ) {
+            return;
+        }
+
+        await this.OnTypeChoice( dataType );
+    }
+}

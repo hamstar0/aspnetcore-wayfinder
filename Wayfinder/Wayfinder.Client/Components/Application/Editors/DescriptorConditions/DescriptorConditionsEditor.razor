@@ -1,0 +1,32 @@
+﻿@using Wayfinder.Shared.Libraries.BooleanTree;
+@using Wayfinder.Shared.Data;
+@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Data.Entries.Descriptor;
+@using Wayfinder.Client.Components.Standard;
+@using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.Collections;
+@using Wayfinder.Client.Components.Application.Pickers;
+@using Wayfinder.Client.Components.Application.Editors.Schedule;
+
+
+
+<div component-name="DescriptorConditionsEditor"
+        style="display: inline-block;"
+        class="basic @(this.Disabled ? "disabled" : null)">
+    <h5>Enter any needed conditions for this 'descriptor'</h5>
+
+    <DescriptorConditionsTreeEditor
+            Disabled=@this.Disabled
+            Tree=@this.CurrentConditions
+            OnSelectTree=@(e => this.SelectedConditionTree = e) />
+
+    @if( this.SelectedConditionTree is not null ) {
+        <component-label>Add condition</component-label>
+        <DescriptorEditor
+                Disabled=@this.Disabled
+                Abridged=@true
+                CanSearch=@true CanCreate=@true CanEdit=@false
+                OnDescriptorSelect=@(async e => await this.AddDescriptorToCurrentTree_UI_Async(e)) />
+    }
+</div>
+

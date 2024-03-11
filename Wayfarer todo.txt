@@ -1,0 +1,118 @@
+v1
+...
+-	Implement database backend
+-	Implement Abridged parameter for deploying ScheduleEditor popup
+...
+-	Implement prompting
+-	Implement UI components
+	-	Create condensed Descriptor in-line view element
+	-	Goal input
+		-	Add description input
+	-	Term input
+		-	Add alias picker
+		-	Add context picker
+		-	Implement search result scrolling and selecting via keyboard
+-	Implement tabs
+	-	Map editor
+-	Add @attributes to components
+-	@Usage test
+-	Define UI components 2
+	-	Descriptor data input 2
+		//-	Main panel
+		//	-	Subtype picker (area, range, address)
+		//	-	Type checkboxes (place, time, fixed scalar, list of terms, formula)
+		//	-	Context (context term) input (earth, custom term, etc.)
+		-	Data input components
+			-	Address input
+			-	Area input
+			-	Range input
+			-	Term list input
+			-	Range input
+	-	Plan timeline
+-	Fix Descriptor Conditions input
+
+
+-	@Create new repo
+-	Set submit button to be optional
+	-	Descriptor editor (also implement OnDescriptorEdit)
+	-	Schedule editor
+-	Clean up css
+-	Set database placeholder to use json calls to server
+-	@Test
+-	Create database placeholder
+-	Define UI components 1
+	-	Conditions editor
+		-	Implement Descriptor picker
+		-	Implement AND and OR buttons
+		-	Implement tree view
+	-	Descriptor data input 1
+		-	Schedule timeline editor (part 2)
+			-	Display time scale ticks
+			-	Implement scrolling
+			-	Seg drawing
+			-	Zoom buttons
+			-	Submit
+		-	Data input components (part 1)
+			-	Scalar input
+		-	Schedule timeline editor (part 1)
+			-	Timeline segment display
+			-	Data type picker
+	-	Implement descriptor picker
+	-	Implement term picker
+	-	Changes
+		-	Add data type entres (scalar, range, descriptor list)
+		//-	Define data type specifications documentation
+		-	Modify Descriptor
+			//-	Add 'DataType' field
+			-	Add 'Conditions' field
+			-	Set 3rd term to be nullabe
+		-	Rename Concept into Descriptor
+	-	@Test
+	-	Goal input (goal name + concept input)
+		-	Submit button
+		-	Goal name input
+		-	Concept input (does not accept search results)
+	-	Concept input/picker
+		-	Add submit button
+		-	Concept search input (by Term)
+		-	Layout inputs (3 term inputs, 1 data input)
+	-	Term input/picker
+		-	Implement term input
+		-	Implement script for term select
+		-	Implement search result select via mouse
+		-	Implement search results list display
+	-	Plans list
+	-	Goals list
+	-	Concepts list
+	-	Terms list
+-	Define basic UI layout
+	-	Tabs
+		-	Map editor (of selected sidebar goal's location context)
+		-	Knowledge editor
+			-	Search tabs
+			-	Term search bar
+			-	Concept list panel
+		-	Prompt wizard (concept input + meta-concept input)
+			-	Term follow-ups priority queue panel
+			-	Concept input panel (added buttons for giving prompt priority for given terms)
+		-	Plan editor (of selected sidebar plan)
+			-	Plan timeline
+		-	Goal input (concept input)
+			-	Goal input
+				-	Concept input panel
+				-	Goal input
+	-	Concept panel (template)
+		-	Location address input panel
+		-	Timeline input panel
+		-	Concept input panel
+	-	Side bar
+		-	Plans list of current goal (bottom)
+		-	Goals list (top)
+-	Create data structure classes
+	-	Plan steps
+	-	Plan
+	-	Goal
+	-	Place
+	-	Time
+	-	Concept
+	-	Term

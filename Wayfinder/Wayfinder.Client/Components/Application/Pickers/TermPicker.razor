@@ -1,0 +1,28 @@
+﻿@using Wayfinder.Client.Data;
+@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.Collections;
+
+
+
+<div component-name="TermPicker" style="display: inline-block;" class="basic @(this.Disabled ? "disabled" : null)">
+    <input type="text"
+            disabled=@this.Disabled
+            placeholder="Search for term"
+            value=@this.SearchText
+            @ref=this.InputElement
+            @onkeypress:preventDefault=@this.IsCurrentInputSuppressed
+            @onfocusin=@(e => this.IsSeachFocused = true)
+            @onfocusout=@(e => this.IsSeachFocused = false)
+            @onkeydown=@(async e => await this.InteractSearchResults_UI_Async(e))
+            @oninput=@(async e => await this.UpdateTermSearchResults_UI_Async(e.Value?.ToString() ?? "")) />
+    <div>
+        <div style="position: absolute; display: inline-block;">
+            @if( this.IsSeachFocused ) {
+                <TermEntryListDisplay
+                        Terms=@this.SearchOptions
+                        OnClickEach=@(async (t, _) => await this.SelectSearchResults_UI_Async(t)) />
+            }
+       </div>
+    </div>
+</div>

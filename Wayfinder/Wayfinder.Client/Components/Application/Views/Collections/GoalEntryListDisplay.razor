@@ -1,0 +1,23 @@
+﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Client.Components.Application.Views;
+
+
+
+<ul class="basic">
+@foreach( GoalEntry goal in this.Goals ) {
+    <li>@goal.ToString()</li>
+}
+</ul>
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public IEnumerable<GoalEntry> Goals { get; set; } = null!;
+}

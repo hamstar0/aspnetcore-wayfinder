@@ -1,0 +1,15 @@
+﻿@using Wayfinder.Client.Data;
+
+
+
+<div component-name="ScalarEditor" class="basic @(this.Disabled ? "disabled" : null)">
+    <component-label>@this.Label</component-label>
+    <input type="number" disabled=@this.Disabled value=@this.Value
+            @onchange=@( async e => {
+                double value = ScalarEditor.ParseRaw(e.Value) ?? this.Value;
+                await this.OnMyInput_UI_Async( value );
+            } ) />
+    @* <input type="number" disabled=@this.Disabled
+       @bind-value:get='this.Value'
+       @bind-value:set='async e => await this.OnMyInput(e)' /> *@
+</div>

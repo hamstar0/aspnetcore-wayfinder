@@ -1,0 +1,42 @@
+﻿<label component-name="ToggleSwitch" class=@(this.Disabled ? "disabled" : null)>
+    @if( this.Label is not null ) {
+        <div style="display: inline-block;">@this.Label</div>
+    }
+    <div class="my-toggle-switch">
+        <input type="checkbox"
+                disabled=@this.Disabled
+                @bind:get=@this.IsOn
+                @bind:set=@(async (s) => await this.Click_UI_Async(s)) />
+        <span class="my-toggle-switch-slider"></span>
+    </div>
+</label>
+
+
+
+@code {
+    [Parameter]
+    public string? Label { get; set; } = null;
+
+    [Parameter, EditorRequired]
+    public bool IsOn { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<bool, Task> IsOnChanged { get; set; } = null!;
+
+    ////
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+
+
+    private async Task Click_UI_Async( bool isOn ) {
+        if( this.Disabled ) {
+            return;
+        }
+
+        this.IsOn = isOn;
+
+        await this.IsOnChanged( isOn );
+    }
+}

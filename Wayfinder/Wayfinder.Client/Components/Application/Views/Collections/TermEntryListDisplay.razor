@@ -1,0 +1,33 @@
+﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Client.Components.Application.Views;
+
+
+
+<ul class="basic">
+    @foreach( TermEntry term in this.Terms ) {
+        <li>
+            @if( this.OnClickEach is not null ) {
+                <TermDisplay Term=@term
+                        OnClick=@(async e => await this.OnClickEach(term, e)) />
+            } else {
+                <TermDisplay Term=@term />
+            }
+        </li>
+    }
+</ul>
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public IEnumerable<TermEntry> Terms { get; set; } = null!;
+
+    [Parameter]
+    public Func<TermEntry, MouseEventArgs, Task>? OnClickEach { get; set; } = null;
+}

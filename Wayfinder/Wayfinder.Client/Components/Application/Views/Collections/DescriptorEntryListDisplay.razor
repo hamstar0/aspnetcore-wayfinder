@@ -1,0 +1,41 @@
+﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Data.Entries.Descriptor;
+@using Wayfinder.Client.Components.Application.Views;
+
+
+
+<ul @attributes=@this.Attributes>
+    @foreach( DescriptorEntry descriptor in this.Descriptors ) {
+        <li>
+            <DescriptorDisplay Descriptor=@descriptor
+                    OnClick=@(async e => await this.OnClickMe(descriptor, e)) />
+        </li>
+    }
+</ul>
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter]
+    public IDictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
+    
+    [Parameter, EditorRequired]
+    public IEnumerable<DescriptorEntry> Descriptors { get; set; } = null!;
+
+    [Parameter]
+    public Func<DescriptorEntry, MouseEventArgs, Task>? OnClickEach { get; set; } = null;
+
+
+
+    private async Task OnClickMe( DescriptorEntry entry, MouseEventArgs evt ) {
+        if( this.OnClickEach is not null ) {
+            await this.OnClickEach( entry, evt );
+        }
+    }
+}

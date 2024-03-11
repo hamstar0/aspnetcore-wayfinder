@@ -1,0 +1,31 @@
+﻿@using Wayfinder.Shared.Data.Entries;
+
+
+
+@if( this.OnClick is not null ) {
+    <div component-name="GoalDisplay" class="basic" @onclick=@(async e => await this.OnClick(e))>
+        @this.Goal.Name
+        - <DescriptorDisplay Descriptor=@this.Goal.Needed />
+    </div>
+} else {
+    <div component-name="GoalDisplay" class="basic">
+        @this.Goal.Name
+        - <DescriptorDisplay Descriptor=@this.Goal.Needed />
+    </div>
+}
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public GoalEntry Goal { get; set; } = null!;
+
+    [Parameter]
+    public Func<MouseEventArgs, Task>? OnClick { get; set; } = null;
+}

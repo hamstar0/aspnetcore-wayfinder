@@ -1,0 +1,24 @@
+﻿@using Wayfinder.Shared.Data;
+@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Client.Components.Application.Views;
+
+
+
+<ul class="basic">
+@foreach( PlanEntry plan in this.Plans ) {
+    <li>@plan.ToString()</li>
+}
+</ul>
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public IEnumerable<PlanEntry> Plans { get; set; } = null!;
+}

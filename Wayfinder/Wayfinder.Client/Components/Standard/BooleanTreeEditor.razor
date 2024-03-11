@@ -1,0 +1,60 @@
+﻿@using Wayfinder.Shared.Libraries.BooleanTree;
+
+
+@typeparam DataType where DataType : IBoolean;
+@typeparam DataDisplayComponentType where DataDisplayComponentType : IBooleanEditComponent;
+@typeparam DataEditComponentType where DataEditComponentType : IBooleanEditComponent;
+
+
+
+@if( this.HasEditor ) {
+    @("<div component-name=\"BooleanTreeEditor\" class=\"basic\">")
+}
+
+@foreach( IBoolean node in this.TreeData.Children ) {
+    @if( node is BooleanTree<DataType> ) {
+        <BooleanTreeEditor
+                HasEditor=@false
+                DataType=@DataType
+                DataDisplayComponentType=@DataDisplayComponentType
+                DataEditComponentType=@DataEditComponentType
+                TreeData=@((BooleanTree<DataType>)node) />
+    } else {
+        <DynamicComponent
+                Type=@(typeof(DataDisplayComponentType))
+                Parameters=@this.Parameterize((IBoolean)node) />
+    }
+}
+
+@if( this.HasEditor ) {
+    <DynamicComponent Type=@(typeof(DataEditComponentType)) />
+
+    @("</div>")
+}
+
+
+@code {
+    //[Inject]
+    //public IJSRuntime Js { get; set; } = null!;
+
+    //[Inject]
+    //public ClientDataAccess Data { get; set; } = null!;
+
+
+    [Parameter, EditorRequired]
+    public bool HasEditor { get; set; }
+
+    [Parameter, EditorRequired]
+    public BooleanTree<DataType> TreeData { get; set; } = null!;
+
+    IBoolean Data {
+        get => (IBoolean)this.TreeData;
+        set => this.TreeData = (BooleanTree<DataType>)value;
+    }
+
+
+
+    private IDictionary<string, object> Parameterize( IBoolean node ) {
+        return new Dictionary<string, object> { { "Data", node } };
+    }
+}
