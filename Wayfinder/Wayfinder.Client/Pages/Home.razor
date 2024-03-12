@@ -49,7 +49,7 @@
 
         <div class="tab-content">
             <h4>Goals Entry</h4>
-            <GoalEditor OnGoalSelect="async e => {}" />
+            @* <GoalEditor OnGoalSelect="async e => {}" /> *@
         </div>
 
         <div class="tab-content">
@@ -60,19 +60,11 @@
         <div class="tab-content">
             <h4>Knowledge Prompting</h4>
             <DescriptorQueueEditor />
-            <DescriptorEditor
-                OnDescriptorSelect="async (e) => {}"
-                CanCreate=true CanEdit=true CanSearch=true />
         </div>
 
         <div class="tab-content">
             <h4>Knowledge Editor</h4>
-            @* <TermSearchInput /> *@
             <KnowledgeEditor></KnowledgeEditor>
-            <div id="term_search_results_tabs" class="tab-container">
-                @*<DescriptorsList />
-                <DescriptorEditor />*@
-            </div>
         </div>
 
         <div class="tab-content">

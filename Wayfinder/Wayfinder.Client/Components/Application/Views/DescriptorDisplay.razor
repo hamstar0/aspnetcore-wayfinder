@@ -4,8 +4,9 @@
 
 @if( this.OnClick is not null ) {
     <div component-name="DescriptorDisplay"
-            class="basic" @onclick=@(async e => await this.OnClick(e))
-            style=@this.Style>
+	        class="basic"
+	        style=@this.Style
+            @onclick=@(async e => await this.OnClick(e))>
         @this.Descriptor.ToString()
     </div>
 } else {

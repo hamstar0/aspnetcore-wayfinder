@@ -1,25 +1,26 @@
-v1
+Phase 3
 ...
 -	Implement database backend
+-	Implement UI components (2)
+	-	Plan timeline editor
+		-	Implement input option for multiple 'user action' windows per plan step
+	-	Term editor (2)
+		-	Add alias picker
+		-	Add context picker
 -	Implement Abridged parameter for deploying ScheduleEditor popup
-...
+Phase 2
+-	Implement tabs (2)
+	-	Map editor
 -	Implement prompting
+Phase 1
 -	Implement UI components
 	-	DescriptorDisplay
 	-	Create condensed Descriptor in-line view element
-	-	Goal input
+	-	Goal editor
 		-	Add description input
-	-	Term input
-		-	Add alias picker
-		-	Add context picker
+	-	Term editor (1)
 		-	Implement search result scrolling and selecting via keyboard
--	Implement tabs
-	-	Map editor
--	Add @attributes to components
--	@Usage test
--	Define UI components 2
-	-	Plan timeline
-	-	Descriptor data input 2
+	-	Descriptor data editor (2)
 		-	Add context term to data inputs
 		-	Data input components
 			-	Address input
@@ -27,9 +28,23 @@ v1
 			-	Range input
 			-	Term list input
 			-	Range input
+-	Implement tabs (1)
+	-	Knowledge prompting
+	-	Knowledge editor
+		-	Show searched descriptors in a large scrollable list
+		-	Clear current descriptor
+		-	DescriptorEditor search feature with submit button for edits or creates
+	-	Plan timeline editor
+		-	Draw proposed window of 'user action' assigned to each given plan step to form a chain
+		-	For a given plan step, propose a window of 'user action' to enact the step
+		-	Implement plan step entry (via DescriptorEditor)
+		-	PlanTimelineEditor: DescriptorEditor, plan timeline editor (borrows from ScheduleEditor)
+-	Draw timeline when a DescriptorEntry's Conditions are applicable (based on universal knowledge base)
+-	Set PlanStepEntry to only use one (each) 'Needed' and 'Fulfills'
+-	Add InitialDescriptor param to DescriptorEditor
+
+
 -	Fix Descriptor Conditions input
-
-
 -	@Create new repo
 -	Set submit button to be optional
 	-	Descriptor editor (also implement OnDescriptorEdit)
@@ -38,12 +53,12 @@ v1
 -	Set database placeholder to use json calls to server
 -	@Test
 -	Create database placeholder
--	Define UI components 1
+-	Define UI components (1)
 	-	Conditions editor
 		-	Implement Descriptor picker
 		-	Implement AND and OR buttons
 		-	Implement tree view
-	-	Descriptor data input 1
+	-	Descriptor data input (1)
 		-	Schedule timeline editor (part 2)
 			-	Display time scale ticks
 			-	Implement scrolling

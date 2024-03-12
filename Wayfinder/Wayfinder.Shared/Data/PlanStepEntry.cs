@@ -10,11 +10,9 @@ public class PlanStepEntry {
 	//[Key]
 	public long Id { get; set; }
 
-	public PlanEntry Plan { get; set; } = null!;
-
 	public DescriptorEntry Needed { get; set; } = null!;
 
 	public DescriptorEntry Fulfills { get; set; } = null!;
 
-	public DescriptorDataEntry Event { get; set; } = null!;
+	//public DescriptorDataEntry Event { get; set; } = null!;
 }

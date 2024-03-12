@@ -8,8 +8,7 @@ using Wayfinder.Shared.Libraries.BooleanTree;
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
 
 
-public partial class DescriptorConditionsEditor
-{
+public partial class DescriptorConditionsEditor {
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 
@@ -23,9 +22,8 @@ public partial class DescriptorConditionsEditor
     [Parameter, EditorRequired]
     public Func<BooleanTree<DescriptorEntry>, Task> OnEditSubmit { get; set; } = null!;
 
-    [Parameter]
-    public BooleanTree<DescriptorEntry> CurrentConditions { get; set; }
-            = new BooleanTree<DescriptorEntry>(true);
+    [Parameter, EditorRequired]
+    public BooleanTree<DescriptorEntry> Conditions { get; set; } = null!;
 
     private BooleanTree<DescriptorEntry>? SelectedConditionTree;
 

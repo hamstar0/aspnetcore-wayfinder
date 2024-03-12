@@ -8,15 +8,15 @@
 <div component-name="DescriptorConditionsTreeEditor"
         style=@this.Style
         class="basic @(this.Disabled ? "disabled" : null)"
-        @onclick=@(e => this.OnSelectTree(this.Tree))>
-    @for( int i=0; i<this.Tree.Children.Count; i++ ) {
-        IBoolean node = this.Tree.Children[i];
+        @onclick=@(e => this.OnSelectTree(this.Conditions))>
+    @for( int i=0; i<this.Conditions.Children.Count; i++ ) {
+        IBoolean node = this.Conditions.Children[i];
 
         @if( node is BooleanTree<DescriptorEntry> ) {
             <DescriptorConditionsTreeEditor
                     Disabled=@this.Disabled
                     Style="padding-left: 8px; display: inline-block;"
-                    Tree=@((BooleanTree<DescriptorEntry>)node)
+                    Conditions=@((BooleanTree<DescriptorEntry>)node)
                     OnSelectTree=@this.OnSelectTree />
         } else {
             <div>
@@ -24,15 +24,15 @@
                         Style="padding-left: 8px; display: inline-block;"
                         Descriptor=@((DescriptorEntry)node) />
 
-                @if( i < (this.Tree.Children.Count - 1) ) {
-                    <span>@(this.Tree.IsAnd ? " AND " : " OR ")</span>
+                @if( i < (this.Conditions.Children.Count - 1) ) {
+                    <span>@(this.Conditions.IsAnd ? " AND " : " OR ")</span>
                 }
             </div>
         }
     }
 
-    @if( this.Tree.Children.Count > 0 ) {
-        @if( this.Tree.IsAnd ) {
+    @if( this.Conditions.Children.Count > 0 ) {
+        @if( this.Conditions.IsAnd ) {
             <button disabled=@this.Disabled
                     @onclick=@(async e => await this.AddTree_UI_Async(false))>
                 OR

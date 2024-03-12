@@ -36,7 +36,8 @@
     }
     
     <DescriptorConditionsEditor Disabled=@this.Disabled
-            OnEditSubmit=@(async conds => await this.SetConditions_UI_Async(conds)) />
+            OnEditSubmit=@(async conds => await this.SetConditions_UI_Async(conds))
+            Conditions=@this.Conditions />
 
     @if( this.CanSearch ) {
         <div>   @* <- Not superfluous *@

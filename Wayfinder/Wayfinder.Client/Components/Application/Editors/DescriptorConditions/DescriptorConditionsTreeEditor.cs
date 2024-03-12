@@ -19,7 +19,7 @@ public partial class DescriptorConditionsTreeEditor {
     public bool Disabled { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public BooleanTree<DescriptorEntry> Tree { get; set; } = null!;
+    public BooleanTree<DescriptorEntry> Conditions { get; set; } = null!;
 
     [Parameter, EditorRequired]
     public Action<BooleanTree<DescriptorEntry>> OnSelectTree { get; set; } = null!;
@@ -34,6 +34,6 @@ public partial class DescriptorConditionsTreeEditor {
 
         var subTree = (IBoolean)new BooleanTree<DescriptorEntry>( isAnd );
 
-        this.Tree.Add( subTree, isAnd );
+        this.Conditions.Add( subTree, isAnd );
     }
 }
