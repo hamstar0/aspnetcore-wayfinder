@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components.Web;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
@@ -8,11 +9,11 @@ namespace Wayfinder.Client.Components.Application.Editors.Schedule;
 
 public partial class ScheduleEditor {
     private async Task OnMouseDown_UI_Async( MouseEventArgs evt ) {
-        if( this.Disabled ) { return; }
+        if( !this.CanEditOrCreate() ) { return; }
 
         double x = evt.OffsetX;
 
-        foreach( ScheduleEventEntry schEvt in this.Schedule.Events ) {
+        foreach( TimelineEvent<DescriptorDataEntry> schEvt in this.GetCurrentScheduleTimeline().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( schEvt.StartTime );
             if( x < evtStartX ) {
                 break;
@@ -33,14 +34,14 @@ public partial class ScheduleEditor {
         this.DrawAt_Async( x );
     }
 
-    private async Task<bool> OnMouseDownOverSeg_Async( double x, ScheduleEventEntry evt ) {
+    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEvent<DescriptorDataEntry> evt ) {
 return !this.IsDrawingSeg;
     }
 
 
     private async Task OnMouseUp_UI_Async( MouseEventArgs evt ) {
-        if( this.Disabled ) { return; }
+		if( !this.CanEditOrCreate() ) { return; }
 
-        await this.FinishingDrawing_Async( evt.OffsetX );
+		await this.FinishingDrawing_Async( evt.OffsetX );
     }
 }

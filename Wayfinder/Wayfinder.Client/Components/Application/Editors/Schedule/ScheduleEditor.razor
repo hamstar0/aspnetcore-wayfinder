@@ -6,6 +6,7 @@
 @using Wayfinder.Client.Components.Standard;
 @using Wayfinder.Client.Components.Application.Editors.DescriptorData;
 @using Wayfinder.Client.Components.Application.Pickers;
+@using Wayfinder.Shared.Libraries
 
 
 
@@ -65,7 +66,7 @@
             }
         }
         
-        @foreach( ScheduleEventEntry schedEvent in this.GetVisibleScheduleEvents() ) {
+        @foreach( TimelineEvent<DescriptorDataEntry> schedEvent in this.GetVisibleScheduleEvents() ) {
             <div class="timeline_seg"
                     style= "left: @(this.ComputeSegOffset(schedEvent))px;
                             width: @(this.ComputeSegWidth(schedEvent))px;">

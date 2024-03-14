@@ -14,7 +14,7 @@ public partial class ServerDataAccess {
     public async Task<ScheduleEntry> CreateSchedule_Async( ClientDataAccess.CreateScheduleParams parameters ) {
         long id = this.CurrentSchedId++;
 
-        this.Schedules[ id ] = new ScheduleEntry( id, parameters.ScheduleFor, parameters.Events );
+        this.Schedules[ id ] = new ScheduleEntry( id, parameters.Events );
 
         return this.Schedules[id];
     }
@@ -29,9 +29,9 @@ public partial class ServerDataAccess {
         ScheduleEntry schedule = this.Schedules[parameters.ScheduleId];
 
         foreach( long eventId in parameters.EventIds ) {
-            foreach( ScheduleEventEntry evt in schedule.Events.ToList() ) {
+            foreach( ScheduleEventEntry evt in schedule.Events ) {
                 if( evt.Id == eventId ) {
-                    schedule.RemoveEvent( evt.Id );
+                    schedule.RemoveEventById( evt.Id );
 
                     break;
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
@@ -20,7 +21,7 @@ public partial class ScheduleDisplay {
 
 
     [Parameter, EditorRequired]
-    public ScheduleEntry Schedule { get; set; } = new ScheduleEntry();
+    public ScheduleEntry Schedule { get; set; } = null!;
 
 
     [Parameter]
@@ -33,7 +34,7 @@ public partial class ScheduleDisplay {
 
 
 
-    public double GetWidthOfTimespan( TimeSpan span ) {
+	public double GetWidthOfTimespan( TimeSpan span ) {
         return span.TotalSeconds / this.ZoomScale;
     }
 

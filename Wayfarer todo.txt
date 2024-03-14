@@ -39,9 +39,10 @@ Phase 1
 		-	For a given plan step, propose a window of 'user action' to enact the step
 		-	Implement plan step entry (via DescriptorEditor)
 		-	PlanTimelineEditor: DescriptorEditor, plan timeline editor (borrows from ScheduleEditor)
--	Draw timeline when a DescriptorEntry's Conditions are applicable (based on universal knowledge base)
--	Set PlanStepEntry to only use one (each) 'Needed' and 'Fulfills'
--	Add InitialDescriptor param to DescriptorEditor
+-	Update ScheduleEditor/ScheduleDisplay
+	-	Draw timeline when a DescriptorEntry's Conditions are applicable (based on universal knowledge base)
+	-	Add button to toggle filter by conditions
+	-	Set ScheduleEditor to use ScheduleDisplay
 
 
 -	Fix Descriptor Conditions input

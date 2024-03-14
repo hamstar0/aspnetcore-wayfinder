@@ -31,8 +31,9 @@
     @if( this.Abridged ) {
         <ScheduleDisplay Schedule=@(this.Schedule ?? new ScheduleEntry()) />
     } else {
-        <ScheduleEditor Disabled=@this.Disabled 
-                        OnEditSubmit=@(async sched => await this.SetSchedule_UI_Async(sched)) />
+        <ScheduleEditor Disabled=@this.Disabled
+                        CanCreate=true CanEdit=true
+                        OnSubmit=@(async (sched, isEdit) => await this.SetSchedule_UI_Async(sched)) />
     }
     
     <DescriptorConditionsEditor Disabled=@this.Disabled

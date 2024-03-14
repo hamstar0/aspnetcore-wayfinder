@@ -9,8 +9,6 @@ public class PlanEntry {
 
 	public string Name { get; set; } = null!;
 
-	public GoalEntry Goal { get; set; } = null!;
-
 	public IList<PlanStepEntry> Steps { get; set; } = null!;
 }
 

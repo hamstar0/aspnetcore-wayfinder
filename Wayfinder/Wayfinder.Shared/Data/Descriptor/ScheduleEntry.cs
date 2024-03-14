@@ -1,53 +1,39 @@
 ﻿using System.Collections;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
-public partial class ScheduleEntry : IEquatable<ScheduleEntry> {
-    public long Id { get; private set; }
+public partial class ScheduleEntry : Timeline<ScheduleEventEntry, DescriptorDataEntry> {
+    public long Id { get; set; }
 
-    public DescriptorEntry? For { get; private set; }   // 1:1
-
-    public IReadOnlyList<ScheduleEventEntry> Events => this._events.AsReadOnly();
-
-    private IList<ScheduleEventEntry> _events;
-
-    private IDictionary<long, int> _EventsById = new Dictionary<long, int>();
+    //public DescriptorEntry For { get; set; }   // 1:1
 
 
 
     public ScheduleEntry() {
-        this._events = new List<ScheduleEventEntry>();
+        this.Id = -1;
     }
 
-    public ScheduleEntry( long id, DescriptorEntry? @for, IList<ScheduleEventEntry> events ) {
+    public ScheduleEntry( long id, IEnumerable<ScheduleEventEntry> events ) : base( events ) {
         this.Id = id;
-        this.For = @for;
-        this._events = events;
-
-        for( int i=0; i<events.Count; i++ ) {
-            this._EventsById[ events[i].Id ] = i;
-        }
     }
 
-    public bool Equals( ScheduleEntry? other ) {
-        if( other is null ) {
-            return false;
-        }
-        if( this.For != other.For ) {
-            return false;
-        }
-        if( this.Events.Count != other.Events.Count ) {
-            return false;
-        }
-        if( this.Events != other.Events ) {
-            for( int i = 0; i < this.Events.Count; i++ ) {
-                if( !this.Events[i].Equals(other.Events[i]) ) {
-                    return false;
-                }
-            }
-        }
-        return true;
+
+	public override void AddEvent( ScheduleEventEntry evt ) {
+		base.AddEvent( evt );
+
+        f
+	}
+
+	public override void RemoveEvent( ScheduleEventEntry evt ) {
+		base.RemoveEvent( evt );
+
+        f
+	}
+
+	public void RemoveEventById( long id ) {
+        f
     }
 }
