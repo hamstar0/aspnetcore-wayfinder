@@ -1,4 +1,5 @@
-﻿using Wayfinder.Shared.Libraries.BooleanTree;
+﻿using Wayfinder.Shared.Data.Schedule;
+using Wayfinder.Shared.Libraries.BooleanTree;
 
 
 namespace Wayfinder.Shared.Data.Entries.Descriptor;

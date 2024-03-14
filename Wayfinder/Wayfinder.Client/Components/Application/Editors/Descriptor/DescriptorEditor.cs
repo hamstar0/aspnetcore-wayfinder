@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Shared.Libraries.BooleanTree;
 
 
