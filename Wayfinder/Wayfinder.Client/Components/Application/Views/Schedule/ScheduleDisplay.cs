@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Schedule;
-using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
@@ -17,7 +16,6 @@ public partial class ScheduleDisplay {
 
     //[Inject]
     //public ClientDataAccess Data { get; set; } = null!;
-
 
 
     [Parameter, EditorRequired]

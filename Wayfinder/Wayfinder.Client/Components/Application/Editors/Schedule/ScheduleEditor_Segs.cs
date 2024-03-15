@@ -18,11 +18,9 @@ public partial class ScheduleEditor {
 
 
     public IList<ScheduleEventEntry> GetVisibleScheduleEvents() {
-        Timeline<ScheduleEventEntry, DescriptorDataEntry> timeline = this.EditSchedule is not null
-                ? this.EditSchedule
-                : this.CreateScheduleTimeline;
+        ScheduleEntry schedule = this.GetCurrentSchedule();
 
-		return timeline.GetEventsBetween(
+        return schedule.GetEventsBetween(
             this.ViewTimeStart,
             this.ViewTimeStart + this.GetTimespanOfOffsetX( (double)ScheduleEditor.MaxElementWidth )
         );

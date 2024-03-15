@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
-using Wayfinder.Client.Data;
-using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Data.Schedule;
+using Wayfinder.Client.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
@@ -40,10 +39,7 @@ public partial class ScheduleEditor {
 	[Parameter]
 	public ScheduleEntry? EditSchedule { get; set; } = null;
 
-	private DescriptorEntry CreateScheduleFor = new DescriptorEntry();
-
-	private Timeline<ScheduleEventEntry, DescriptorDataEntry> CreateScheduleTimeline
-        = new Timeline<ScheduleEventEntry, DescriptorDataEntry>();
+	private ScheduleEntry CreateSchedule = new ScheduleEntry();
 
 
 	[Parameter]
@@ -97,7 +93,7 @@ public partial class ScheduleEditor {
     }
 
 
-    private Timeline<ScheduleEventEntry, DescriptorDataEntry> GetCurrentScheduleTimeline() {
+    private ScheduleEntry GetCurrentSchedule() {
         if( this.CanEdit ) {
             if( this.EditSchedule is null ) {
 				throw new InvalidDataException( "No edit ScheduleEntry available." );
@@ -105,10 +101,10 @@ public partial class ScheduleEditor {
 			return this.EditSchedule;
 		}
         if( this.CanCreate ) {
-			if( this.CreateScheduleTimeline is null ) {
-				throw new InvalidDataException( "No create Timeline available." );
+			if( this.CreateSchedule is null ) {
+				throw new InvalidDataException( "No create ScheduleEntry available." );
 			}
-			return this.CreateScheduleTimeline;
+			return this.CreateSchedule;
 		}
 		throw new InvalidDataException( "ScheduleEditor cannot create or edit Schedules (!)" );
 	}
@@ -118,7 +114,7 @@ public partial class ScheduleEditor {
 			return false;
 		}
 		if( this.CanEdit && this.EditSchedule is null ) {
-            if( this.CanCreate && this.CreateScheduleTimeline is null ) {
+            if( this.CanCreate && this.CreateSchedule is null ) {
                 return false;
             }
 		}

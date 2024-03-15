@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components.Web;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Shared.Libraries;
 
 
@@ -13,7 +14,7 @@ public partial class ScheduleEditor {
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEvent<DescriptorDataEntry> schEvt in this.GetCurrentScheduleTimeline().Events ) {
+        foreach( ScheduleEventEntry schEvt in this.GetCurrentSchedule().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( schEvt.StartTime );
             if( x < evtStartX ) {
                 break;

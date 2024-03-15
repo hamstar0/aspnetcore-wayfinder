@@ -6,43 +6,25 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Shared.Data.Schedule;
 
 
-public partial class ScheduleEntry : Timeline<ScheduleEventEntry, DescriptorDataEntry>
-{
-    public long Id { get; set; }
 
-    //public DescriptorEntry For { get; set; }   // 1:1
+public partial class ScheduleEntry : Timeline<ScheduleEventEntry, DescriptorDataEntry> {
+	//public DescriptorEntry For { get; set; }   // 1:1
 
+	public ScheduleEntry() : base() { }
 
+	public ScheduleEntry( IEnumerable<ScheduleEventEntry> events ) : base( events ) { }
 
-    public ScheduleEntry()
-    {
-        Id = -1;
-    }
-
-    public ScheduleEntry(long id, IEnumerable<ScheduleEventEntry> events) : base(events)
-    {
-        Id = id;
-    }
+	public ScheduleEntry( long id,  IEnumerable<ScheduleEventEntry> events ) : base( id, events ) { }
+}
 
 
-    public override void AddEvent(ScheduleEventEntry evt)
-    {
-        base.AddEvent(evt);
 
-        f
+public partial class ScheduleEventEntry : TimelineEvent<DescriptorDataEntry> { 
+	public ScheduleEventEntry( DateTime start, DateTime end, DescriptorDataEntry data )
+			: base( start, end, data ) {
+	}
 
-    }
-
-    public override void RemoveEvent(ScheduleEventEntry evt)
-    {
-        base.RemoveEvent(evt);
-
-        f
-
-    }
-
-    public void RemoveEventById(long id)
-    {
-        f
-    }
+	public ScheduleEventEntry( long id, DateTime start, DateTime end, DescriptorDataEntry data )
+			: base( id, start, end, data ) {
+	}
 }

@@ -1,96 +1,46 @@
 ﻿@using System.Net.Http;
 @using System.Net.Http.Json;
+@using Wayfinder.Shared.Libraries;
 @using Wayfinder.Shared.Data.Entries.Descriptor;
 @using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 @using Wayfinder.Client.Data;
 @using Wayfinder.Client.Components.Standard;
+@using Wayfinder.Client.Components.Application.Views.Schedule;
 @using Wayfinder.Client.Components.Application.Editors.DescriptorData;
 @using Wayfinder.Client.Components.Application.Pickers;
-@using Wayfinder.Shared.Libraries
 
 
 
-<div component-name="ScheduleEditor"
-        class="basic schedule-component-container @(this.Disabled ? "disabled" : null)">
-    <div>
+<ScheduleDisplay component-name="ScheduleEditor"
+        Schedule=@this.GetCurrentSchedule()
+        OnMouseDown=@this.OnMouseDown_UI_Async
+        OnMouseUp=@this.OnMouseUp_UI_Async>
+    <AddedHeadButtonsPre>
         <ToggleSwitch Label="Edit Time Segments"
-                Disabled=@this.Disabled
-                IsOn=@this.IsDrawingSeg
-                IsOnChanged=@(async b => this.IsDrawingSeg = b) />
+                      Disabled=@this.Disabled
+                      IsOn=@this.IsDrawingSeg
+                      IsOnChanged=@(async b => this.IsDrawingSeg = b) />
+    </AddedHeadButtonsPre>
 
-        <button disabled=@this.Disabled
-                @onclick=@(e => this.ScrollLeft_UI())>
-            &larr;
-        </button>
-        <button disabled=@this.Disabled
-                @onclick=@(e => this.ScrollRight_UI())>
-            &rarr;
-        </button>
-        <button disabled=@this.Disabled
-                @onclick=@(e => this.Zoom_UI(this.ZoomScale * 0.5d))>
-            +
-        </button>
-        <button disabled=@this.Disabled
-                @onclick=@(e => this.Zoom_UI(this.ZoomScale * 2d))>
-            -
-        </button>
-    </div>
-
-    <div class="schedule-component" style="max-width: @(ScheduleEditor.MaxElementWidth)px;"
-            @onmousedown=@(async (e) => await this.OnMouseDown_UI_Async(e))
-            @onmouseup=@(async (e) => await this.OnMouseUp_UI_Async(e))
-            @onmouseleave=@(async (e) => await this.OnMouseUp_UI_Async(e))>
-        @if( this.CanDisplayMinuteMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitMinuteMarkers(ScheduleEditor.MaxElementWidth) ) {
-                <div class="timeline_minute" style="left: @(x)px;">@label</div>
-            }
-        }
-        @if( this.CanDisplayHourMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitHourMarkers(ScheduleEditor.MaxElementWidth) ) {
-                <div class="timeline_hour" style="left: @(x)px;">@label</div>
-            }
-        }
-        @if( this.CanDisplayDayMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitDayMarkers(ScheduleEditor.MaxElementWidth) ) {
-                <div class="timeline_day" style="left: @(x)px;">@label</div>
-            }
-        }
-        @if( this.CanDisplayMonthMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitMonthMarkers(ScheduleEditor.MaxElementWidth) ) {
-                <div class="timeline_month" style="left: @(x)px;">@label</div>
-            }
-        }
-        @if( this.CanDisplayYearMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitYearMarkers(ScheduleEditor.MaxElementWidth) ) {
-                <div class="timeline_year" style="left: @(x)px;">@label</div>
-            }
-        }
-        
-        @foreach( TimelineEvent<DescriptorDataEntry> schedEvent in this.GetVisibleScheduleEvents() ) {
-            <div class="timeline_seg"
-                    style= "left: @(this.ComputeSegOffset(schedEvent))px;
-                            width: @(this.ComputeSegWidth(schedEvent))px;">
-            </div>
-        }
-    </div>
-
-    <div class="basic">
-        <DescriptorDataTypePicker Disabled=@this.Disabled
-                RangeTypesOnly=@this.RangeDataTypesOnly
-                OnTypeChoice=@(async (c) => this.CurrentDrawSegDataType = c) />
-        @switch( this.CurrentDrawSegDataType ) {
+    <Footer>
+        <div class="basic">
+            <DescriptorDataTypePicker Disabled=@this.Disabled
+                                      RangeTypesOnly=@this.RangeDataTypesOnly
+                                      OnTypeChoice=@(async (c) => this.CurrentDrawSegDataType = c) />
+            @switch( this.CurrentDrawSegDataType ) {
             case DescriptorDataType.Scalar:
                 <ScalarEditor Disabled=@this.Disabled
-                        OnInput=@(async d => this.SetCurrentSegValue(this.CurrentDrawSegDataType, d)) />
+                              OnInput=@(async d => this.SetCurrentSegValue(this.CurrentDrawSegDataType, d)) />
                 break;
-        }
-    </div>
+            }
+        </div>
 
-    @if( !this.SubmitOnEditOnly ) {
-        <button disabled=@this.Disabled
-                @onclick=@(async (e) => await this.AttemptSubmit_UI_Async())>
-            Submit
-        </button>
-    }
-</div>
+        @if( !this.SubmitOnEditOnly ) {
+            <button disabled=@this.Disabled
+                    @onclick=@(async (e) => await this.AttemptSubmit_UI_Async())>
+                Submit
+            </button>
+        }
+    </Footer>
+</ScheduleDisplay>
 

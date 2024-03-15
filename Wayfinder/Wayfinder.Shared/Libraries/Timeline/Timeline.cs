@@ -1,15 +1,22 @@
 ﻿using System.Collections;
+using System.Text.Json.Serialization;
 
 
 namespace Wayfinder.Shared.Libraries;
 
 
 public partial class Timeline<T, U> where T : TimelineEvent<U> {
-    public IReadOnlyList<T> Events => this._Events.AsReadOnly();
+	public long Id { get; set; }
 
-    private IList<T> _Events;
+	[JsonIgnore]
+	public bool IsAssignedId { get; private set; } = false;
 
-    private IDictionary<T, int> _EventIndexes = new Dictionary<T, int>();
+
+	public IReadOnlyList<T> Events => this._Events.AsReadOnly();
+
+    private IList<T> _Events = new List<T>();
+
+	private IDictionary<long, int> _EventsByIds = new Dictionary<long, int>();
 
 
     public Timeline() {
@@ -17,12 +24,24 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
     }
 
     public Timeline( IEnumerable<T> events ) {
-        this._Events = events.ToList();
+		this._Events = events.ToList();
 
-		for( int i=0; i<this._Events.Count; i++ ) {
-            this._EventIndexes[ this._Events[i] ] = i;
-        }
+		foreach( T evt in events ) {
+			this.AddEvent( evt );
+		}
     }
+
+    public Timeline( long id, IEnumerable<T> events ) {
+		this.Id = id;
+		this.IsAssignedId = true;
+
+		this._Events = events.ToList();
+
+		foreach( T evt in events ) {
+			this.AddEvent( evt );
+		}
+    }
+
 
     public bool Equals( Timeline<T, U>? other ) {
         if( other is null ) {
@@ -41,22 +60,36 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
         return true;
 	}
 
-	public virtual void AddEvent( T evt ) {
+	public void AddEvent( T evt ) {
 		for( int i = 0; i < this.Events.Count; i++ ) {
 			if( evt.EndTime >= this.Events[i].StartTime ) {
 				continue;
 			}
 
-			this._Events.Insert( i, evt );
-			this._EventIndexes[ evt ] = i;
+			while( this._EventsByIds.ContainsKey(evt.Id) ) {
+				int collideeIdx = this._EventsByIds[evt.Id];
+				T collidee = this.Events[collideeIdx];
 
-			break;
+				if( collidee.IsAssignedId ) {
+					if( evt.IsAssignedId ) {
+						throw new Exception( "Id collision" );
+					}
+					evt.GetNewAutoId();
+				} else if( evt.IsAssignedId ) {
+					this.ReIndexEventAt( collideeIdx, new HashSet<long> { evt.Id } );
+				}
+			}
+
+			this._Events.Insert( i, evt );
+			this._EventsByIds[ evt.Id ] = i;
+
+			return;
 		}
 	}
 
-	public virtual void RemoveEvent( T evt ) {
-		this._Events.RemoveAt( this._EventIndexes[evt] );
-		this._EventIndexes.Remove( evt );
+	public void RemoveEventById( long id ) {
+		this._Events.RemoveAt( this._EventsByIds[id] );
+		this._EventsByIds.Remove( id );
 	}
 
 
@@ -76,5 +109,18 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
 		}
 
 		return evts;
+	}
+
+
+	private void ReIndexEventAt( int idx, ISet<long> alsoAvoid ) {
+		T collidee = this.Events[ idx ];
+
+		this._EventsByIds.Remove( collidee.Id );
+
+		do {
+			collidee.GetNewAutoId();
+		} while( this._EventsByIds.ContainsKey(collidee.Id) || alsoAvoid.Contains(collidee.Id) );
+
+		this._EventsByIds[ collidee.Id ] = idx;
 	}
 }

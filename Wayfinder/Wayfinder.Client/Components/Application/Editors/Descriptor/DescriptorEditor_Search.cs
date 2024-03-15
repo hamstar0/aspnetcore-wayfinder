@@ -1,6 +1,7 @@
 ﻿using System;
-using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Libraries.BooleanTree;
+using Wayfinder.Client.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
@@ -25,7 +26,8 @@ public partial class DescriptorEditor {
         this.TermSubj = descriptor.TermSubj;
         this.TermRel = descriptor.TermRel;
         this.Schedule = descriptor.Schedule;
-        this.Conditions = descriptor.Conditions;
+        this.Conditions = descriptor.Conditions
+            ?? new BooleanTree<DescriptorEntry>( true );
 
         this.IsModified = false;
 

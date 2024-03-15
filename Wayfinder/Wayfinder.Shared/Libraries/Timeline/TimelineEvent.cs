@@ -6,14 +6,30 @@ namespace Wayfinder.Shared.Libraries;
 
 
 public class TimelineEvent<T> {
-	public DateTime StartTime;
+	private static long CurrentAutoId = 1;
+	
 
-	public DateTime EndTime;
+	public long Id { get; set; }
 
-	public T Data;
+	public bool IsAssignedId { get; private set; } = false;
+
+	public DateTime StartTime { get; set; }
+
+	public DateTime EndTime { get; set; }
+
+	public T Data { get; set; }
 
 
 	public TimelineEvent( DateTime start, DateTime end, T data ) {
+		this.Id = TimelineEvent<T>.CurrentAutoId++;
+		this.StartTime = start;
+		this.EndTime = end;
+		this.Data = data;
+	}
+
+	public TimelineEvent( long id, DateTime start, DateTime end, T data ) : this( start, end, data ) {
+		this.Id = id;
+		this.IsAssignedId = true;
 		this.StartTime = start;
 		this.EndTime = end;
 		this.Data = data;
@@ -27,5 +43,10 @@ public class TimelineEvent<T> {
 			if( !this.Data.Equals(other.Data) ) { return false; }
 		}
 		return true;
+	}
+
+	public void GetNewAutoId() {
+		this.Id = TimelineEvent<T>.CurrentAutoId++;
+		this.IsAssignedId = false;
 	}
 }

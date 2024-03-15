@@ -41,7 +41,7 @@ public partial class ScheduleEditor {
             return;
         }
 
-        this.GetCurrentScheduleTimeline().AddEvent( this.CurrentDrawSeg );
+        this.GetCurrentSchedule().AddEvent( this.CurrentDrawSeg );
 
         this.CurrentDrawSeg = null;
         this.IsDrawingSeg = false;
@@ -83,7 +83,7 @@ public partial class ScheduleEditor {
     private async Task AttemptSubmit_Async() {
         if( this.CanEdit && this.EditSchedule is not null ) {
 			await this.AttemptEditSubmit_Async();
-		} else if( this.CanCreate && this.CreateScheduleTimeline is not null ) {
+		} else if( this.CanCreate && this.CreateSchedule is not null ) {
 			await this.AttemptCreateSubmit_Async();
 		}
 	}
@@ -94,7 +94,7 @@ public partial class ScheduleEditor {
         }
 
 		ScheduleEntry newSched = await this.Data.CreateSchedule_Async(
-			new ClientDataAccess.CreateScheduleParams( this.CreateScheduleTimeline.Events )
+			new ClientDataAccess.CreateScheduleParams( this.CreateSchedule.Events )
 		);
 		if( await this.OnSubmit.Invoke(newSched, false) ) {
 			return;
