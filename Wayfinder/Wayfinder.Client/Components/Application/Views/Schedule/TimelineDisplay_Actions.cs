@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class TimelineDisplay {
+public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
+            where TimelineEventType : TimelineEvent<TimelineDataType> {
     public void Scroll( double amt ) {
         this.ViewTimeStart += this.GetTimespanOfOffsetX( amt );
     }

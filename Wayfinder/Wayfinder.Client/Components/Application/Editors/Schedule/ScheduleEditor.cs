@@ -67,7 +67,7 @@ public partial class ScheduleEditor {
     private DescriptorDataEntry? CurrentDrawSegDataValue = null;
 
 
-    private TimelineDisplay DisplayComponent = null!;
+    private TimelineDisplay<ScheduleEventEntry, DescriptorDataEntry> DisplayComponent = null!;
 
 
 

@@ -1,41 +1,41 @@
-﻿.schedule-component {
+﻿.timeline-component {
     position: relative;
     border: 1px solid black;
     height: 128px;
     overflow: hidden;
 }
 
-.schedule-component-unit {
+.timeline-unit {
     position: absolute;
     display: block;
     /*display: inline-block;*/
 }
 
-.schedule-component-unit-year {
+.timeline-unit-year {
     border: 1px solid green;
     height: 128px;
     top: 0px;
 }
 
-.schedule-component-unit-month {
+.timeline-unit-month {
     border: 1px solid blue;
     height: 104px;
     top: 24px;
 }
 
-.schedule-component-unit-day {
+.timeline-unit-day {
     border: 1px solid yellow;
     height: 80px;
     top: 48px;
 }
 
-.schedule-component-unit-hour {
+.timeline-unit-hour {
     border: 1px solid red;
     height: 56px;
     top: 72px;
 }
 
-.schedule-component-unit-minute {
+.timeline-unit-minute {
     border: 1px solid purple;
     height: 32px;
     top: 96px;
@@ -43,46 +43,20 @@
 
 /********/
 
-.schedule-timeline-seg {
+.timeline-seg {
     position: absolute;
     height: 100%;
     background-color: grey;
     opacity: 0.2;
 }
 
-    .schedule-timeline-seg.schedule-timeline-seg-current {
+    .timeline-seg.timeline-seg-current {
         background-color: red;
     }
 
-.schedule-timeline-cond-seg {
+.timeline-cond-seg {
     position: absolute;
     height: 100%;
     background-color: green;
     opacity: 0.2;
-}
-
-
-
-.timeline_second {
-    display: inline-block;
-}
-
-.timeline_minute {
-    display: inline-block;
-}
-
-.timeline_hour {
-    display: inline-block;
-}
-
-.timeline_day {
-    display: inline-block;
-}
-
-.timeline_week {
-    display: inline-block;
-}
-
-.timeline_month {
-    display: inline-block;
 }

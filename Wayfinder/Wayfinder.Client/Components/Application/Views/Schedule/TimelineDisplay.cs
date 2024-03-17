@@ -7,7 +7,8 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class TimelineDisplay {
+public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
+            where TimelineEventType : TimelineEvent<TimelineDataType> {
     public readonly static int MaxElementWidth = 1920;
 
 
@@ -20,7 +21,7 @@ public partial class TimelineDisplay {
 
 
     [Parameter, EditorRequired]
-    public ScheduleEntry Schedule { get; set; } = null!;
+    public Timeline<TimelineEventType, TimelineDataType> Timeline { get; set; } = null!;
 
 
     [Parameter]
