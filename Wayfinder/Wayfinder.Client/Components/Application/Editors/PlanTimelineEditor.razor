@@ -1,7 +1,17 @@
 ﻿@using Wayfinder.Shared.Data.Entries;
 @using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.Timeline;
 
 
 
 <div component-name="PlanTimelineEditor" class="basic">
+	<TimelineDisplay TimelineEventType=PlanStepEntry TimelineDataType=DescriptorDataEntry>
+        <AddedHeadButtonsPre>
+        </AddedHeadButtonsPre>
+
+        <Footer>
+        </Footer>
+	</TimelineDisplay>
+
+	<DesciptorEditor />
 </div>

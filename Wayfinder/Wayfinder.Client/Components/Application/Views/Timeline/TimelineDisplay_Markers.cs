@@ -3,7 +3,7 @@ using System.Globalization;
 using Wayfinder.Shared.Libraries;
 
 
-namespace Wayfinder.Client.Components.Application.Views.Schedule;
+namespace Wayfinder.Client.Components.Application.Views.Timeline;
 
 
 public partial class TimelineDisplay<TimelineEventType, TimelineDataType>

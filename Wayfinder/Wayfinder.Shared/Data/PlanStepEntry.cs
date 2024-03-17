@@ -1,6 +1,5 @@
 ﻿using System;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 
 
 namespace Wayfinder.Shared.Data.Entries;

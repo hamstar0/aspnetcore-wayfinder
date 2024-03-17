@@ -6,14 +6,13 @@
 @using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 @using Wayfinder.Client.Data;
 @using Wayfinder.Client.Components.Standard;
-@using Wayfinder.Client.Components.Application.Views.Schedule;
+@using Wayfinder.Client.Components.Application.Views.Timeline;
 @using Wayfinder.Client.Components.Application.Editors.DescriptorData;
 @using Wayfinder.Client.Components.Application.Pickers;
 
 
 
-<TimelineDisplay TimelineEventType=ScheduleEventEntry
-				 TimelineDataType=DescriptorDataEntry
+<TimelineDisplay TimelineEventType=ScheduleEventEntry TimelineDataType=DescriptorDataEntry
                  @ref=@this.DisplayComponent
                  Timeline=@this.GetCurrentSchedule()
                  ViewTimeStart=@this.ViewTimeStart

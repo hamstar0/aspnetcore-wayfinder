@@ -4,7 +4,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Client.Data;
-using Wayfinder.Client.Components.Application.Views.Schedule;
+using Wayfinder.Client.Components.Application.Views.Timeline;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
