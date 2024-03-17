@@ -5,6 +5,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Application.Views.Timeline;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
@@ -60,14 +61,14 @@ public partial class ScheduleEditor {
 
 	private bool IsDrawingSeg = false;
 
-    private ScheduleEventEntry? CurrentDrawSeg = null;
+    private TimelineEvent<DescriptorDataEntry>? CurrentDrawSeg = null;
 
     private DescriptorDataType CurrentDrawSegDataType = DescriptorDataType.Scalar;
 
     private DescriptorDataEntry? CurrentDrawSegDataValue = null;
 
 
-    private TimelineDisplay<ScheduleEventEntry, DescriptorDataEntry> DisplayComponent = null!;
+    private TimelineDisplay<DescriptorDataEntry> DisplayComponent = null!;
 
 
 

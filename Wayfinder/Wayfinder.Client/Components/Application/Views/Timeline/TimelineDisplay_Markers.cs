@@ -6,8 +6,7 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Client.Components.Application.Views.Timeline;
 
 
-public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
-            where TimelineEventType : TimelineEvent<TimelineDataType> {
+public partial class TimelineDisplay<TimelineDataType> {
     public bool CanDisplayMinuteMarkers() {
         double width = 60d / this.ZoomScale;
         return width >= 16d;//&& width < ScheduleEditor.MaxElementWidth;

@@ -7,8 +7,7 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Client.Components.Application.Views.Timeline;
 
 
-public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
-            where TimelineEventType : TimelineEvent<TimelineDataType> {
+public partial class TimelineDisplay<TimelineDataType> {
     public readonly static int MaxElementWidth = 1920;
 
 
@@ -21,7 +20,7 @@ public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
 
 
     [Parameter, EditorRequired]
-    public Timeline<TimelineEventType, TimelineDataType> Timeline { get; set; } = null!;
+    public Timeline<TimelineDataType> Timeline { get; set; } = null!;
 
 
     [Parameter]
@@ -34,7 +33,7 @@ public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
 
 
     [Parameter]
-    public Timeline<TimelineEvent<bool>, bool>? ConditionWindows { get; set; } = null;
+    public Timeline<bool>? ConditionWindows { get; set; } = null;
 
     private bool ShowConditions = true;
 

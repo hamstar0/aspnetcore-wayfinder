@@ -33,6 +33,7 @@ Phase 1
 			-	Range input
 			-	Term list input
 			-	Range input
+-	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor
 -	Implement tabs (1)
 	-	Knowledge prompting
 	-	Knowledge editor
@@ -43,9 +44,9 @@ Phase 1
 		-	Draw proposed window of 'user action' assigned to each given plan step to form a chain
 		-	For a given plan step, propose a window of 'user action' to enact the step
 		-	Implement plan step entry (via DescriptorEditor)
+
+
 		-	PlanTimelineEditor: DescriptorEditor, plan timeline editor (borrows from ScheduleEditor)
-
-
 -	Update ScheduleEditor/ScheduleDisplay
 	-	Draw timeline of conditions windows
 	-	Add button to toggle draw condition windows

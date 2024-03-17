@@ -1,5 +1,7 @@
 ﻿using Wayfinder.Client.Data;
+using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Schedule;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Data;
@@ -20,7 +22,7 @@ public partial class ServerDataAccess {
     }
 
     public async Task AddScheduleEvents_Async( ClientDataAccess.AddScheduleEventsParams parameters ) {
-        foreach( ScheduleEventEntry evt in parameters.Events ) {
+        foreach( TimelineEvent<DescriptorDataEntry> evt in parameters.Events ) {
             this.Schedules[ parameters.ScheduleId ].AddEvent( evt );
         }
     }
@@ -29,7 +31,7 @@ public partial class ServerDataAccess {
         ScheduleEntry schedule = this.Schedules[parameters.ScheduleId];
 
         foreach( long eventId in parameters.EventIds ) {
-            foreach( ScheduleEventEntry evt in schedule.Events ) {
+            foreach( TimelineEvent<DescriptorDataEntry> evt in schedule.Events ) {
                 if( evt.Id == eventId ) {
                     schedule.RemoveEventById( evt.Id );
 

@@ -5,45 +5,46 @@ using System.Text.Json.Serialization;
 namespace Wayfinder.Shared.Libraries;
 
 
-public partial class Timeline<T, U> where T : TimelineEvent<U> {
+public partial class Timeline<T> {
 	public long Id { get; set; }
 
 	[JsonIgnore]
 	public bool IsAssignedId { get; private set; } = false;
 
 
-	public IReadOnlyList<T> Events => this._Events.AsReadOnly();
+	public IReadOnlyList<TimelineEvent<T>> Events => this._Events.AsReadOnly();
 
-    private IList<T> _Events = new List<T>();
+    private IList<TimelineEvent<T>> _Events = new List<TimelineEvent<T>>();
 
 	private IDictionary<long, int> _EventsByIds = new Dictionary<long, int>();
 
 
+
     public Timeline() {
-        this._Events = new List<T>();
+        this._Events = new List<TimelineEvent<T>>();
     }
 
-    public Timeline( IEnumerable<T> events ) {
+    public Timeline( IEnumerable<TimelineEvent<T>> events ) {
 		this._Events = events.ToList();
 
-		foreach( T evt in events ) {
+		foreach( TimelineEvent<T> evt in events ) {
 			this.AddEvent( evt );
 		}
     }
 
-    public Timeline( long id, IEnumerable<T> events ) {
+    public Timeline( long id, IEnumerable<TimelineEvent<T>> events ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 
 		this._Events = events.ToList();
 
-		foreach( T evt in events ) {
+		foreach( TimelineEvent<T> evt in events ) {
 			this.AddEvent( evt );
 		}
     }
 
 
-    public bool Equals( Timeline<T, U>? other ) {
+    public bool Equals( Timeline<TimelineEvent<T>>? other ) {
         if( other is null ) {
             return false;
         }
@@ -60,7 +61,7 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
         return true;
 	}
 
-	public void AddEvent( T evt ) {
+	public void AddEvent( TimelineEvent<T> evt ) {
 		for( int i = 0; i < this.Events.Count; i++ ) {
 			if( evt.EndTime >= this.Events[i].StartTime ) {
 				continue;
@@ -68,7 +69,7 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
 
 			while( this._EventsByIds.ContainsKey(evt.Id) ) {
 				int collideeIdx = this._EventsByIds[evt.Id];
-				T collidee = this.Events[collideeIdx];
+                TimelineEvent<T> collidee = this.Events[collideeIdx];
 
 				if( collidee.IsAssignedId ) {
 					if( evt.IsAssignedId ) {
@@ -93,10 +94,10 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
 	}
 
 
-	public IList<T> GetEventsBetween( DateTime start, DateTime end ) {
-		var evts = new List<T>();
+	public IList<TimelineEvent<T>> GetEventsBetween( DateTime start, DateTime end ) {
+		var evts = new List<TimelineEvent<T>>();
 
-		foreach( T evt in this.Events ) {
+		foreach( TimelineEvent<T> evt in this.Events ) {
 			if( evt.EndTime < start ) {
 				continue;
 			}
@@ -113,7 +114,7 @@ public partial class Timeline<T, U> where T : TimelineEvent<U> {
 
 
 	private void ReIndexEventAt( int idx, ISet<long> alsoAvoid ) {
-		T collidee = this.Events[ idx ];
+		TimelineEvent<T> collidee = this.Events[ idx ];
 
 		this._EventsByIds.Remove( collidee.Id );
 

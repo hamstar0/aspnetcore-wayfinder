@@ -14,7 +14,7 @@ public partial class ScheduleEditor {
 
         double x = evt.OffsetX;
 
-        foreach( ScheduleEventEntry schEvt in this.GetCurrentSchedule().Events ) {
+        foreach( TimelineEvent<DescriptorDataEntry> schEvt in this.GetCurrentSchedule().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( schEvt.StartTime );
             if( x < evtStartX ) {
                 break;

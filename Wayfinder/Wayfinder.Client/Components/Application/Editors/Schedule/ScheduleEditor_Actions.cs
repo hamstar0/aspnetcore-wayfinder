@@ -17,8 +17,7 @@ public partial class ScheduleEditor {
         }
 
         if( this.CurrentDrawSeg is null ) {
-            this.CurrentDrawSeg = new ScheduleEventEntry(
-                id: -1,
+            this.CurrentDrawSeg = new TimelineEvent<DescriptorDataEntry>(
                 start: this.ViewTimeStart + this.GetTimespanOfOffsetX(x),
                 end: this.ViewTimeStart + this.GetTimespanOfOffsetX(x + 1d),
                 data: this.CurrentDrawSegDataValue

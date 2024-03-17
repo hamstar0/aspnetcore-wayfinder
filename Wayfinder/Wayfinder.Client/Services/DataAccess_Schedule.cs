@@ -10,8 +10,8 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class CreateScheduleParams( IEnumerable<ScheduleEventEntry> evts ) {
-        public IEnumerable<ScheduleEventEntry> Events = evts;
+    public class CreateScheduleParams( IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
+        public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
     }
 
     public async Task<ScheduleEntry> CreateSchedule_Async( CreateScheduleParams parameters ) {

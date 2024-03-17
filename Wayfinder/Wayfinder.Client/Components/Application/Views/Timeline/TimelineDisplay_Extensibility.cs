@@ -7,8 +7,7 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Client.Components.Application.Views.Timeline;
 
 
-public partial class TimelineDisplay<TimelineEventType, TimelineDataType>
-            where TimelineEventType : TimelineEvent<TimelineDataType> {
+public partial class TimelineDisplay<TimelineDataType> {
     [Parameter]
     public RenderFragment? AddedHeadButtonsPre { get; set; } = null;
 
