@@ -12,9 +12,10 @@
 
 
 <ScheduleDisplay component-name="ScheduleEditor"
-        Schedule=@this.GetCurrentSchedule()
-        OnMouseDown=@this.OnMouseDown_UI_Async
-        OnMouseUp=@this.OnMouseUp_UI_Async>
+                 Schedule=@this.GetCurrentSchedule()
+                 ViewTimeStart=@this.ViewTimeStart
+                 OnMouseDown=@this.OnMouseDown_UI_Async
+                 OnMouseUp=@this.OnMouseUp_UI_Async>
     <AddedHeadButtonsPre>
         <ToggleSwitch Label="Edit Time Segments"
                       Disabled=@this.Disabled
@@ -28,10 +29,10 @@
                                       RangeTypesOnly=@this.RangeDataTypesOnly
                                       OnTypeChoice=@(async (c) => this.CurrentDrawSegDataType = c) />
             @switch( this.CurrentDrawSegDataType ) {
-            case DescriptorDataType.Scalar:
-                <ScalarEditor Disabled=@this.Disabled
-                              OnInput=@(async d => this.SetCurrentSegValue(this.CurrentDrawSegDataType, d)) />
-                break;
+                case DescriptorDataType.Scalar:
+                    <ScalarEditor Disabled=@this.Disabled
+                                  OnInput=@(async d => this.SetCurrentSegValue(this.CurrentDrawSegDataType, d)) />
+                    break;
             }
         </div>
 

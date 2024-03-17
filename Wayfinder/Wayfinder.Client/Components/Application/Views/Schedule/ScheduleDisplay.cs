@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Schedule;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
@@ -31,8 +32,15 @@ public partial class ScheduleDisplay {
     private double ScrollBaseAmount = 30d;
 
 
+    [Parameter]
+    public Timeline<TimelineEvent<bool>, bool>? ConditionWindows { get; set; } = null;
 
-	public double GetWidthOfTimespan( TimeSpan span ) {
+    private bool ShowConditions = true;
+
+
+
+
+    public double GetWidthOfTimespan( TimeSpan span ) {
         return span.TotalSeconds / this.ZoomScale;
     }
 

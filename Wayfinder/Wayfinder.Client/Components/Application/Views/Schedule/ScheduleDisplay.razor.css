@@ -54,6 +54,13 @@
         background-color: red;
     }
 
+.schedule-timeline-cond-seg {
+    position: absolute;
+    height: 100%;
+    background-color: green;
+    opacity: 0.2;
+}
+
 
 
 .timeline_second {

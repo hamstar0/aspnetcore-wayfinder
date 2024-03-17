@@ -7,12 +7,12 @@ namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
 public partial class ScheduleDisplay {
-    public int ComputeSegOffset( ScheduleEventEntry evt ) {
-        return (int)this.GetOffsetXOfTimestamp( evt.StartTime );
+    public int ComputeSegOffset( DateTime startTime ) {
+        return (int)this.GetOffsetXOfTimestamp( startTime );
     }
 
-    public int ComputeSegWidth( ScheduleEventEntry evt ) {
-        return (int)this.GetWidthOfTimespan( evt.EndTime - evt.StartTime );
+    public int ComputeSegWidth( DateTime startTime, DateTime endTime ) {
+        return (int)this.GetWidthOfTimespan( endTime - startTime );
     }
 
 

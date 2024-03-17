@@ -55,10 +55,6 @@ public partial class ScheduleEditor {
     [Parameter]
     public DateTime ViewTimeStart { get; set; } = DateTime.Now;
 
-    private double ZoomScale = 1d;  // pixel per second
-
-    private double ScrollBaseAmount = 30d;
-
 
 
 	private bool IsDrawingSeg = false;
