@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Wayfinder.Client.Data;
 using Wayfinder.Data;
-using Wayfinder.Shared.Data.Schedule;
+using Wayfinder.Shared.Data;
 
 
 namespace Wayfinder;
+
 
 
 [ApiController]

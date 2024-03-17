@@ -1,12 +1,13 @@
 ﻿using System.Net.Http.Json;
+using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Libraries.BooleanTree;
 
 
 namespace Wayfinder.Client.Data;
+
 
 
 public partial class ClientDataAccess {

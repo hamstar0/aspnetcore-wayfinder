@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components.Web;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Shared.Libraries;
 
 

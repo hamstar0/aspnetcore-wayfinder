@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Shared.Libraries.BooleanTree;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
+
 
 
 public partial class DescriptorEditor {

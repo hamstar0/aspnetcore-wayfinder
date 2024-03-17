@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
-using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Application.Views.Timeline;
 using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
