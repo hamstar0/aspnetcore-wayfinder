@@ -4,6 +4,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 using Wayfinder.Shared.Data.Schedule;
 using Wayfinder.Client.Data;
+using Wayfinder.Client.Components.Application.Views.Schedule;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Schedule;
@@ -66,6 +67,9 @@ public partial class ScheduleEditor {
     private DescriptorDataEntry? CurrentDrawSegDataValue = null;
 
 
+    private ScheduleDisplay DisplayComponent = null!;
+
+
 
     private void SetCurrentSegValue( DescriptorDataType dataType, object value ) {
         switch( this.CurrentDrawSegDataType ) {
@@ -77,7 +81,7 @@ public partial class ScheduleEditor {
 
 
     public double GetWidthOfTimespan( TimeSpan span ) {
-        return span.TotalSeconds / this.ZoomScale;
+        return span.TotalSeconds / this.DisplayComponent.ZoomScale;
     }
 
     public double GetOffsetXOfTimestamp( DateTime time ) {
@@ -85,7 +89,7 @@ public partial class ScheduleEditor {
     }
 
     public TimeSpan GetTimespanOfOffsetX( double x ) {
-        return new TimeSpan( ticks: (long)(x * this.ZoomScale * (double)TimeSpan.TicksPerSecond) );
+        return new TimeSpan( ticks: (long)(x * this.DisplayComponent.ZoomScale * (double)TimeSpan.TicksPerSecond) );
     }
 
 

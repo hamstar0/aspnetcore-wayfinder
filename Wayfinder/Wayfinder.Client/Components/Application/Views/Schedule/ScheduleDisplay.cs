@@ -27,7 +27,7 @@ public partial class ScheduleDisplay {
     public DateTime ViewTimeStart { get; set; } = DateTime.Now;
 
 
-    private double ZoomScale = 1d;  // pixel per second
+    public double ZoomScale { get; private set; } = 1d;  // pixel per second
 
     private double ScrollBaseAmount = 30d;
 
