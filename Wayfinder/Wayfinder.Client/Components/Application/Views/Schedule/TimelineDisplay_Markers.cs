@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class ScheduleDisplay {
+public partial class TimelineDisplay {
     public bool CanDisplayMinuteMarkers() {
         double width = 60d / this.ZoomScale;
         return width >= 16d;//&& width < ScheduleEditor.MaxElementWidth;

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class ScheduleDisplay {
+public partial class TimelineDisplay {
     public void Scroll( double amt ) {
         this.ViewTimeStart += this.GetTimespanOfOffsetX( amt );
     }

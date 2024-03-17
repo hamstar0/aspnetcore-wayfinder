@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class ScheduleDisplay {
+public partial class TimelineDisplay {
     [Parameter]
     public RenderFragment? AddedHeadButtonsPre { get; set; } = null;
 

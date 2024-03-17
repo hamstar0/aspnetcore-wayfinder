@@ -39,32 +39,32 @@
         </button>
     </div>
     
-    <div class="schedule-component" style="max-width: @(ScheduleDisplay.MaxElementWidth)px;"
+    <div class="schedule-component" style="max-width: @(TimelineDisplay.MaxElementWidth)px;"
              @onmousedown=@(async (e) => await this.OnMouseDown_UI_Async(e))
              @onmouseup=@(async (e) => await this.OnMouseUp_UI_Async(e))
              @onmouseleave=@(async (e) => await this.OnMouseUp_UI_Async(e))>
         @if( this.CanDisplayMinuteMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitMinuteMarkers(ScheduleDisplay.MaxElementWidth) ) {
+            @foreach( (int x, string label) in this.GetTimeUnitMinuteMarkers(TimelineDisplay.MaxElementWidth) ) {
                 <div class="timeline-minute" style="left: @(x)px;">@label</div>
             }
         }
         @if( this.CanDisplayHourMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitHourMarkers(ScheduleDisplay.MaxElementWidth) ) {
+            @foreach( (int x, string label) in this.GetTimeUnitHourMarkers(TimelineDisplay.MaxElementWidth) ) {
                 <div class="timeline-hour" style="left: @(x)px;">@label</div>
             }
         }
         @if( this.CanDisplayDayMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitDayMarkers(ScheduleDisplay.MaxElementWidth) ) {
+            @foreach( (int x, string label) in this.GetTimeUnitDayMarkers(TimelineDisplay.MaxElementWidth) ) {
                 <div class="timeline-day" style="left: @(x)px;">@label</div>
             }
         }
         @if( this.CanDisplayMonthMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitMonthMarkers(ScheduleDisplay.MaxElementWidth) ) {
+            @foreach( (int x, string label) in this.GetTimeUnitMonthMarkers(TimelineDisplay.MaxElementWidth) ) {
                 <div class="timeline-month" style="left: @(x)px;">@label</div>
             }
         }
         @if( this.CanDisplayYearMarkers() ) {
-            @foreach( (int x, string label) in this.GetTimeUnitYearMarkers(ScheduleDisplay.MaxElementWidth) ) {
+            @foreach( (int x, string label) in this.GetTimeUnitYearMarkers(TimelineDisplay.MaxElementWidth) ) {
                 <div class="timeline-year" style="left: @(x)px;">@label</div>
             }
         }

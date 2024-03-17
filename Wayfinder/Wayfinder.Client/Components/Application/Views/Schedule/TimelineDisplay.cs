@@ -7,7 +7,7 @@ using Wayfinder.Shared.Libraries;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class ScheduleDisplay {
+public partial class TimelineDisplay {
     public readonly static int MaxElementWidth = 1920;
 
 

@@ -5,7 +5,7 @@ using Wayfinder.Shared.Data.Schedule;
 namespace Wayfinder.Client.Components.Application.Views.Schedule;
 
 
-public partial class ScheduleDisplay {
+public partial class TimelineDisplay {
     public int ComputeSegOffset( DateTime startTime ) {
         return (int)this.GetOffsetXOfTimestamp( startTime );
     }
@@ -18,7 +18,7 @@ public partial class ScheduleDisplay {
     public IList<ScheduleEventEntry> GetVisibleScheduleEvents() {
         return this.Schedule.GetEventsBetween(
             this.ViewTimeStart,
-            this.ViewTimeStart + this.GetTimespanOfOffsetX( (double)ScheduleDisplay.MaxElementWidth )
+            this.ViewTimeStart + this.GetTimespanOfOffsetX( (double)TimelineDisplay.MaxElementWidth )
         );
     }
 }
