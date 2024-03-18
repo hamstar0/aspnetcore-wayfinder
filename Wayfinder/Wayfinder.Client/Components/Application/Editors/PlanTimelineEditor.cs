@@ -39,8 +39,8 @@ public partial class PlanTimelineEditor {
         throw new Exception( "No PlanEntry available." );
     }
 
-    public Timeline<PlanStepEntry> GetPlanTimeline() {
+    public Timeline<PlanOptionEntry> GetPlanTimeline() {
         PlanEntry plan = this.GetCurrentPlan();
-        var timeline = new Timeline<PlanStepEntry>();
+        var timeline = new Timeline<PlanOptionEntry>();
     }
 }

@@ -35,18 +35,37 @@ Phase 1
 			-	Range input
 -	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor
 -	Implement tabs (1)
-	-	Knowledge prompting
+	-	Knowledge prompting (layout only)
 	-	Knowledge editor
 		-	Show searched descriptors in a large scrollable list
 		-	Clear current descriptor
 		-	DescriptorEditor search feature with submit button for edits or creates
 	-	Plan timeline editor
-		-	Draw proposed window of 'user action' assigned to each given plan step to form a chain
-		-	For a given plan step, propose a window of 'user action' to enact the step
-		-	Implement plan step entry (via DescriptorEditor)
+		-	Implement naming of plans
+		-	Implement option scheduling (prompting)
+			-	Deploy TimelineOptionEditor in edit mode for the priority chosen option
+			-	Choose option based on 
+		-	Show queue of chosen options overlaid upon timeline (active ones highlighted and prioritized)
+		-	Show scheduled chosen options in the timeline view
+		-	Implement concept of a chosen option and a scheduled chosen option
+		-	Implement 'option' input
+			-	Show options for each given condition in the tree view (overlay)
+			-	For a given condition, implement 'option' input (TimelineOptionEditor)
+			-	Implement goal or sub-goal condition picking
+		-	Add a tree view of conditions to fulfill, starting with the top level goal
+-	Implement the concept of plan 'options'
+	-	Implement PlanOptionEditor
+		-	Optional name input
+		-	Timeline to input time windows to enact option (a particular type of schedule data)
+		-	Minimum duration of user action needed
+		-	'Is being considered'
+		-	DescriptorEditor
+	-	Define data structure for plan's timeline of options
+	-	Define data structure for options' timeline windows
+	-	Modify Plan data structure to simply be a collection of 'options' to enact [to fulfill a given goal]
+	-	Define PlanOptionEntry: Name, descriptor, is chosen candidate, has minimum duration, is scheduled at
 
 
-		-	PlanTimelineEditor: DescriptorEditor, plan timeline editor (borrows from ScheduleEditor)
 -	Update ScheduleEditor/ScheduleDisplay
 	-	Draw timeline of conditions windows
 	-	Add button to toggle draw condition windows

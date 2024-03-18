@@ -5,7 +5,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 namespace Wayfinder.Shared.Data.Entries;
 
 
-public class PlanStepEntry {
+public class PlanOptionEntry {
 	//[Key]
 	public long Id { get; set; }
 
