@@ -33,7 +33,7 @@ Phase 1
 			-	Range input
 			-	Term list input
 			-	Range input
--	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor
+-	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor, PlanEditor
 -	Implement tabs (1)
 	-	Knowledge prompting (layout only)
 	-	Knowledge editor
