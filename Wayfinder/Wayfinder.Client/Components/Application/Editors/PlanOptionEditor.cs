@@ -7,7 +7,7 @@ namespace Wayfinder.Client.Components.Application.Editors;
 
 
 
-public partial class PlanTimelineEditor {
+public partial class PlanOptionEditor {
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 

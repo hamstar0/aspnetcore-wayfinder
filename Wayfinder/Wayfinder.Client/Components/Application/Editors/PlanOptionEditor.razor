@@ -1,12 +1,28 @@
 ﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Libraries;
 @using Wayfinder.Client.Components.Application.Views;
 @using Wayfinder.Client.Components.Application.Views.Timeline;
 @using Wayfinder.Client.Components.Application.Editors.Descriptor;
-@using Wayfinder.Shared.Libraries;
 
 
 
+@*     public string? Name { get; set; } = null;
+
+    public bool IsChosen { get; set; }
+
+	public long MinimumEnactingDuration { get; set; }
+
+	public BooleanTree<DescriptorEntry> Needed { get; set; } = null!;
+
+	public DescriptorEntry Action { get; set; } = null!;
+
+	public Timeline<bool> AvailableTimeWindows { get; set; } = null!;
+
+	public TimelineEvent<bool> ScheduledTimeWindow { get; set;} = null!; *@
 <div component-name="PlanTimelineEditor" class="basic">
+	<label>Enter option name (optional):</label>
+	<input type="text" name="" />
+
 	<TimelineDisplay TimelineDataType=@(PlanOptionEntry)
             Timeline=@(this.GetPlanTimeline())>
         <AddedHeadButtonsPre>

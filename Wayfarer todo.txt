@@ -55,17 +55,17 @@ Phase 1
 		-	Add a tree view of conditions to fulfill, starting with the top level goal
 -	Implement the concept of plan 'options'
 	-	Implement PlanOptionEditor
-		-	Optional name input
-		-	Timeline to input time windows to enact option (a particular type of schedule data)
-		-	Minimum duration of user action needed
-		-	'Is being considered'
-		-	DescriptorEditor
-	-	Define data structure for plan's timeline of options
-	-	Define data structure for options' timeline windows
+
+
 	-	Modify Plan data structure to simply be a collection of 'options' to enact [to fulfill a given goal]
-	-	Define PlanOptionEntry: Name, descriptor, is chosen candidate, has minimum duration, is scheduled at
-
-
+	-	Define PlanOptionEntry
+		-	Name
+		-	Condition Descriptors
+		-	Action Descriptor
+		-	IsChosen
+		-	MimimumEnactDuration
+		-	AvailableTimeWindows
+		-	ScheduledTimeWindow
 -	Update ScheduleEditor/ScheduleDisplay
 	-	Draw timeline of conditions windows
 	-	Add button to toggle draw condition windows
