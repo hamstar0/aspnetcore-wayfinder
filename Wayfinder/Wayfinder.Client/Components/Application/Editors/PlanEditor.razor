@@ -6,33 +6,25 @@
 
 
 
-@*     public string? Name { get; set; } = null;
-
-    public bool IsChosen { get; set; }
-
-	public long MinimumEnactingDuration { get; set; }
-
-	public BooleanTree<DescriptorEntry> Needed { get; set; } = null!;
-
-	public DescriptorEntry Action { get; set; } = null!;
-
-	public Timeline<bool> AvailableTimeWindows { get; set; } = null!;
-
-	public TimelineEvent<bool> ScheduledTimeWindow { get; set;} = null!; *@
 <div component-name="PlanTimelineEditor" class="basic">
-	<label>Enter option name (optional):</label>
-	<input type="text" name="" />
+	<label>
+		Enter plan name (optional):
+		<input type="text" />
+	</label>
 
 	<TimelineDisplay TimelineDataType=@(PlanOptionEntry)
+			Label="Current plan schedule"
             Timeline=@(this.GetPlanTimeline())>
-        <AddedHeadButtonsPre>
+        @* <AddedHeadButtonsPre>
         </AddedHeadButtonsPre>
-
         <Footer>
-        </Footer>
-	</TimelineDisplay>
+        </Footer> *@
+	</TimelineDisplay>		@* <- Edit plan options with popup PlanOptionEditor *@
 
-	<DescriptorEditor Label="Define plan step effect (after being enacted)"
-            CanCreate=@true CanEdit=@true CanSearch=@false CanReset=@true
-            OnDescriptorSelect=@(async e => {}) />
+	<PlanOptionTreeEditor Goal=@this.Goal
+			Plan=@this.GetCurrentPlan />	@* <- Edit plan options with popup PlanOptionEditor *@
+
+	@if( this.CanSubmit ) {
+		<button @onclick=@(await e => this.Submit_UI_Async())>Submit</button>
+	}
 </div>

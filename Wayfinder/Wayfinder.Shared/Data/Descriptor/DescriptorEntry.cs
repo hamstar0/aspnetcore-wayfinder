@@ -40,7 +40,7 @@ public class DescriptorEntry : IEquatable<DescriptorEntry>,
 
     public bool IsImpossible { get; set; }
 
-    public bool IsPlaceholder { get; set; }
+    //public bool IsPlaceholder { get; set; }
 
     public ScheduleEntry Schedule { get; set; } = null!;
 
@@ -56,7 +56,7 @@ public class DescriptorEntry : IEquatable<DescriptorEntry>,
         if( !this.TermRel.Equals(other.TermRel) ) { return false; }
         if( this.IsFact != other.IsFact ) { return false; }
         if( this.IsImpossible != other.IsImpossible ) { return false; }
-        if( this.IsPlaceholder != other.IsPlaceholder ) { return false; }
+        //if( this.IsPlaceholder != other.IsPlaceholder ) { return false; }
         if( !skipRefs && this.Schedule != other.Schedule ) { return false; }
         if( !skipRefs && this.Conditions != other.Conditions ) { return false; }
         return true;

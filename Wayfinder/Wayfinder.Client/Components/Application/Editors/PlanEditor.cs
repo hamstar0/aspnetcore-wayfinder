@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors;
 
 
 
-public partial class PlanOptionEditor {
+public partial class PlanEditor {
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 

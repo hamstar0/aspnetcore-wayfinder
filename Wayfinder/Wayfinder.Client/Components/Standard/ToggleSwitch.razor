@@ -5,8 +5,8 @@
     <div class="my-toggle-switch">
         <input type="checkbox"
                 disabled=@this.Disabled
-                @bind:get=@this.IsOn
-                @bind:set=@(async (s) => await this.Click_UI_Async(s)) />
+                checked=@this.IsOn
+                @onchange=@this.Click_UI_Async />
         <span class="my-toggle-switch-slider"></span>
     </div>
 </label>
@@ -17,8 +17,8 @@
     [Parameter]
     public string? Label { get; set; } = null;
 
-    [Parameter, EditorRequired]
-    public bool IsOn { get; set; }
+    [Parameter]
+    public bool IsOn { get; set; } = false;
 
     [Parameter, EditorRequired]
     public Func<bool, Task> IsOnChanged { get; set; } = null!;
@@ -30,13 +30,13 @@
 
 
 
-    private async Task Click_UI_Async( bool isOn ) {
+    private async Task Click_UI_Async( ChangeEventArgs args ) {
         if( this.Disabled ) {
             return;
         }
 
-        this.IsOn = isOn;
+        this.IsOn = (bool)(args.Value ?? false);
 
-        await this.IsOnChanged( isOn );
+        await this.IsOnChanged( this.IsOn );
     }
 }

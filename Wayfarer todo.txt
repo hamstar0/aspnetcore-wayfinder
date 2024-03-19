@@ -53,10 +53,22 @@ Phase 1
 			-	For a given condition, implement 'option' input (TimelineOptionEditor)
 			-	Implement goal or sub-goal condition picking
 		-	Add a tree view of conditions to fulfill, starting with the top level goal
--	Implement the concept of plan 'options'
+-	Implement the concept of plan 'options' (2)
+	-	Implement PlanOptionTreeEditor
+	-	Implement PlanEditor
 	-	Implement PlanOptionEditor
+-	Define central data structures store Descriptor contexts
+-	Create contexts for DescriptorEntry
+	-	ActionDescriptorEntry: No conditions
+	-	ConditionDescriptorEntry: No conditions
+	-	FactDescriptorEntry: Has conditions
+	-	Base DescriptorEntry: Remove 'IsFact', 'Conditions'
 
 
+-	Implement the concept of plan 'options' (1)
+	-	Define PlanOptionTreeEditor
+	-	Define PlanEditor
+	-	Define PlanOptionEditor
 	-	Modify Plan data structure to simply be a collection of 'options' to enact [to fulfill a given goal]
 	-	Define PlanOptionEntry
 		-	Name
