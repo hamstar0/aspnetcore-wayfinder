@@ -29,7 +29,7 @@
                 OnTermSelect=@(async term => await this.SetTermB_UI_Async(term)) />
 
     @if( this.Abridged ) {
-        <ScheduleDisplay Schedule=@(this.Schedule ?? new ScheduleEntry()) />
+        <TimelineDisplay Timeline=@(this.Schedule ?? new ScheduleEntry()) />
     } else {
         <ScheduleEditor Disabled=@this.Disabled
                         CanCreate=true CanEdit=true

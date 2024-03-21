@@ -14,15 +14,15 @@
 		<input type="text" />
 	</label>
 
-	<ToggleSwitch Label="Is active" IsOn=@this.IsChosen
-			IsOnChanged=@(async (e) => this.IsChosen = !this.IsChosen) />
+	<ToggleSwitch Label="Is active" IsOn=@this.Option.IsChosen
+			IsOnChanged=@(async (e) => this.Option.IsChosen = !this.Option.IsChosen) />
 
 	<DurationInput Label="Enter minimum enact duration"
 			Description="Duration needed to apply action to make this option become realized."
-			oninput=@((e) => this.MinimumEnactDuration = e) />
+			oninput=@((e) => this.Option.MinimumEnactingDuration = e) />
 
 	<DescriptorConditionsEditor CanCreate=@true CanEdit=@true
-		OnSubmit=@((conds, isEdit) = > {}) />
+		OnSubmit=@((conds, isEdit) => {}) />
 
 	<DescriptorEditor Label="Define option to enact"
             CanCreate=@true CanEdit=@true CanSearch=@false CanReset=@true

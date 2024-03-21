@@ -35,7 +35,7 @@ public partial class ClientDataAccess {
             TermEntry termSubj,
             TermEntry termRel,
             ScheduleEntry schedule,
-            BooleanTree<DescriptorEntry>? conditions ) {
+			BooleanTree<DescriptorEntry>? conditions ) {
         public TermEntry TermSubj = termSubj;
         public TermEntry TermRel = termRel;
         public ScheduleEntry Schedule = schedule;

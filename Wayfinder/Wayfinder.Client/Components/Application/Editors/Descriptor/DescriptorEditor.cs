@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
-using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries.BooleanTree;
+using Wayfinder.Client.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
@@ -26,9 +26,9 @@ public partial class DescriptorEditor {
 
     private ScheduleEntry? Schedule = null;
 
-    private BooleanTree<DescriptorEntry> Conditions = new BooleanTree<DescriptorEntry>( true );
+	private BooleanTree<DescriptorEntry> Conditions = new BooleanTree<DescriptorEntry>( true );
 
-    private DescriptorEntry? SelectedDescriptor = null;
+	private DescriptorEntry? SelectedDescriptor = null;
 
 
     private bool IsModified = false;

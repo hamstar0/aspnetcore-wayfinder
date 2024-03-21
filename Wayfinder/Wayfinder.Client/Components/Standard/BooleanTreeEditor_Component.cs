@@ -6,6 +6,6 @@ namespace Wayfinder.Client.Components.Standard;
 
 
 public interface IBooleanEditComponent : IComponent {
-    IBoolean Data { get; set; }
+	IBoolean Data { get; set; }
 }
 
