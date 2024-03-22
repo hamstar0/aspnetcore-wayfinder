@@ -21,7 +21,7 @@ public partial class DescriptorEditor {
 
     private IEnumerable<DescriptorEntry> SearchOptions = new List<DescriptorEntry>();
 
-    private ScheduleEntry? Facts = null;
+    private ScheduleEntry Facts = new ScheduleEntry();
 
 	private DescriptorConditionsTree Conditions = new DescriptorConditionsTree( true );
 

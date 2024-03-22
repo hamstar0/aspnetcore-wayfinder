@@ -18,18 +18,8 @@
         <h4>@this.Label</h4>
     }
 
-    <TermEditor Disabled=@this.Disabled
-                Label="Subject"
-                Description="Enter 'subject' term being 'described'"
-                OnTermSelect=@(async term => await this.SetTermA_UI_Async(term)) />
-
-    <TermEditor Disabled=@this.Disabled
-                Label="Relationship"
-                Description="Enter term that is describing the 'subject'"
-                OnTermSelect=@(async term => await this.SetTermB_UI_Async(term)) />
-
     @if( this.Abridged ) {
-        <TimelineDisplay Timeline=@(this.Schedule ?? new ScheduleEntry()) />
+        <TimelineDisplay Timeline=@this.Facts />
     } else {
         <ScheduleEditor Disabled=@this.Disabled
                         CanCreate=true CanEdit=true

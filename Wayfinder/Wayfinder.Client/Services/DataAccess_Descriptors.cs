@@ -1,9 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Libraries.BooleanTree;
 
 
 namespace Wayfinder.Client.Data;
@@ -11,9 +9,11 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class GetDescriptorsByCriteriaParams( TermEntry subject, TermEntry relationship ) {
-        public TermEntry Subject = subject;
-        public TermEntry Relationship = relationship;
+    public class GetDescriptorsByCriteriaParams(
+            Optional<ScheduleEntry> facts,
+            Optional<DescriptorConditionsTree> conditions ) {
+        public Optional<ScheduleEntry> Facts = facts;
+        public Optional<DescriptorConditionsTree> Conditions = conditions;
     }
 
     public async Task<IEnumerable<DescriptorEntry>> GetDescriptorsByCriteria_Async(

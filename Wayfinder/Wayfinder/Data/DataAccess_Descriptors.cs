@@ -12,19 +12,24 @@ public partial class ServerDataAccess {
 
 	public async Task<IEnumerable<DescriptorEntry>> GetDescriptorsByCriteria_Async(
 				ClientDataAccess.GetDescriptorsByCriteriaParams parameters ) {
-        IEnumerable<DescriptorEntry> descriptors = this.Descriptors.Values
-			.Where( d => d.TermSubj.Equals(parameters.Subject) && d.TermRel.Equals(parameters.Relationship) );
+		IEnumerable<DescriptorEntry> descriptors = this.Descriptors.Values;
 
-		return descriptors;
+        if( parameters.FactValidator.HasValue ) {
+            descriptors = descriptors.Where( d => parameters.FactValidator.Value!.Validate( d.Facts ) );
+        }
+        if( parameters.Conditions.HasValue ) {
+            descriptors = descriptors.Where( d => parameters.Conditions.Value!.Equals( d.Conditions ) );
+        }
+
+        return descriptors;
 	}
 
 
-	public async Task<DescriptorEntry> CreateDescriptor_Async( ClientDataAccess.CreateDescriptorParams parameters ) {
+	public async Task<DescriptorEntry> CreateDescriptor_Async(
+				ClientDataAccess.CreateDescriptorParams parameters ) {
 		var entry = new DescriptorEntry {
 			Id = this.CurrentDescriptorId++,
-			TermSubj = parameters.TermSubj,
-			TermRel = parameters.TermRel,
-			Schedule = parameters.Facts,
+			Facts = parameters.Facts,
 			Conditions = parameters.Conditions
         };
 
@@ -38,11 +43,11 @@ public partial class ServerDataAccess {
 			return false;
 		}
 
-		if( parameters.TermSubj.HasValue ) {
-			this.Descriptors[parameters.Id].TermSubj = parameters.TermSubj.Value!;
+		if( parameters.Facts.HasValue ) {
+			this.Descriptors[parameters.Id].Facts = parameters.Facts.Value!;
 		}
-		if( parameters.TermRel.HasValue ) {
-			this.Descriptors[parameters.Id].TermRel = parameters.TermRel.Value!;
+		if( parameters.Conditions.HasValue ) {
+			this.Descriptors[parameters.Id].Conditions = parameters.Conditions.Value!;
 		}
 
 		return true;

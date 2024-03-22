@@ -24,9 +24,4 @@ public class PlanOptionEntry {
 	//public Timeline<bool> AvailableTimeWindows { get; set; } = null!;
 
 	public TimelineEvent<bool> ScheduledTimeWindow { get; set;} = null!;
-
-
-
-	public Timeline<DescriptorDataEntry> GetAvailableTimeWindows( long minTime, long maxTime ) {
-	}
 }

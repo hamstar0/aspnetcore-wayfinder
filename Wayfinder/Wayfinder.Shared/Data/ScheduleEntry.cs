@@ -3,14 +3,13 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Libraries.BooleanTree;
 
-
 namespace Wayfinder.Shared.Data;
 
 
 
-public class ScheduleValidator : TimelineEvent<bool> {
-	public ScheduleValidator( DateTime start, DateTime end, bool data )
-			: base( start, end, data ) { }
+public class ScheduleValidator {
+    public bool Validate( ScheduleEntry schedule ) {
+    }
 }
 
 

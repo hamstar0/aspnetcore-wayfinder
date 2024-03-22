@@ -2,14 +2,16 @@
 
 
 
-public interface IBoolean<BooleanContext> {
-	bool True( BooleanContext context );
+public interface IBoolean<Context> {
+	bool True( Context context );
 }
 
 
 
-public class BooleanTree<NodeData, NodeContext> where NodeData : IBoolean<NodeContext> {
-	public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
+public class BooleanTree<NodeData, NodeContext>
+		: IEquatable<BooleanTree<NodeData, NodeContext>?>
+			where NodeData : IBoolean<NodeContext> {
+    public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
 
 	public bool IsAnd;
 
@@ -19,7 +21,25 @@ public class BooleanTree<NodeData, NodeContext> where NodeData : IBoolean<NodeCo
 		this.IsAnd = isAnd;
 	}
 
-	public bool True( NodeContext context ) {
+	public override bool Equals( object? test ) {
+		if( test is not BooleanTree<NodeData, NodeContext> ) {
+			return false;
+		}
+		return this.Equals( (BooleanTree<NodeData, NodeContext>)test );
+    }
+
+    public bool Equals( BooleanTree<NodeData, NodeContext>? other ) {
+        return other is not null
+			&& EqualityComparer<IList<IBoolean<NodeContext>>>.Default.Equals( this.Children, other.Children )
+			&& this.IsAnd == other.IsAnd;
+    }
+
+    public override int GetHashCode() {
+        return HashCode.Combine( this.Children, this.IsAnd );
+    }
+
+
+    public bool True( NodeContext context ) {
 		IEnumerable<IBoolean<NodeContext>> children = this.Children
 			.Where( c => c is not BooleanTree<NodeData, NodeContext>
 				|| ((BooleanTree<NodeData, NodeContext>)c).Children.Count > 0 );
