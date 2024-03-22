@@ -21,12 +21,9 @@ public partial class DescriptorEditor {
 
     private IEnumerable<DescriptorEntry> SearchOptions = new List<DescriptorEntry>();
 
-    private TermEntry? TermSubj;
-    private TermEntry? TermRel;
+    private ScheduleEntry? Facts = null;
 
-    private ScheduleEntry? Schedule = null;
-
-	private BooleanTree<DescriptorEntry> Conditions = new BooleanTree<DescriptorEntry>( true );
+	private DescriptorConditionsTree Conditions = new DescriptorConditionsTree( true );
 
 	private DescriptorEntry? SelectedDescriptor = null;
 
@@ -68,39 +65,16 @@ public partial class DescriptorEditor {
 
 
 
-    private async Task SetTermA_UI_Async( TermEntry term ) {
-        if( this.Disabled ) { return; }
-
-        bool isNew = !this.TermSubj?.Equals( term ) ?? true;
-
-        this.TermSubj = term;
-
-        if( isNew ) {
-            await this.OnEdit_Async();
-        }
-    }
-
-    private async Task SetTermB_UI_Async( TermEntry term ) {
-        if( this.Disabled ) { return; }
-
-        bool isNew = !this.TermRel?.Equals( term ) ?? true;
-        this.TermRel = term;
-
-        if( isNew ) {
-            await this.OnEdit_Async();
-        }
-    }
-
-    private async Task<bool> SetSchedule_UI_Async( ScheduleEntry sched ) {
+    private async Task<bool> SetFacts_UI_Async( ScheduleEntry sched ) {
         if( this.Disabled ) {
             return true;
         }
 
-        bool isChanged = this.Schedule is null
+        bool isChanged = this.Facts is null
             ? true
-            : !this.Schedule.Equals( sched );
+            : !this.Facts.Equals( sched );
 
-        this.Schedule = sched;
+        this.Facts = sched;
 
         if( isChanged ) {
             await this.OnEdit_Async();
@@ -109,7 +83,7 @@ public partial class DescriptorEditor {
         return true;    // false posts changes to server
     }
 
-    private async Task SetConditions_UI_Async( BooleanTree<DescriptorEntry> conditions ) {
+    private async Task SetConditions_UI_Async( DescriptorConditionsTree conditions ) {
         if( this.Disabled ) { return; }
 
         bool isChanged = this.Conditions is null

@@ -32,14 +32,10 @@ public partial class ClientDataAccess {
 
 
     public class CreateDescriptorParams(
-            TermEntry termSubj,
-            TermEntry termRel,
-            ScheduleEntry schedule,
-			BooleanTree<DescriptorEntry>? conditions ) {
-        public TermEntry TermSubj = termSubj;
-        public TermEntry TermRel = termRel;
-        public ScheduleEntry Schedule = schedule;
-        public BooleanTree<DescriptorEntry>? Conditions = conditions;
+            ScheduleEntry facts,
+            DescriptorConditionsTree conditions ) {
+        public ScheduleEntry Facts = facts;
+        public DescriptorConditionsTree Conditions = conditions;
     }
 
     public async Task<DescriptorEntry> CreateDescriptor_Async( CreateDescriptorParams parameters ) {
@@ -58,15 +54,11 @@ public partial class ClientDataAccess {
 
     public class EditDescriptorParams(
             long id,
-            Optional<TermEntry> termSubj,
-            Optional<TermEntry> termRel,
-            Optional<ScheduleEntry> sched,
-            Optional<BooleanTree<DescriptorEntry>?> conds ) {
+            Optional<ScheduleEntry> facts,
+            Optional<DescriptorConditionsTree> conds ) {
         public long Id = id;
-        public Optional<TermEntry> TermSubj = termSubj;
-        public Optional<TermEntry> TermRel = termRel;
-        public Optional<ScheduleEntry> Schedule = sched;
-        public Optional<BooleanTree<DescriptorEntry>?> Conditions = conds;
+        public Optional<ScheduleEntry> Facts = facts;
+        public Optional<DescriptorConditionsTree> Conditions = conds;
     }
 
     public async Task<bool> EditDescriptor_Async( EditDescriptorParams parameters ) {

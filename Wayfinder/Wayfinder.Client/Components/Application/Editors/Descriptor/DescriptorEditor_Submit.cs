@@ -19,13 +19,7 @@ public partial class DescriptorEditor {
         if( !this.CanCreate && !this.CanEdit ) {
             return false;
         }
-        if( this.TermSubj is null ) {
-            return false;
-        }
-        if( this.TermRel is null ) {
-            return false;
-        }
-        if( this.Schedule is null ) {
+        if( this.Facts is null ) {
             return false;
         }
         if( !this.IsModified ) {
@@ -91,9 +85,7 @@ public partial class DescriptorEditor {
 
     private async Task SubmitCreate_Async() {
         var createParams = new ClientDataAccess.CreateDescriptorParams(
-            this.TermSubj!,
-            this.TermRel!,
-            this.Schedule!,
+            this.Facts,
             this.Conditions
         );
 
@@ -108,10 +100,8 @@ public partial class DescriptorEditor {
     private async Task SubmitEdit_Async() {
         var editParams = new ClientDataAccess.EditDescriptorParams(
             this.SelectedDescriptor!.Id,
-            new Optional<TermEntry>( this.TermSubj! ),
-            new Optional<TermEntry>( this.TermRel! ),
-            new Optional<ScheduleEntry>( this.Schedule! ),
-            new Optional<BooleanTree<DescriptorEntry>?>( this.Conditions )
+            new Optional<ScheduleEntry>( this.Facts! ),
+            new Optional<DescriptorConditionsTree>( this.Conditions )
         );
 
         if( this.OnDescriptorEdit is null ) {

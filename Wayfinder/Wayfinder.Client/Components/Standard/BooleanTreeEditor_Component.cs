@@ -5,7 +5,7 @@ using Wayfinder.Shared.Libraries.BooleanTree;
 namespace Wayfinder.Client.Components.Standard;
 
 
-public interface IBooleanEditComponent : IComponent {
-	IBoolean Data { get; set; }
+public interface IBooleanEditComponent<T> : IComponent {
+	IBoolean<T> Data { get; set; }
 }
 

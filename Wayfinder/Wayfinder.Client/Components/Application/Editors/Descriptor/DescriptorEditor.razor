@@ -33,7 +33,7 @@
     } else {
         <ScheduleEditor Disabled=@this.Disabled
                         CanCreate=true CanEdit=true
-                        OnSubmit=@(async (sched, isEdit) => await this.SetSchedule_UI_Async(sched)) />
+                        OnSubmit=@(async (sched, isEdit) => await this.SetFacts_UI_Async(sched)) />
     }
     
     <DescriptorConditionsEditor Disabled=@this.Disabled

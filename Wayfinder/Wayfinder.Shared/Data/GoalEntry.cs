@@ -13,5 +13,5 @@ public class GoalEntry {
 
 	public string? Description { get; set; } = null;
 
-	public DescriptorEntry Needed { get; set; } = null!;
+	public DescriptorEntry ConditionsAndState { get; set; } = null!;
 }

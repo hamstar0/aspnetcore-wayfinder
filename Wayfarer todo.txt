@@ -59,9 +59,10 @@ Phase 1
 	-	Implement PlanEditor
 	-	Implement PlanOptionEditor
 -	Define central data structure for global fact store of Descriptors
+
+
+-	Redefine DescriptorEntry to be simply a schedule and conditions
 -	Add context to IBoolean
-
-
 -	Implement the concept of plan 'options' (1)
 	-	Define PlanOptionTreeEditor
 	-	Define PlanEditor

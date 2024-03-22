@@ -23,11 +23,8 @@ public partial class DescriptorEditor {
 
         this.SelectedDescriptor = descriptor;
 
-        this.TermSubj = descriptor.TermSubj;
-        this.TermRel = descriptor.TermRel;
-        this.Schedule = descriptor.Schedule;
-        this.Conditions = descriptor.Conditions
-            ?? new BooleanTree<DescriptorEntry>( true );
+        this.State = descriptor.Facts;
+        this.Conditions = descriptor.Conditions;
 
         this.IsModified = false;
 

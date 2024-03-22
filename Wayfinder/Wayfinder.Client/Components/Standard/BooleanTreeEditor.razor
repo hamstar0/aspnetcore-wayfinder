@@ -1,9 +1,10 @@
 ﻿@using Wayfinder.Shared.Libraries.BooleanTree;
 
 
-@typeparam DataType where DataType : IBoolean;
-@typeparam DataDisplayComponentType where DataDisplayComponentType : IBooleanEditComponent;
-@typeparam DataEditComponentType where DataEditComponentType : IBooleanEditComponent;
+@typeparam DataTypeValidator;
+@typeparam DataType where DataType : IBoolean<DataTypeValidator>;
+@typeparam DataDisplayComponentType where DataDisplayComponentType : IBooleanEditComponent<DataTypeValidator>;
+@typeparam DataEditComponentType where DataEditComponentType : IBooleanEditComponent<DataTypeValidator>;
 
 
 
@@ -11,8 +12,8 @@
     @("<div component-name=\"BooleanTreeEditor\" class=\"basic\">")
 }
 
-@foreach( IBoolean node in this.TreeData.Children ) {
-    @if( node is BooleanTree<DataType> ) {
+@foreach( IBoolean<DataTypeValidator> node in this.TreeData.Children ) {
+    @if( node is BooleanTree<DataType, DataTypeValidator> ) {
         <BooleanTreeEditor
                 HasEditor=@false
                 DataType=@DataType

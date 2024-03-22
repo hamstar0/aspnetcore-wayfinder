@@ -24,7 +24,7 @@ public partial class ServerDataAccess {
 			Id = this.CurrentDescriptorId++,
 			TermSubj = parameters.TermSubj,
 			TermRel = parameters.TermRel,
-			Schedule = parameters.Schedule,
+			Schedule = parameters.Facts,
 			Conditions = parameters.Conditions
         };
 

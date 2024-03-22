@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries.BooleanTree;
 
@@ -20,16 +21,16 @@ public partial class DescriptorConditionsEditor {
     public bool Disabled { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public Func<BooleanTree<DescriptorEntry>, Task> OnEditSubmit { get; set; } = null!;
+    public Func<DescriptorConditionsTree, Task> OnEditSubmit { get; set; } = null!;
 
     [Parameter, EditorRequired]
-    public BooleanTree<DescriptorEntry> Conditions { get; set; } = null!;
+    public DescriptorConditionsTree Conditions { get; set; } = null!;
 
-    private BooleanTree<DescriptorEntry>? SelectedConditionTree;
+    private DescriptorConditionsTree? SelectedConditionTree;
 
 
 
-    public async Task AddDescriptorToCurrentTree_UI_Async( DescriptorEntry entry ) {
+    public async Task AddScheduleToCurrentTree_UI_Async( ScheduleEntry entry ) {
         if( this.Disabled ) { return; }
         if( this.SelectedConditionTree is null ) { return; }
 
