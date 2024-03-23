@@ -10,9 +10,9 @@ namespace Wayfinder.Client.Data;
 
 public partial class ClientDataAccess {
     public class GetDescriptorsByCriteriaParams(
-            Optional<ScheduleEntry> facts,
+            Optional<DataTimelineEntry> facts,
             Optional<DescriptorConditionsTree> conditions ) {
-        public Optional<ScheduleEntry> Facts = facts;
+        public Optional<DataTimelineEntry> Facts = facts;
         public Optional<DescriptorConditionsTree> Conditions = conditions;
     }
 
@@ -32,9 +32,9 @@ public partial class ClientDataAccess {
 
 
     public class CreateDescriptorParams(
-            ScheduleEntry facts,
+            DataTimelineEntry facts,
             DescriptorConditionsTree conditions ) {
-        public ScheduleEntry Facts = facts;
+        public DataTimelineEntry Facts = facts;
         public DescriptorConditionsTree Conditions = conditions;
     }
 
@@ -54,10 +54,10 @@ public partial class ClientDataAccess {
 
     public class EditDescriptorParams(
             long id,
-            Optional<ScheduleEntry> facts,
+            Optional<DataTimelineEntry> facts,
             Optional<DescriptorConditionsTree> conds ) {
         public long Id = id;
-        public Optional<ScheduleEntry> Facts = facts;
+        public Optional<DataTimelineEntry> Facts = facts;
         public Optional<DescriptorConditionsTree> Conditions = conds;
     }
 

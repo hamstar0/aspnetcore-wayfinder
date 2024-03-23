@@ -100,7 +100,7 @@ public partial class DescriptorEditor {
     private async Task SubmitEdit_Async() {
         var editParams = new ClientDataAccess.EditDescriptorParams(
             this.SelectedDescriptor!.Id,
-            new Optional<ScheduleEntry>( this.Facts! ),
+            new Optional<DataTimelineEntry>( this.Facts! ),
             new Optional<DescriptorConditionsTree>( this.Conditions )
         );
 

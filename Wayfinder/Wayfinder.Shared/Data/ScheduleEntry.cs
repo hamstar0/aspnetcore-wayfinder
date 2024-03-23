@@ -7,25 +7,23 @@ namespace Wayfinder.Shared.Data;
 
 
 
-public class ScheduleValidator {
-    public bool Validate( ScheduleEntry schedule ) {
-    }
+public class DataTimelineBooleanContext {
 }
 
 
 
-public partial class ScheduleEntry : Timeline<DescriptorDataEntry>, IBoolean<ScheduleValidator> {
+public partial class DataTimelineEntry : Timeline<DescriptorDataEntry>, IBoolean<DataTimelineBooleanContext> {
     //public DescriptorEntry For { get; set; }   // 1:1
 
-    public ScheduleEntry() : base() { }
+    public DataTimelineEntry() : base() { }
 
-    public ScheduleEntry(IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
+    public DataTimelineEntry(IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
             : base(events) { }
 
-    public ScheduleEntry(long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
+    public DataTimelineEntry(long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
             : base(id, events) { }
 
 
-	public bool True( ScheduleValidator context ) {
+	public bool True( DataTimelineBooleanContext context ) {
 	}
 }

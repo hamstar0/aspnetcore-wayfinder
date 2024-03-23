@@ -16,7 +16,7 @@ public partial class DescriptorEditor {
 
         this.SearchOptions = await this.Data.GetDescriptorsByCriteria_Async(
             new ClientDataAccess.GetDescriptorsByCriteriaParams(
-                new Optional<ScheduleEntry>( this.Facts ),
+                new Optional<DataTimelineEntry>( this.Facts ),
                 new Optional<DescriptorConditionsTree>( this.Conditions )
             )
         );

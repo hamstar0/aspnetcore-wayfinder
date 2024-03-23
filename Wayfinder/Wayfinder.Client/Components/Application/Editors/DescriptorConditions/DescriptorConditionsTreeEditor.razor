@@ -11,7 +11,7 @@
         class="basic @(this.Disabled ? "disabled" : null)"
         @onclick=@(e => this.OnSelectTree(this.Conditions))>
     @for( int i=0; i<this.Conditions.Children.Count; i++ ) {
-        IBoolean<ScheduleValidator> node = this.Conditions.Children[i];
+        IBoolean<DataTimelineBooleanContext> node = this.Conditions.Children[i];
 
         @if( node is DescriptorConditionsTree ) {
             <DescriptorConditionsTreeEditor

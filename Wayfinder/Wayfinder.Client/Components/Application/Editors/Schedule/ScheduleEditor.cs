@@ -12,7 +12,7 @@ namespace Wayfinder.Client.Components.Application.Editors.Schedule;
 
 
 public partial class ScheduleEditor {
-    public delegate Task<bool> OnSubmitSchedule( ScheduleEntry schedule, bool isEdit );
+    public delegate Task<bool> OnSubmitSchedule( DataTimelineEntry schedule, bool isEdit );
 
 
 
@@ -39,9 +39,9 @@ public partial class ScheduleEditor {
 
 
 	[Parameter]
-	public ScheduleEntry? EditSchedule { get; set; } = null;
+	public DataTimelineEntry? EditSchedule { get; set; } = null;
 
-	private ScheduleEntry CreateSchedule = new ScheduleEntry();
+	private DataTimelineEntry CreateSchedule = new DataTimelineEntry();
 
 
 	[Parameter]
@@ -94,7 +94,7 @@ public partial class ScheduleEditor {
     }
 
 
-    private ScheduleEntry GetCurrentSchedule() {
+    private DataTimelineEntry GetCurrentSchedule() {
         if( this.CanEdit ) {
             if( this.EditSchedule is null ) {
 				throw new InvalidDataException( "No edit ScheduleEntry available." );

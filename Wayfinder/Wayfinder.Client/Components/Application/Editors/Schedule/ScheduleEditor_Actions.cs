@@ -70,7 +70,7 @@ public partial class ScheduleEditor {
             return;
         }
 
-		ScheduleEntry newSched = await this.Data.CreateSchedule_Async(
+		DataTimelineEntry newSched = await this.Data.CreateSchedule_Async(
 			new ClientDataAccess.CreateScheduleParams( this.CreateSchedule.Events )
 		);
 		if( await this.OnSubmit.Invoke(newSched, false) ) {

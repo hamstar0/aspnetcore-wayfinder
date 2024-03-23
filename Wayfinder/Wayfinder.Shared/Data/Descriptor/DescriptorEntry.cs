@@ -22,7 +22,7 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 
-public class DescriptorConditionsTree : BooleanTree<ScheduleEntry, ScheduleValidator> {
+public class DescriptorConditionsTree : BooleanTree<DataTimelineEntry, DataTimelineBooleanContext> {
 	public DescriptorConditionsTree( bool isAnd ) : base( isAnd ) { }
 }
 
@@ -32,7 +32,7 @@ public class DescriptorEntry : IEquatable<DescriptorEntry> {
 	//[Key]
 	public long Id { get; set; }
 
-	public ScheduleEntry Facts { get; set; } = null!;
+	public DataTimelineEntry Facts { get; set; } = null!;
 
 	public DescriptorConditionsTree Conditions { get; set; } = null!;
 

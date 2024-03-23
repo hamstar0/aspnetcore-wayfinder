@@ -10,7 +10,7 @@
         style=@this.Style
         class="basic" >
     @for( int i=0; i<this.Tree.Children.Count; i++ ) {
-        IBoolean<ScheduleValidator> node = this.Tree.Children[i];
+        IBoolean<DataTimelineBooleanContext> node = this.Tree.Children[i];
 
         @if( node is DescriptorConditionsTree ) {
             <DescriptorConditionsTreeDisplay

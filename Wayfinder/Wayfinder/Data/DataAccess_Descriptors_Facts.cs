@@ -13,22 +13,24 @@ public partial class ServerDataAccess {
 				ClientDataAccess.GetDescriptorsByCriteriaParams parameters ) {
 		IEnumerable<DescriptorEntry> descriptors = this.Descriptors.Values;
 
-		if( parameters.FactValidator.HasValue ) {
-            descriptors = descriptors.Where( d => parameters.FactValidator.Value!.Validate(d.Facts) );
+		if( parameters.Facts.HasValue ) {
+            descriptors = descriptors.Where( d => parameters.Facts.Value!.ContainsTimeline(d.Facts) );
         }
 		if( parameters.Conditions.HasValue ) {
             descriptors = descriptors.Where( d => parameters.Conditions.Value!.Equals(d.Conditions) );
         }
 
 		return descriptors;
-	}
+    }
 
 
-	public async Task<bool> PromoptDescriptor_Async( long id ) {
-		if( !this.Descriptors.ContainsKey(id) ) {
-			return false;
-		}
+    public async Task<bool> PromoteDescriptorToFact_Async( long id ) {
+        if( !this.Descriptors.ContainsKey(id) ) {
+            return false;
+        }
 
-		return true;
+        this.FactualDescriptors[id] = this.Descriptors[id];
+
+        return true;
     }
 }

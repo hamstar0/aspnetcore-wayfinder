@@ -26,7 +26,7 @@ public class ScheduleController : ControllerBase {
 
 
     [HttpPost("Create")]
-    public async Task<ScheduleEntry> Create_Async( ClientDataAccess.CreateScheduleParams parameters ) {
+    public async Task<DataTimelineEntry> Create_Async( ClientDataAccess.CreateScheduleParams parameters ) {
         return await this.Data.CreateSchedule_Async( parameters );
     }
 

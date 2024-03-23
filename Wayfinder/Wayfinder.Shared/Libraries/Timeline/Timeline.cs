@@ -124,4 +124,9 @@ public partial class Timeline<T> {
 
 		this._EventsByIds[ collidee.Id ] = idx;
 	}
+
+
+	public bool ContainsTimeline( Timeline<T> other ) {
+
+	}
 }

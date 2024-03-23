@@ -33,7 +33,7 @@ public partial class DescriptorConditionsTreeEditor {
     public async Task AddTree_UI_Async( bool isAnd ) {
         if (Disabled) { return; }
 
-        var subTree = (IBoolean<ScheduleValidator>)new DescriptorConditionsTree( isAnd );
+        var subTree = (IBoolean<DataTimelineBooleanContext>)new DescriptorConditionsTree( isAnd );
 
         this.Conditions.Add( subTree, isAnd );
     }

@@ -21,7 +21,7 @@ public partial class DescriptorEditor {
 
     private IEnumerable<DescriptorEntry> SearchOptions = new List<DescriptorEntry>();
 
-    private ScheduleEntry Facts = new ScheduleEntry();
+    private DataTimelineEntry Facts = new DataTimelineEntry();
 
 	private DescriptorConditionsTree Conditions = new DescriptorConditionsTree( true );
 
@@ -65,7 +65,7 @@ public partial class DescriptorEditor {
 
 
 
-    private async Task<bool> SetFacts_UI_Async( ScheduleEntry sched ) {
+    private async Task<bool> SetFacts_UI_Async( DataTimelineEntry sched ) {
         if( this.Disabled ) {
             return true;
         }

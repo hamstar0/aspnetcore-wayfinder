@@ -10,14 +10,14 @@ namespace Wayfinder.Data;
 
 public partial class ServerDataAccess {
     private long CurrentSchedId = 0;
-    private IDictionary<long, ScheduleEntry> Schedules = new Dictionary<long, ScheduleEntry>();
+    private IDictionary<long, DataTimelineEntry> Schedules = new Dictionary<long, DataTimelineEntry>();
 
 
 
-    public async Task<ScheduleEntry> CreateSchedule_Async( ClientDataAccess.CreateScheduleParams parameters ) {
+    public async Task<DataTimelineEntry> CreateSchedule_Async( ClientDataAccess.CreateScheduleParams parameters ) {
         long id = this.CurrentSchedId++;
 
-        this.Schedules[ id ] = new ScheduleEntry( id, parameters.Events );
+        this.Schedules[ id ] = new DataTimelineEntry( id, parameters.Events );
 
         return this.Schedules[id];
     }
@@ -29,7 +29,7 @@ public partial class ServerDataAccess {
     }
 
     public async Task RemoveScheduleEvents_Async( ClientDataAccess.RemoveScheduleEventsParams parameters ) {
-        ScheduleEntry schedule = this.Schedules[parameters.ScheduleId];
+        DataTimelineEntry schedule = this.Schedules[parameters.ScheduleId];
 
         foreach( long eventId in parameters.EventIds ) {
             foreach( TimelineEvent<DescriptorDataEntry> evt in schedule.Events ) {

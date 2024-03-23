@@ -30,7 +30,7 @@ public partial class DescriptorConditionsEditor {
 
 
 
-    public async Task AddScheduleToCurrentTree_UI_Async( ScheduleEntry entry ) {
+    public async Task AddScheduleToCurrentTree_UI_Async( DataTimelineEntry entry ) {
         if( this.Disabled ) { return; }
         if( this.SelectedConditionTree is null ) { return; }
 

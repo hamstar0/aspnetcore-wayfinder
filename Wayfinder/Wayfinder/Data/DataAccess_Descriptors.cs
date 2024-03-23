@@ -14,8 +14,8 @@ public partial class ServerDataAccess {
 				ClientDataAccess.GetDescriptorsByCriteriaParams parameters ) {
 		IEnumerable<DescriptorEntry> descriptors = this.Descriptors.Values;
 
-        if( parameters.FactValidator.HasValue ) {
-            descriptors = descriptors.Where( d => parameters.FactValidator.Value!.Validate( d.Facts ) );
+        if( parameters.Facts.HasValue ) {
+            descriptors = descriptors.Where( d => parameters.Facts.Value!.ContainsTimeline( d.Facts ) );
         }
         if( parameters.Conditions.HasValue ) {
             descriptors = descriptors.Where( d => parameters.Conditions.Value!.Equals( d.Conditions ) );

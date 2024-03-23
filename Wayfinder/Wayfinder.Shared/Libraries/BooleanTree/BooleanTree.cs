@@ -22,16 +22,15 @@ public class BooleanTree<NodeData, NodeContext>
 	}
 
 	public override bool Equals( object? test ) {
-		if( test is not BooleanTree<NodeData, NodeContext> ) {
-			return false;
-		}
-		return this.Equals( (BooleanTree<NodeData, NodeContext>)test );
+        return test is not null
+			&& test is BooleanTree<NodeData, NodeContext>
+			&& this.Equals( (BooleanTree<NodeData, NodeContext>)test );
     }
 
     public bool Equals( BooleanTree<NodeData, NodeContext>? other ) {
         return other is not null
-			&& EqualityComparer<IList<IBoolean<NodeContext>>>.Default.Equals( this.Children, other.Children )
-			&& this.IsAnd == other.IsAnd;
+			&& this.IsAnd == other.IsAnd
+			&& EqualityComparer<IList<IBoolean<NodeContext>>>.Default.Equals( this.Children, other.Children );
     }
 
     public override int GetHashCode() {
