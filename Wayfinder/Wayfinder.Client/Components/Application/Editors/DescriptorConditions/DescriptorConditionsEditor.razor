@@ -6,7 +6,7 @@
 @using Wayfinder.Client.Components.Application.Views;
 @using Wayfinder.Client.Components.Application.Views.Collections;
 @using Wayfinder.Client.Components.Application.Pickers;
-@using Wayfinder.Client.Components.Application.Editors.Schedule;
+@using Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
 
@@ -17,7 +17,7 @@
 
     <DescriptorConditionsTreeEditor
             Disabled=@this.Disabled
-            Conditions=@this.Conditions
+            Conditions=@this.EditConditions
             OnSelectTree=@(e => this.SelectedConditionTree = e) />
 
     <component-label>Add condition</component-label>
@@ -25,6 +25,6 @@
             Disabled=@(this.Disabled || this.SelectedConditionTree is null)
             Abridged=@true
             CanSearch=@true CanCreate=@true CanEdit=@false
-            OnDescriptorSelect=@(async e => await this.AddDescriptorToCurrentTree_UI_Async(e)) />
+            OnDescriptorSelect=@(f) />
 </div>
 

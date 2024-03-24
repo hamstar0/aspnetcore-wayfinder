@@ -8,7 +8,7 @@
 @using Wayfinder.Client.Components.Application.Views.Timeline;
 @using Wayfinder.Client.Components.Application.Views.DescriptorConditions
 @using Wayfinder.Client.Components.Application.Pickers;
-@using Wayfinder.Client.Components.Application.Editors.Schedule;
+@using Wayfinder.Client.Components.Application.Editors.DataTimeline;
 @using Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
 
 
@@ -21,7 +21,7 @@
     @if( this.Abridged ) {
         <TimelineDisplay Timeline=@this.Facts />
     } else {
-        <ScheduleEditor Disabled=@this.Disabled
+        <DataTimelineEditor Disabled=@this.Disabled
                         CanCreate=@true CanEdit=@true
                         OnSubmit=@(async (sched, isEdit) => await this.SetFacts_UI_Async(sched)) />
     }

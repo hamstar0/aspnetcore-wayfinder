@@ -8,10 +8,10 @@ using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Data;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.Schedule;
+namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
-public partial class ScheduleEditor {
+public partial class DataTimelineEditor {
     public delegate Task<bool> OnSubmitSchedule( DataTimelineEntry schedule, bool isEdit );
 
 

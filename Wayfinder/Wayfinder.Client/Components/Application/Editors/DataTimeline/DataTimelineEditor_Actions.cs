@@ -5,10 +5,10 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.Schedule;
+namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
-public partial class ScheduleEditor {
+public partial class DataTimelineEditor {
     private void DrawAt_Async( double x ) {
         this.IsDrawingSeg = true;
 
