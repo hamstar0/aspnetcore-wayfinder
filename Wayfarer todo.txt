@@ -54,13 +54,15 @@ Phase 1
 			-	Implement goal or sub-goal condition picking
 		-	Add a tree view of conditions to fulfill, starting with the top level goal
 -	Add Label to TimelineDisplay
+-	Implement DurationInput (standard) component
 -	Implement the concept of plan 'options' (2)
 	-	Implement PlanOptionTreeEditor
-	-	Implement PlanEditor
 	-	Implement PlanOptionEditor
+	-	Implement PlanEditor
+
+
+-	Implement comparing timelines
 -	Define central data structure for global fact store of Descriptors
-
-
 -	Redefine DescriptorEntry to be simply a schedule and conditions
 -	Add context to IBoolean
 -	Implement the concept of plan 'options' (1)

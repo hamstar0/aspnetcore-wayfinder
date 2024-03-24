@@ -8,23 +8,25 @@
 
 
 
-<div component-name="PlanTimelineEditor" class="basic">
+<div component-name="PlanOptionEditor" class="basic">
 	<label>
 		Enter option name (optional):
 		<input type="text" />
 	</label>
 
-	<ToggleSwitch Label="Is active" IsOn=@this.Option.IsChosen
-			IsOnChanged=@(async (e) => this.Option.IsChosen = !this.Option.IsChosen) />
+	@if( this.Plan is not null ) {
+		<ToggleSwitch Label="Is active" IsOn=@this.Plan.Options.Contains(this.Option)
+				IsOnChanged=@(async (e) => await this.ToggleCurrentPlanOption_UI_Async()) />
+	}
 
 	<DurationInput Label="Enter minimum enact duration"
 			Description="Duration needed to apply action to make this option become realized."
-			oninput=@((e) => this.Option.MinimumEnactingDuration = e) />
-
+			OnInput=@(async (e) => this.Option.MinimumEnactingDuration = e) />
+	
 	<DescriptorConditionsEditor CanCreate=@true CanEdit=@true
-		OnSubmit=@((conds, isEdit) => {}) />
+			OnSubmit=@(async (conds, isEdit) => {}) />
 
 	<DescriptorEditor Label="Define option to enact"
             CanCreate=@true CanEdit=@true CanSearch=@false CanReset=@true
-            OnDescriptorSelect=@(async e => {}) />
+            OnDescriptorSelect=@(async e => f) />
 </div>

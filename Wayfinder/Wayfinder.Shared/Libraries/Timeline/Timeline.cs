@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 
 namespace Wayfinder.Shared.Libraries;
 
 
-public partial class Timeline<T> {
+public partial class Timeline<T> where T : class {
 	public long Id { get; set; }
 
 	[JsonIgnore]
@@ -126,7 +127,49 @@ public partial class Timeline<T> {
 	}
 
 
-	public bool ContainsTimeline( Timeline<T> other ) {
+	public bool ContainsTimeline( Timeline<T> other, Func<T, T, bool> validateDataContain ) {
+		if( other.Events.Count == 0 ) {
+			return true;
+		}
 
+		LinkedList<TimelineEvent<T>> otherList = new LinkedList<TimelineEvent<T>>( other.Events );
+        LinkedListNode<TimelineEvent<T>>? otherNode;
+
+        for( int i=0; i<this._Events.Count; i++ ) {
+            otherNode = otherList.First;
+
+            if( this._Events[i].StartTime > otherNode!.Value.StartTime ) {
+				return false;
+            }
+
+			do {
+				// Test seg exceeds current tester seg. Go to next test seg.
+				if( this._Events[i].EndTime < otherNode!.Value.EndTime ) {
+                    otherNode = otherNode.Next;
+                    if( otherNode is null ) {
+                        break;
+                    } else {
+						continue;
+					}
+                }
+
+				// Test seg is accounted for. Go to next test seg.
+				if( validateDataContain(this._Events[i].Data, otherNode!.Value.Data) ) {
+					var goneNode = otherNode;
+                    otherNode = otherNode.Next;
+
+                    otherList.Remove( goneNode );
+                } else {
+                    otherNode = otherNode.Next;
+                }
+
+				// No more segs to test. Go to next tester seg.
+                if( otherNode is null ) {
+					break;
+                }
+            } while( this._Events[i].StartTime <= otherNode!.Value.StartTime );
+        }
+
+		return otherList.First is null;
 	}
 }

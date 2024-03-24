@@ -90,7 +90,7 @@
         }
         
         @if( this.ConditionWindows is not null ) {
-            @foreach( TimelineEvent<bool> condWindow in this.ConditionWindows.Events ) {
+            @foreach( TimelineEvent<object> condWindow in this.ConditionWindows.Events ) {
                 <div class="timeline-cond-seg"
                      style= "left: @(this.ComputeSegOffset(condWindow.StartTime))px;
                              width: @(this.ComputeSegWidth(condWindow.StartTime, condWindow.EndTime))px;">

@@ -7,7 +7,7 @@ namespace Wayfinder.Client.Components.Application.Views.Timeline;
 
 
 
-public partial class TimelineDisplay<TimelineDataType> {
+public partial class TimelineDisplay<TimelineDataType> where TimelineDataType : class {
     public readonly static int MaxElementWidth = 1920;
 
 
@@ -33,7 +33,7 @@ public partial class TimelineDisplay<TimelineDataType> {
 
 
     [Parameter]
-    public Timeline<bool>? ConditionWindows { get; set; } = null;
+    public Timeline<object>? ConditionWindows { get; set; } = null;
 
     private bool ShowConditions = true;
 

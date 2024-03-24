@@ -22,13 +22,14 @@
         <TimelineDisplay Timeline=@this.Facts />
     } else {
         <ScheduleEditor Disabled=@this.Disabled
-                        CanCreate=true CanEdit=true
+                        CanCreate=@true CanEdit=@true
                         OnSubmit=@(async (sched, isEdit) => await this.SetFacts_UI_Async(sched)) />
     }
     
     <DescriptorConditionsEditor Disabled=@this.Disabled
-            OnEditSubmit=@(async conds => await this.SetConditions_UI_Async(conds))
-            Conditions=@this.Conditions />
+            CanCreate=@true CanEdit=@true
+            OnSubmit=@(async (conds, isEdit) => await this.SetConditions_UI_Async(conds))
+            EditConditions=@this.Conditions />
 
     @if( this.CanSearch ) {
         <div>   @* <- Not superfluous *@

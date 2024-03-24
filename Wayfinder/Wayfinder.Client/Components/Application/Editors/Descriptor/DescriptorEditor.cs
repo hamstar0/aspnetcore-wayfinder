@@ -55,10 +55,10 @@ public partial class DescriptorEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
     [Parameter]
-    public Func<ClientDataAccess.EditDescriptorParams, Task<bool>>? OnDescriptorEdit { get; set; } = null;
+    public Func<ClientDataAccess.EditDescriptorParams, Task>? OnDescriptorEdit { get; set; } = null;
 
     [Parameter]
-    public Func<ClientDataAccess.CreateDescriptorParams, Task<DescriptorEntry?>>? OnDescriptorCreate { get; set; } = null;
+    public Func<ClientDataAccess.CreateDescriptorParams, Task>? OnDescriptorCreate { get; set; } = null;
 
     [Parameter, EditorRequired]
     public Func<DescriptorEntry, Task> OnDescriptorSelect { get; set; } = null!;

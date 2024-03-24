@@ -23,18 +23,25 @@ public class DescriptorController : ControllerBase {
 
 
     [HttpPost("GetByCriteria")]
-    public async Task<IEnumerable<DescriptorEntry>> Create_Async(
+    public async Task<IEnumerable<DescriptorEntry>> Get_Async(
                 ClientDataAccess.GetDescriptorsByCriteriaParams parameters ) {
         return await this.Data.GetDescriptorsByCriteria_Async( parameters );
     }
 
     [HttpPost("Create")]
-    public async Task<DescriptorEntry> Edit_Async( ClientDataAccess.CreateDescriptorParams parameters ) {
+    public async Task<DescriptorEntry> Create_Async( ClientDataAccess.CreateDescriptorParams parameters ) {
         return await this.Data.CreateDescriptor_Async( parameters );
     }
 
     [HttpPost("Edit")]
-    public async Task<bool> Remove_Async( ClientDataAccess.EditDescriptorParams parameters ) {
+    public async Task<bool> Edit_Async( ClientDataAccess.EditDescriptorParams parameters ) {
         return await this.Data.EditDescriptor_Async( parameters );
+    }
+
+
+    [HttpPost("GetFactsByCriteria")]
+    public async Task<IEnumerable<DescriptorEntry>> GetFacts_Async(
+                ClientDataAccess.GetDescriptorsByCriteriaParams parameters ) {
+        return await this.Data.GetFactDescriptorsByCriteria_Async( parameters );
     }
 }

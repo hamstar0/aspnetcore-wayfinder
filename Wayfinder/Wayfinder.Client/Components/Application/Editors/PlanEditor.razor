@@ -6,7 +6,7 @@
 
 
 
-<div component-name="PlanTimelineEditor" class="basic">
+<div component-name="PlanEditor" class="basic">
 	<label>
 		Enter plan name (optional):
 		<input type="text" />
@@ -21,10 +21,10 @@
         </Footer> *@
 	</TimelineDisplay>		@* <- Edit plan options with popup PlanOptionEditor *@
 
-	<PlanOptionTreeEditor Goal=@this.Goal
+	<PlanOptionTreeEditor Goal=@(this.GetCurrentPlan().Goal)
 			Plan=@this.GetCurrentPlan />	@* <- Edit plan options with popup PlanOptionEditor *@
 
-	@if( this.CanSubmit ) {
-		<button @onclick=@(await e => this.Submit_UI_Async())>Submit</button>
+	@if( !this.SubmitOnEditOnly ) {
+		<button @onclick=@(async e => await this.Submit_UI_Async())>Submit</button>
 	}
 </div>
