@@ -92,8 +92,7 @@ public partial class DescriptorEditor {
         if( this.OnDescriptorCreate is null ) {
             this.SelectedDescriptor = await this.Data.CreateDescriptor_Async( createParams );
         } else {
-            this.SelectedDescriptor = await this.OnDescriptorCreate.Invoke( createParams )
-                ?? await this.Data.CreateDescriptor_Async( createParams );
+            this.SelectedDescriptor = await this.OnDescriptorCreate( createParams );
         }
     }
 
@@ -107,7 +106,7 @@ public partial class DescriptorEditor {
         if( this.OnDescriptorEdit is null ) {
             await this.Data.EditDescriptor_Async( editParams );
         } else {
-            if( !await this.OnDescriptorEdit.Invoke( editParams ) ) {
+            if( this.OnDescriptorEdit is not null && !await this.OnDescriptorEdit(editParams) ) {
                 await this.Data.EditDescriptor_Async( editParams );
             }
         }

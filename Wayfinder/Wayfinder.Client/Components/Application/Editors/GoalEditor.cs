@@ -65,7 +65,7 @@ public partial class GoalEditor {
             return;
         }
 
-        // todo
+        f
     }
 
     private async Task SubmitNewGoal_UI_Async() {

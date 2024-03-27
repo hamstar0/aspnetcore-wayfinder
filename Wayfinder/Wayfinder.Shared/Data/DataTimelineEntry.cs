@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Libraries.BooleanTree;
+
 
 namespace Wayfinder.Shared.Data;
 
@@ -17,10 +17,10 @@ public partial class DataTimelineEntry : Timeline<DescriptorDataEntry>, IBoolean
 
     public DataTimelineEntry() : base() { }
 
-    public DataTimelineEntry(IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
+    public DataTimelineEntry( IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
             : base(events) { }
 
-    public DataTimelineEntry(long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events)
+    public DataTimelineEntry( long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
             : base(id, events) { }
 
 

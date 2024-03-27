@@ -1,10 +1,11 @@
-﻿@using Wayfinder.Shared.Libraries.BooleanTree;
+﻿@using Wayfinder.Shared.Libraries;
+@using Wayfinder.Shared.Libraries.BooleanTree;
 
 
-@typeparam DataTypeValidator;
-@typeparam DataType where DataType : IBoolean<DataTypeValidator>;
-@typeparam DataDisplayComponentType where DataDisplayComponentType : IBooleanEditComponent<DataTypeValidator>;
-@typeparam DataEditComponentType where DataEditComponentType : IBooleanEditComponent<DataTypeValidator>;
+@typeparam DataTypeContext;
+@typeparam DataType where DataType : IBoolean<DataTypeContext>;
+@typeparam DataDisplayComponentType where DataDisplayComponentType : IBooleanEditComponent<DataTypeContext>;
+@typeparam DataEditComponentType where DataEditComponentType : IBooleanEditComponent<DataTypeContext>;
 
 
 
@@ -12,18 +13,19 @@
     @("<div component-name=\"BooleanTreeEditor\" class=\"basic\">")
 }
 
-@foreach( IBoolean<DataTypeValidator> node in this.TreeData.Children ) {
-    @if( node is BooleanTree<DataType, DataTypeValidator> ) {
+@foreach( IBoolean<DataTypeContext> node in this.TreeData.Children ) {
+    @if( node is BooleanTree<DataType, DataTypeContext> ) {
         <BooleanTreeEditor
                 HasEditor=@false
+                DataTypeContext=@DataTypeContext
                 DataType=@DataType
                 DataDisplayComponentType=@DataDisplayComponentType
                 DataEditComponentType=@DataEditComponentType
-                TreeData=@((BooleanTree<DataType>)node) />
+                TreeData=@((BooleanTree<DataType, DataTypeContext>)node) />
     } else {
         <DynamicComponent
                 Type=@(typeof(DataDisplayComponentType))
-                Parameters=@this.Parameterize((IBoolean)node) />
+                Parameters=@this.Parameterize( (IBoolean<DataType>)node ) />
     }
 }
 
@@ -46,16 +48,11 @@
     public bool HasEditor { get; set; }
 
     [Parameter, EditorRequired]
-    public BooleanTree<DataType> TreeData { get; set; } = null!;
-
-    IBoolean Data {
-        get => (IBoolean)this.TreeData;
-        set => this.TreeData = (BooleanTree<DataType>)value;
-    }
+    public BooleanTree<DataType, DataTypeContext> TreeData { get; set; } = null!;
 
 
 
-    private IDictionary<string, object> Parameterize( IBoolean node ) {
+    private IDictionary<string, object> Parameterize( IBoolean<DataType> node ) {
         return new Dictionary<string, object> { { "Data", node } };
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors;
 
 
 
-public partial class PlanOptionEditor {
+public partial class PlanOptionTimelineEditor {
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 
@@ -15,15 +16,7 @@ public partial class PlanOptionEditor {
 
 
     [Parameter, EditorRequired]
-    public PlanEntry Plan { get; set; } = null!;
-
-
-	[Parameter, EditorRequired]
     public bool CanCreate { get; set; }
-
-	[Parameter, EditorRequired]
-	public PlanOptionEntry EditOption { get; set; } = null!;
-
 
     [Parameter, EditorRequired]
     public bool CanEdit { get; set; }
@@ -32,8 +25,8 @@ public partial class PlanOptionEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
+    [Parameter, EditorRequired]
+    public Timeline<PlanOptionEntry> EditTimeline { get; set; } = null!;
 
-	private async Task ToggleCurrentPlanOption_UI_Async() {
-        f
-	}
+    private Timeline<PlanOptionEntry> CreateTimeline = new Timeline<PlanOptionEntry>();
 }

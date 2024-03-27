@@ -1,0 +1,20 @@
+﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Shared.Libraries;
+@using Wayfinder.Client.Components.Standard.Timeline
+@using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Editors.Descriptor;
+
+
+
+<div component-name="PlanOptionTimelineEditor" class="basic">
+    <TimelineDisplay TimelineDataType=@PlanOptionEntry
+                     Timeline=@(this.GetPlanTimeline())
+                     OnMouseDown=@this.OnMouseDown_UI_Async
+                     OnMouseUp=@this.OnMouseUp_UI_Async>
+        <AddedHeadButtonsPre>
+        </AddedHeadButtonsPre>
+
+        <Footer>
+        </Footer>
+    </TimelineDisplay>
+</div>

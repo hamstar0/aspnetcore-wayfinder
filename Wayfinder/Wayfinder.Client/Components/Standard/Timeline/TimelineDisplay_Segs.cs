@@ -2,7 +2,7 @@
 using Wayfinder.Shared.Libraries;
 
 
-namespace Wayfinder.Client.Components.Application.Views.Timeline;
+namespace Wayfinder.Client.Components.Standard.Timeline;
 
 
 public partial class TimelineDisplay<TimelineDataType> {

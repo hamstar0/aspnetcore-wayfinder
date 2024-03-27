@@ -55,6 +55,7 @@ Phase 1
 		-	Add a tree view of conditions to fulfill, starting with the top level goal
 -	Add Label to TimelineDisplay
 -	Implement DurationInput (standard) component
+-	Refactor all submit callbacks to return a boolean to interrupt or permit default action
 -	Implement the concept of plan 'options' (2)
 	-	Implement PlanOptionTreeEditor
 	-	Implement PlanOptionEditor
