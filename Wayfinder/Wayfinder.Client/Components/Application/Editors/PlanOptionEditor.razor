@@ -15,7 +15,7 @@
 	</label>
 
 	@if( this.Plan is not null ) {
-		<ToggleSwitch Label="Is active" IsOn=@this.Plan.Options.Contains(this.Option)
+		<ToggleSwitch Label="Is active" IsOn=@this.Plan.Options.Contains(this.EditOption)
 				IsOnChanged=@(async (e) => await this.ToggleCurrentPlanOption_UI_Async()) />
 	}
 

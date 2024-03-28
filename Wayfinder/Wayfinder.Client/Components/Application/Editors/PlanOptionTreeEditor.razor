@@ -2,9 +2,17 @@
 @using Wayfinder.Shared.Libraries;
 @using Wayfinder.Client.Components.Standard.Timeline;
 @using Wayfinder.Client.Components.Application.Views;
+@using Wayfinder.Client.Components.Application.Views.DescriptorConditions
 @using Wayfinder.Client.Components.Application.Editors.Descriptor;
 
 
 
 <div component-name="PlanOptionTreeEditor" class="basic">
+	<DescriptorDisplay Descriptor=@this.OptionFor />
+
+	<DescriptorConditionsTreeDisplay Tree=@this.OptionFor.Conditions>
+		<AfterCondition Condition=@condition>
+			<PlanOptionEditor EditOption=@(this.Plan.GetOptionForCondition(condition)) />
+		</AfterCondition>
+	</DescriptorConditionsTreeDisplay>
 </div>

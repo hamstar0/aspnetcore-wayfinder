@@ -26,8 +26,9 @@ public partial class PlanOptionTreeEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
-    [Parameter, EditorRequired]
-    public Tree<PlanOptionEntry> EditTree { get; set; } = null!;
+	[Parameter, EditorRequired]
+    public PlanEntry Plan { get; set; } = null!;
 
-    private Tree<PlanOptionEntry> CreateTree = new Tree<PlanOptionEntry>();
+
+	OnSubmit
 }

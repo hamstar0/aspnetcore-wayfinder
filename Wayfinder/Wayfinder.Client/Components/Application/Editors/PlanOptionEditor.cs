@@ -14,26 +14,35 @@ public partial class PlanOptionEditor {
     //public ClientDataAccess Data { get; set; } = null!;
 
 
-    [Parameter, EditorRequired]
-    public PlanEntry Plan { get; set; } = null!;
-
-
 	[Parameter, EditorRequired]
     public bool CanCreate { get; set; }
 
-	[Parameter, EditorRequired]
-	public PlanOptionEntry EditOption { get; set; } = null!;
-
-
     [Parameter, EditorRequired]
     public bool CanEdit { get; set; }
+
 
     [Parameter]
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
+    [Parameter]
+    public PlanEntry? Plan { get; set; } = null;
+
+
+    [Parameter, EditorRequired]
+	public PlanOptionEntry EditOption { get; set; } = null!;
+
+
 
 	private async Task ToggleCurrentPlanOption_UI_Async() {
-        f
-	}
+        if( this.Plan is null ) {
+            throw new Exception( "No plan to edit options for." );
+        }
+
+        if( this.Plan.Options.Contains(this.EditOption) ) {
+            this.Plan.Options.Remove( this.EditOption );
+        } else {
+            this.Plan.Options.Add( this.EditOption );
+        }
+    }
 }

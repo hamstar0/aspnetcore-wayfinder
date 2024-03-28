@@ -2,6 +2,8 @@
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Libraries;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.Data;
+using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 namespace Wayfinder.Client.Components.Application.Editors;
@@ -48,8 +50,25 @@ public partial class PlanEditor {
         return this.GetCurrentPlan().OptionTimeline;
     }
 
-    
-    public async Task Submit_UI_Async() {
+
+	public async Task EditPlanTimeline_UI_Async( DataTimelineEntry timeline ) {
+        if( !this.SubmitOnEditOnly ) {
+            return;
+        }
+
+        f
+    }
+
+
+	public async Task EditPlanOption_UI_Async( DescriptorEntry optionFor, PlanOptionEntry option ) {
+		if( !this.SubmitOnEditOnly ) {
+			return;
+		}
+
+		f
+	}
+
+	public async Task Submit_UI_Async() {
         if( this.CanEdit && this.EditPlan is not null ) {
             await this.Data.EditPlan_Async( new ClientDataAccess.EditPlanParams(
                 new Optional<string?>( this.EditPlan ),

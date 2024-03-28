@@ -13,12 +13,15 @@
 	</label>
 
 	<PlanOptionTimelineEditor Label="Current plan timeline"
-			CanCreate=@false CanEdit=@true
-			EditTimeline=@(this.GetCurrentPlanTimeline()) />
-
+			CanCreate=@false CanEdit=@true SubmitOnEditOnly=@true
+			EditTimeline=@(this.GetCurrentPlanTimeline())
+			OnSubmit=@(async (timeline, _) => await this.EditPlanTimeline_UI_Async(timeline)) />
+	
 	<PlanOptionTreeEditor Goal=@(this.GetCurrentPlan().Goal)
-			Plan=@(this.GetCurrentPlan()) />	@* <- Edit plan options with popup PlanOptionEditor *@
-
+			CanCreate=@true CanEdit=@true
+			Plan=@(this.GetCurrentPlan())
+			OnSubmit=@(async (optionFor, option, _) => await this.EditPlanOption_UI_Async(optionFor, option) ) />	@* <- Edit plan options with popup PlanOptionEditor *@
+	
 	@if( !this.SubmitOnEditOnly ) {
 		<button @onclick=@(async e => await this.Submit_UI_Async())>Submit</button>
 	}
