@@ -13,14 +13,14 @@ public partial class ClientDataAccess {
         public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
     }
 
-    public async Task<DataTimelineEntry> CreateSchedule_Async( CreateDataTimelineParams parameters ) {
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Schedule/Create", parameters );
+    public async Task<DataTimelineEntry> CreateDataTimeline_Async( CreateDataTimelineParams parameters ) {
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Create", parameters );
 
         msg.EnsureSuccessStatusCode();
 
         DataTimelineEntry? ret = await msg.Content.ReadFromJsonAsync<DataTimelineEntry>();
         if( ret is null ) {
-            throw new InvalidDataException( "Could not deserialize ScheduleEntry" );
+            throw new InvalidDataException( "Could not deserialize DataTimelineEntry" );
         }
 
         return ret;
@@ -34,20 +34,20 @@ public partial class ClientDataAccess {
         public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
     }
 
-    public async Task<DataTimelineEntry> AddScheduleEvents_Async( AddDataTimelineEventsParams parameters ) {
-        //foreach( ScheduleEventEntry evt in parameters.Events ) {
+    public async Task<DataTimelineEntry> AddDataTimelineEvents_Async( AddDataTimelineEventsParams parameters ) {
+        //foreach( TimelineEventEntry evt in parameters.Events ) {
         //    if( evt.Id == -1 ) {
-        //        throw new InvalidDataException( "Invalid ScheduleEventEntry id" );
+        //        throw new InvalidDataException( "Invalid TimelineEventEntry id" );
         //    }
         //}
 
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Schedule/Edit", parameters );
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Edit", parameters );
 
         msg.EnsureSuccessStatusCode();
 
 		DataTimelineEntry? ret = await msg.Content.ReadFromJsonAsync<DataTimelineEntry>();
 		if( ret is null ) {
-			throw new InvalidDataException( "Could not deserialize ScheduleEntry" );
+			throw new InvalidDataException( "Could not deserialize DataTimelineEntry" );
 		}
 
 		return ret;
@@ -55,14 +55,14 @@ public partial class ClientDataAccess {
 
 
     public class RemoveDataTimelineEventsParams(
-            long scheduleId,
+            long timelineId,
             IList<long> eventIds ) {
-        public long DataTimelineId = scheduleId;
+        public long TimelineId = timelineId;
         public IList<long> EventIds = eventIds;
     }
 
-    public async Task RemoveScheduleEvents_Async( RemoveDataTimelineEventsParams parameters ) {
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Schedule/Remove", parameters );
+    public async Task RemoveDataTimelineEvents_Async( RemoveDataTimelineEventsParams parameters ) {
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Remove", parameters );
 
         msg.EnsureSuccessStatusCode();
     }

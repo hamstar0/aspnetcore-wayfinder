@@ -5,22 +5,6 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 
-//public enum DescriptorDataType {
-//    None = 0,
-//    Term = 1,
-//    Scalar = 2,
-//    LocationRange = 4,
-//    LocationArea = 8,
-//    LocationAddress = 16,
-//    //FixedSchedule,
-//    //DynamicLocation,
-//    //DynamicLocations,
-//    //DynamicState,
-//    //Dynamic
-//}
-
-
-
 public class DescriptorConditionsTree : BooleanTree<DataTimelineEntry, DataTimelineBooleanContext> {
 	public DescriptorConditionsTree( bool isAnd ) : base( isAnd ) { }
 }

@@ -10,13 +10,10 @@ namespace Wayfinder;
 [ApiController]
 [Route("[controller]")]
 public class GoalController : ControllerBase {
-    //private readonly ILogger<ScheduleAPI> _logger;
     private readonly ServerDataAccess Data;
 
 
 
-    //public ScheduleAPI( ILogger<ScheduleAPI> logger ) {
-    //    this._logger = logger;
     public GoalController( ServerDataAccess data ) {
         this.Data = data;
     }

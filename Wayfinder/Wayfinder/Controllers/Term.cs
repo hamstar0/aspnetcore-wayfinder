@@ -10,13 +10,10 @@ namespace Wayfinder;
 [ApiController]
 [Route("[controller]")]
 public class TermController : ControllerBase {
-    //private readonly ILogger<ScheduleAPI> _logger;
     private readonly ServerDataAccess Data;
 
 
 
-    //public ScheduleAPI( ILogger<ScheduleAPI> logger ) {
-    //    this._logger = logger;
     public TermController( ServerDataAccess data ) {
         this.Data = data;
     }

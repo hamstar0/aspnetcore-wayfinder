@@ -10,13 +10,10 @@ namespace Wayfinder;
 [ApiController]
 [Route("[controller]")]
 public class DescriptorController : ControllerBase {
-    //private readonly ILogger<ScheduleAPI> _logger;
     private readonly ServerDataAccess Data;
 
 
 
-    //public ScheduleAPI( ILogger<ScheduleAPI> logger ) {
-    //    this._logger = logger;
     public DescriptorController( ServerDataAccess data ) {
         this.Data = data;
     }

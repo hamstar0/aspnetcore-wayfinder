@@ -82,7 +82,7 @@
             }
         }
         
-        @foreach( TimelineEvent<TimelineDataType> schedEvent in this.GetVisibleScheduleEvents() ) {
+        @foreach( TimelineEvent<TimelineDataType> schedEvent in this.GetVisibleTimelineEvents() ) {
             <div class="timeline-seg"
                  style= "left: @(this.ComputeSegOffset(schedEvent.StartTime))px;
                          width: @(this.ComputeSegWidth(schedEvent.StartTime, schedEvent.EndTime))px;">

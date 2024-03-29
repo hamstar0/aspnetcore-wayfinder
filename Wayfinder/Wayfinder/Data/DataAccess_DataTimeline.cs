@@ -31,7 +31,7 @@ public partial class ServerDataAccess {
 
     public async Task RemoveDataTimelineEvents_Async(
                 ClientDataAccess.RemoveDataTimelineEventsParams parameters ) {
-        DataTimelineEntry dataTimeline = this.DataTimelines[ parameters.DataTimelineId ];
+        DataTimelineEntry dataTimeline = this.DataTimelines[ parameters.TimelineId ];
 
         foreach( long eventId in parameters.EventIds ) {
             foreach( TimelineEvent<DescriptorDataEntry> evt in dataTimeline.Events ) {

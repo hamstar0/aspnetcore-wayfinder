@@ -12,15 +12,15 @@ namespace Wayfinder;
 //[Route( "DataTimeline" )]
 [Route("[controller]")]
 public class DataTimelineController : ControllerBase {
-    //private readonly ILogger<ScheduleAPI> _logger;
-    private readonly ServerDataAccess Data;
+	//private readonly ILogger<DataTimelineController> _logger;
+	private readonly ServerDataAccess Data;
 
 
 
-    //public ScheduleAPI( ILogger<ScheduleAPI> logger ) {
-    //    this._logger = logger;
-    //}
-    public DataTimelineController( ServerDataAccess data ) {
+	//public DataTimelineController( ILogger<DataTimelineController> logger ) {
+	//    this._logger = logger;
+	//}
+	public DataTimelineController( ServerDataAccess data ) {
         this.Data = data;
     }
 

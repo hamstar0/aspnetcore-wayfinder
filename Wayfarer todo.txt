@@ -55,7 +55,6 @@ Phase 1
 		-	Add a tree view of conditions to fulfill, starting with the top level goal
 -	Add Label to TimelineDisplay
 -	Implement DurationInput (standard) component
--	Refactor all submit callbacks to return a boolean to interrupt or permit default action
 -	Implement server bindings for Plan API
 -	Implement the concept of plan 'options' (2)
 	-	Implement PlanOptionTreeEditor
@@ -63,6 +62,7 @@ Phase 1
 
 
 	-	Implement PlanEditor
+-	Refactor all submit callbacks to return a boolean to interrupt or permit default action
 -	Implement comparing timelines
 -	Define central data structure for global fact store of Descriptors
 -	Redefine DescriptorEntry to be simply a schedule and conditions

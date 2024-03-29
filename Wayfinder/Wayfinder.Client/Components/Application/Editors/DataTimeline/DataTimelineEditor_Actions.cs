@@ -40,7 +40,7 @@ public partial class DataTimelineEditor {
             return;
         }
 
-        this.GetCurrentSchedule().AddEvent( this.CurrentDrawSeg );
+        this.GetCurrentTimeline().AddEvent( this.CurrentDrawSeg );
 
         this.CurrentDrawSeg = null;
         this.IsDrawingSeg = false;
@@ -58,9 +58,9 @@ public partial class DataTimelineEditor {
 	}
 
     private async Task AttemptSubmit_Async() {
-        if( this.CanEdit && this.EditSchedule is not null ) {
+        if( this.CanEdit && this.EditDataTimeline is not null ) {
 			await this.AttemptEditSubmit_Async();
-		} else if( this.CanCreate && this.CreateSchedule is not null ) {
+		} else if( this.CanCreate && this.CreateDataTimeline is not null ) {
 			await this.AttemptCreateSubmit_Async();
 		}
 	}
@@ -70,10 +70,10 @@ public partial class DataTimelineEditor {
             return;
         }
 
-		DataTimelineEntry newSched = await this.Data.CreateSchedule_Async(
-			new ClientDataAccess.CreateDataTimelineParams( this.CreateSchedule.Events )
+		DataTimelineEntry newTimeline = await this.Data.CreateDataTimeline_Async(
+			new ClientDataAccess.CreateDataTimelineParams( this.CreateDataTimeline.Events )
 		);
-		if( await this.OnSubmit.Invoke(newSched, false) ) {
+		if( await this.OnSubmit.Invoke(newTimeline, false) ) {
 			return;
 		}
 	}
@@ -82,14 +82,14 @@ public partial class DataTimelineEditor {
         if( this.OnSubmit is null ) {
             throw new InvalidDataException( "Missing OnSubmit handler for edits" );
         }
-        if( this.EditSchedule is null ) {
-            throw new InvalidDataException( "Missing EditSchedule" );
+        if( this.EditDataTimeline is null ) {
+            throw new InvalidDataException( "Missing EditDataTimeline" );
         }
-        if( !await this.OnSubmit.Invoke(this.EditSchedule, true) ) {
-			this.EditSchedule = await this.Data.AddScheduleEvents_Async(
+        if( !await this.OnSubmit.Invoke(this.EditDataTimeline, true) ) {
+			this.EditDataTimeline = await this.Data.AddDataTimelineEvents_Async(
 				new ClientDataAccess.AddDataTimelineEventsParams(
-                    this.EditSchedule.Id,
-					this.EditSchedule.Events
+                    this.EditDataTimeline.Id,
+					this.EditDataTimeline.Events
 				)
 			);
 		}

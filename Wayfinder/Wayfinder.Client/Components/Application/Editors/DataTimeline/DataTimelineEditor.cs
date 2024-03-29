@@ -12,7 +12,7 @@ namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
 public partial class DataTimelineEditor {
-    public delegate Task<OverridesDefault> SubmitSchedule( DataTimelineEntry schedule, bool isEdit );
+    public delegate Task<OverridesDefault> SubmitDataTimeline( DataTimelineEntry timeline, bool isEdit );
 
 
 
@@ -39,9 +39,9 @@ public partial class DataTimelineEditor {
 
 
 	[Parameter]
-	public DataTimelineEntry? EditSchedule { get; set; } = null;
+	public DataTimelineEntry? EditDataTimeline { get; set; } = null;
 
-	private DataTimelineEntry CreateSchedule = new DataTimelineEntry();
+	private DataTimelineEntry CreateDataTimeline = new DataTimelineEntry();
 
 
 	[Parameter]
@@ -51,7 +51,7 @@ public partial class DataTimelineEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public SubmitSchedule OnSubmit { get; set; } = null!;
+    public SubmitDataTimeline OnSubmit { get; set; } = null!;
 
 
     [Parameter]
@@ -94,28 +94,28 @@ public partial class DataTimelineEditor {
     }
 
 
-    private DataTimelineEntry GetCurrentSchedule() {
+    private DataTimelineEntry GetCurrentTimeline() {
         if( this.CanEdit ) {
-            if( this.EditSchedule is null ) {
-				throw new InvalidDataException( "No edit ScheduleEntry available." );
+            if( this.EditDataTimeline is null ) {
+				throw new InvalidDataException( "No edit DataTimelineEntry available." );
 			}
-			return this.EditSchedule;
+			return this.EditDataTimeline;
 		}
         if( this.CanCreate ) {
-			if( this.CreateSchedule is null ) {
-				throw new InvalidDataException( "No create ScheduleEntry available." );
+			if( this.CreateDataTimeline is null ) {
+				throw new InvalidDataException( "No create DataTimelineEntry available." );
 			}
-			return this.CreateSchedule;
+			return this.CreateDataTimeline;
 		}
-		throw new InvalidDataException( "ScheduleEditor cannot create or edit Schedules (!)" );
+		throw new InvalidDataException( "DataTimelineEditor cannot create or edit DataTimelines (!)" );
 	}
 
 	public bool CanEditOrCreate() {
 		if( this.Disabled ) {
 			return false;
 		}
-		if( this.CanEdit && this.EditSchedule is null ) {
-            if( this.CanCreate && this.CreateSchedule is null ) {
+		if( this.CanEdit && this.EditDataTimeline is null ) {
+            if( this.CanCreate && this.CreateDataTimeline is null ) {
                 return false;
             }
 		}

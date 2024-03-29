@@ -13,18 +13,18 @@ public partial class DataTimelineEditor {
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEvent<DescriptorDataEntry> schEvt in this.GetCurrentSchedule().Events ) {
-            double evtStartX = this.GetOffsetXOfTimestamp( schEvt.StartTime );
+        foreach( TimelineEvent<DescriptorDataEntry> timelineEvt in this.GetCurrentTimeline().Events ) {
+            double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
             if( x < evtStartX ) {
                 break;
             }
 
-            double evtEndX = this.GetOffsetXOfTimestamp( schEvt.EndTime );
+            double evtEndX = this.GetOffsetXOfTimestamp( timelineEvt.EndTime );
             if( x > evtEndX ) {
                 continue;
             }
 
-            if( await this.OnMouseDownOverSeg_Async(x, schEvt) ) {
+            if( await this.OnMouseDownOverSeg_Async(x, timelineEvt) ) {
                 return;
             } else {
                 break;
