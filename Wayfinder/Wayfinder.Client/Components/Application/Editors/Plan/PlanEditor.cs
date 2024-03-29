@@ -3,10 +3,9 @@ using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Libraries;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
-namespace Wayfinder.Client.Components.Application.Editors;
+namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 
@@ -28,62 +27,76 @@ public partial class PlanEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
-    [Parameter]
+	[Parameter, EditorRequired]
+	public GoalEntry Goal { get; set; } = null!;
+
+
+	[Parameter]
     public PlanEntry? EditPlan { get; set; } = null;
 
-    private PlanEntry CreatePlan = new PlanEntry();
+	private PlanEntry CreatePlan = new PlanEntry();
 
 
 
-    public PlanEntry GetCurrentPlan() {
-        if( this.CanEdit && this.EditPlan is not null ) {
-            return this.EditPlan;
+	public PlanEntry GetCurrentPlan( out bool isEdit ) {
+		isEdit = this.CanEdit && this.EditPlan is not null;
+
+		if( isEdit ) {
+			return this.EditPlan!;
         }
         if( this.CanCreate ) {
             return this.CreatePlan;
         }
-        throw new Exception( "No PlanEntry available." );
+        throw new Exception( "No current Plan selected." );
     }
 
 
-    public Timeline<PlanOptionEntry> GetCurrentPlanTimeline() {
-        return this.GetCurrentPlan().OptionTimeline;
-    }
-
-
-	public async Task EditPlanTimeline_UI_Async( DataTimelineEntry timeline ) {
+	public async Task EditPlanTimeline_UI_Async( Timeline<PlanOptionEntry> timeline ) {
         if( !this.SubmitOnEditOnly ) {
             return;
         }
 
-        f
-    }
+        PlanEntry plan = this.GetCurrentPlan( out _ );
+
+        plan.OptionTimeline = timeline;
+
+        await this.Submit_Async();
+	}
 
 
-	public async Task EditPlanOption_UI_Async( DescriptorEntry optionFor, PlanOptionEntry option ) {
+	public async Task EditPlanOption_UI_Async( PlanOptionEntry option ) {
 		if( !this.SubmitOnEditOnly ) {
 			return;
 		}
 
-		f
+        PlanEntry plan = this.GetCurrentPlan( out _ );
+
+		plan.Options.Add( option );
+
+        await this.Submit_Async();
 	}
 
 	public async Task Submit_UI_Async() {
-        if( this.CanEdit && this.EditPlan is not null ) {
+        await this.Submit_Async();
+    }
+
+
+	private async Task Submit_Async() {
+		PlanEntry plan = this.GetCurrentPlan( out bool isEdit );
+
+		if( isEdit ) {
             await this.Data.EditPlan_Async( new ClientDataAccess.EditPlanParams(
-                new Optional<string?>( this.EditPlan ),
-                this.CreatePlan.Goal,
-                this.CreatePlan.Options,
-                this.CreatePlan.OptionTimeline
+                new Optional<string?>( plan.Name ),
+				new Optional<ISet<PlanOptionEntry>>( plan.Options ),
+				new Optional<Timeline<PlanOptionEntry>>( plan.OptionTimeline )
             ) );
-        } else if( this.CanCreate ) {
+        } else {
             await this.Data.CreatePlan_Async( new ClientDataAccess.CreatePlanParams(
-                this.CreatePlan.Name,
-                this.CreatePlan.Goal,
-                this.CreatePlan.Options,
-                this.CreatePlan.OptionTimeline
+				plan.Name,
+				plan.Goal,
+				plan.Options,
+				plan.OptionTimeline
             ) );
         }
-        throw new Exception( "No submit option available." );
     }
 }

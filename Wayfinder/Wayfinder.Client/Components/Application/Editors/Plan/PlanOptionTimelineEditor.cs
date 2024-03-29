@@ -3,22 +3,22 @@ using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Libraries;
 
 
-namespace Wayfinder.Client.Components.Application.Editors;
+namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 
 public partial class PlanOptionTimelineEditor {
-	public delegate Task PlanOptionTimelineSubmit( Timeline<PlanOptionEntry> timeline, bool isEdit );
+	public delegate Task<bool> PlanOptionTimelineSubmit( Timeline<PlanOptionEntry> timeline, bool isEdit );
 
 
-    //[Inject]
-    //public IJSRuntime Js { get; set; } = null!;
+	//[Inject]
+	//public IJSRuntime Js { get; set; } = null!;
 
-    //[Inject]
-    //public ClientDataAccess Data { get; set; } = null!;
+	//[Inject]
+	//public ClientDataAccess Data { get; set; } = null!;
 
 
-    [Parameter, EditorRequired]
+	[Parameter, EditorRequired]
     public bool CanCreate { get; set; }
 
     [Parameter, EditorRequired]
@@ -34,5 +34,6 @@ public partial class PlanOptionTimelineEditor {
     private Timeline<PlanOptionEntry> CreateTimeline = new Timeline<PlanOptionEntry>();
 
 
-	OnSubmit
+    [Parameter, EditorRequired]
+    public PlanOptionTimelineSubmit OnSubmit { get; set; } = null!;
 }

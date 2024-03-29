@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Libraries.BooleanTree;
+using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
-namespace Wayfinder.Client.Components.Application.Editors;
+namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 
 public partial class PlanOptionTreeEditor {
+    public delegate Task<bool> PlanOptionSubmit( PlanOptionEntry option, bool isEdit );
+
+
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 
@@ -30,5 +32,6 @@ public partial class PlanOptionTreeEditor {
     public PlanEntry Plan { get; set; } = null!;
 
 
-	OnSubmit
+	[Parameter, EditorRequired]
+	public PlanOptionSubmit OnSubmit { get; set; } = null!;
 }

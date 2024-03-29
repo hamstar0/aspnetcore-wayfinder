@@ -9,32 +9,34 @@ namespace Wayfinder.Data;
 
 
 public partial class ServerDataAccess {
-    private long CurrentSchedId = 0;
-    private IDictionary<long, DataTimelineEntry> Schedules = new Dictionary<long, DataTimelineEntry>();
+    private long CurrentDataTimelineId = 0;
+    private IDictionary<long, DataTimelineEntry> DataTimelines = new Dictionary<long, DataTimelineEntry>();
 
 
 
-    public async Task<DataTimelineEntry> CreateSchedule_Async( ClientDataAccess.CreateScheduleParams parameters ) {
-        long id = this.CurrentSchedId++;
+    public async Task<DataTimelineEntry> CreateDataTimeline_Async(
+                ClientDataAccess.CreateDataTimelineParams parameters ) {
+        long id = this.CurrentDataTimelineId++;
 
-        this.Schedules[ id ] = new DataTimelineEntry( id, parameters.Events );
+        this.DataTimelines[ id ] = new DataTimelineEntry( id, parameters.Events );
 
-        return this.Schedules[id];
+        return this.DataTimelines[id];
     }
 
-    public async Task AddScheduleEvents_Async( ClientDataAccess.AddScheduleEventsParams parameters ) {
+    public async Task AddDataTimelineEvents_Async( ClientDataAccess.AddDataTimelineEventsParams parameters ) {
         foreach( TimelineEvent<DescriptorDataEntry> evt in parameters.Events ) {
-            this.Schedules[ parameters.ScheduleId ].AddEvent( evt );
+            this.DataTimelines[ parameters.DataTimelineId ].AddEvent( evt );
         }
     }
 
-    public async Task RemoveScheduleEvents_Async( ClientDataAccess.RemoveScheduleEventsParams parameters ) {
-        DataTimelineEntry schedule = this.Schedules[parameters.ScheduleId];
+    public async Task RemoveDataTimelineEvents_Async(
+                ClientDataAccess.RemoveDataTimelineEventsParams parameters ) {
+        DataTimelineEntry dataTimeline = this.DataTimelines[ parameters.DataTimelineId ];
 
         foreach( long eventId in parameters.EventIds ) {
-            foreach( TimelineEvent<DescriptorDataEntry> evt in schedule.Events ) {
+            foreach( TimelineEvent<DescriptorDataEntry> evt in dataTimeline.Events ) {
                 if( evt.Id == eventId ) {
-                    schedule.RemoveEventById( evt.Id );
+                    dataTimeline.RemoveEventById( evt.Id );
 
                     break;
                 }

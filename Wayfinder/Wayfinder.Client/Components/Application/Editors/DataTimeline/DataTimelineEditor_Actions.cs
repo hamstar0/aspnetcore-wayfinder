@@ -71,7 +71,7 @@ public partial class DataTimelineEditor {
         }
 
 		DataTimelineEntry newSched = await this.Data.CreateSchedule_Async(
-			new ClientDataAccess.CreateScheduleParams( this.CreateSchedule.Events )
+			new ClientDataAccess.CreateDataTimelineParams( this.CreateSchedule.Events )
 		);
 		if( await this.OnSubmit.Invoke(newSched, false) ) {
 			return;
@@ -87,7 +87,7 @@ public partial class DataTimelineEditor {
         }
         if( !await this.OnSubmit.Invoke(this.EditSchedule, true) ) {
 			this.EditSchedule = await this.Data.AddScheduleEvents_Async(
-				new ClientDataAccess.AddScheduleEventsParams(
+				new ClientDataAccess.AddDataTimelineEventsParams(
                     this.EditSchedule.Id,
 					this.EditSchedule.Events
 				)

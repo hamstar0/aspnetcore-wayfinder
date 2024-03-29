@@ -2,7 +2,7 @@
 using Wayfinder.Shared.Data.Entries;
 
 
-namespace Wayfinder.Client.Components.Application.Editors;
+namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 

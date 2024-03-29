@@ -31,4 +31,20 @@ public partial class ClientDataAccess {
 
         return ret;
     }
+
+    
+    public class EditPlanParams(
+				Optional<string?> name,
+				Optional<ISet<PlanOptionEntry>> options,
+				Optional<Timeline<PlanOptionEntry>> optionTimeline ) {
+        public Optional<string?> Name = name;
+        public Optional<ISet<PlanOptionEntry>> Options = options;
+        public Optional<Timeline<PlanOptionEntry>> OptionTimeline = optionTimeline;
+    }
+    
+    public async Task EditPlan_Async( EditPlanParams parameters ) {
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Plan/Edit", parameters );
+
+        msg.EnsureSuccessStatusCode();
+    }
 }

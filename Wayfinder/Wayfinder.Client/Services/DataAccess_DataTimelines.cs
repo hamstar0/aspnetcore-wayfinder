@@ -9,11 +9,11 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class CreateScheduleParams( IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
+    public class CreateDataTimelineParams( IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
         public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
     }
 
-    public async Task<DataTimelineEntry> CreateSchedule_Async( CreateScheduleParams parameters ) {
+    public async Task<DataTimelineEntry> CreateSchedule_Async( CreateDataTimelineParams parameters ) {
         HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Schedule/Create", parameters );
 
         msg.EnsureSuccessStatusCode();
@@ -27,14 +27,14 @@ public partial class ClientDataAccess {
     }
 
 
-    public class AddScheduleEventsParams(
-            long scheduleId,
+    public class AddDataTimelineEventsParams(
+            long dataTimelineId,
             IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
-        public long ScheduleId = scheduleId;
+        public long DataTimelineId = dataTimelineId;
         public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
     }
 
-    public async Task<DataTimelineEntry> AddScheduleEvents_Async( AddScheduleEventsParams parameters ) {
+    public async Task<DataTimelineEntry> AddScheduleEvents_Async( AddDataTimelineEventsParams parameters ) {
         //foreach( ScheduleEventEntry evt in parameters.Events ) {
         //    if( evt.Id == -1 ) {
         //        throw new InvalidDataException( "Invalid ScheduleEventEntry id" );
@@ -54,14 +54,14 @@ public partial class ClientDataAccess {
 	}
 
 
-    public class RemoveScheduleEventsParams(
+    public class RemoveDataTimelineEventsParams(
             long scheduleId,
             IList<long> eventIds ) {
-        public long ScheduleId = scheduleId;
+        public long DataTimelineId = scheduleId;
         public IList<long> EventIds = eventIds;
     }
 
-    public async Task RemoveScheduleEvents_Async( RemoveScheduleEventsParams parameters ) {
+    public async Task RemoveScheduleEvents_Async( RemoveDataTimelineEventsParams parameters ) {
         HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "Schedule/Remove", parameters );
 
         msg.EnsureSuccessStatusCode();
