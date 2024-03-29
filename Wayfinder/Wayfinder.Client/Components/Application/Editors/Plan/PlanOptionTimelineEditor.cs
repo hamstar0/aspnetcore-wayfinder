@@ -8,6 +8,9 @@ namespace Wayfinder.Client.Components.Application.Editors;
 
 
 public partial class PlanOptionTimelineEditor {
+	public delegate Task PlanOptionTimelineSubmit( Timeline<PlanOptionEntry> timeline, bool isEdit );
+
+
     //[Inject]
     //public IJSRuntime Js { get; set; } = null!;
 
