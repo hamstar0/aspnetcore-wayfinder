@@ -18,7 +18,7 @@
     <DescriptorConditionsTreeEditor
             Disabled=@this.Disabled
             Conditions=@this.EditConditions
-            OnSelectTree=@(e => this.SelectedConditionTree = e) />
+            OnTreeSelect=@(tree => this.SelectedConditionTree = tree) />
 
     <component-label>Add condition</component-label>
     <DescriptorEditor

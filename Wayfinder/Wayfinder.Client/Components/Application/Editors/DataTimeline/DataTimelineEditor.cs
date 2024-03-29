@@ -1,18 +1,18 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
+using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 using Wayfinder.Client.Data;
-using Wayfinder.Client.Components.Application.Views.Timeline;
-using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Data;
+using Wayfinder.Client.Components.Standard.Timeline;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
 public partial class DataTimelineEditor {
-    public delegate Task<bool> OnSubmitSchedule( DataTimelineEntry schedule, bool isEdit );
+    public delegate Task<OverridesDefault> SubmitSchedule( DataTimelineEntry schedule, bool isEdit );
 
 
 
@@ -51,7 +51,7 @@ public partial class DataTimelineEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public OnSubmitSchedule OnSubmit { get; set; } = null!;
+    public SubmitSchedule OnSubmit { get; set; } = null!;
 
 
     [Parameter]

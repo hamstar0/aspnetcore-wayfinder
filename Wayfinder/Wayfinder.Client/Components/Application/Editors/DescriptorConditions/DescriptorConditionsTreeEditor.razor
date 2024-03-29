@@ -10,7 +10,7 @@
 <div component-name="DescriptorConditionsTreeEditor"
         style=@this.Style
         class="basic @(this.Disabled ? "disabled" : null)"
-        @onclick=@(e => this.OnSelectTree(this.Conditions))>
+        @onclick=@(e => this.OnTreeSelect(this.Conditions))>
     @for( int i=0; i<this.Conditions.Children.Count; i++ ) {
         IBoolean<DataTimelineBooleanContext> node = this.Conditions.Children[i];
 
@@ -19,7 +19,7 @@
                     Disabled=@this.Disabled
                     Style="padding-left: 8px; display: inline-block;"
                     Conditions=@((DescriptorConditionsTree)node)
-                    OnSelectTree=@this.OnSelectTree />
+                    OnTreeSelect=@this.OnTreeSelect />
         } else {
             <div>
                 <DescriptorDisplay

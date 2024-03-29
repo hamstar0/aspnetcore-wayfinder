@@ -10,10 +10,13 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 public partial class PlanEditor {
-    //[Inject]
-    //public IJSRuntime Js { get; set; } = null!;
+	public delegate Task<OverridesDefault> OnSubmitPlan( PlanEntry planEntry, bool isEdit );
 
-    [Inject]
+
+	//[Inject]
+	//public IJSRuntime Js { get; set; } = null!;
+
+	[Inject]
     public ClientDataAccess Data { get; set; } = null!;
 
 
@@ -35,6 +38,10 @@ public partial class PlanEditor {
     public PlanEntry? EditPlan { get; set; } = null;
 
 	private PlanEntry CreatePlan = new PlanEntry();
+
+
+	[Parameter]
+	public OnSubmitPlan? OnSubmit { get; set; } = null;
 
 
 
@@ -83,6 +90,10 @@ public partial class PlanEditor {
 
 	private async Task Submit_Async() {
 		PlanEntry plan = this.GetCurrentPlan( out bool isEdit );
+
+		if( this.OnSubmit is not null && await this.OnSubmit(plan, isEdit) ) {
+			return;
+		}
 
 		if( isEdit ) {
             await this.Data.EditPlan_Async( new ClientDataAccess.EditPlanParams(

@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
+using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries.BooleanTree;
 using Wayfinder.Client.Data;
 
 
@@ -12,10 +11,15 @@ namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
 
 
 public partial class DescriptorEditor {
-    //[Inject]
-    //public IJSRuntime Js { get; set; } = null!;
+	public delegate Task<OverridesDefault> DescriptorEdit( ClientDataAccess.EditDescriptorParams parameters );
 
-    [Inject]
+	public delegate Task<DescriptorEntry> DescriptorCreate( ClientDataAccess.CreateDescriptorParams parameters );
+
+
+	//[Inject]
+	//public IJSRuntime Js { get; set; } = null!;
+
+	[Inject]
     public ClientDataAccess Data { get; set; } = null!;
 
 
@@ -54,11 +58,12 @@ public partial class DescriptorEditor {
     [Parameter]
     public bool SubmitOnEditOnly { get; set; } = false;
 
-    [Parameter]
-    public Func<ClientDataAccess.EditDescriptorParams, Task<bool>>? OnDescriptorEdit { get; set; } = null;
 
     [Parameter]
-    public Func<ClientDataAccess.CreateDescriptorParams, Task<DescriptorEntry>>? OnDescriptorCreate { get; set; } = null;
+    public DescriptorEdit? OnDescriptorEdit { get; set; } = null;
+
+	[Parameter]
+    public DescriptorCreate? OnDescriptorCreate { get; set; } = null;
 
     [Parameter, EditorRequired]
     public Func<DescriptorEntry, Task> OnDescriptorSelect { get; set; } = null!;

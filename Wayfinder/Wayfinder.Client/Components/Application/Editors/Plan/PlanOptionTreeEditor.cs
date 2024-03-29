@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Wayfinder.Shared.Libraries;
 using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Plan;
@@ -8,7 +8,7 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 public partial class PlanOptionTreeEditor {
-    public delegate Task<bool> PlanOptionSubmit( PlanOptionEntry option, bool isEdit );
+    public delegate Task<OverridesDefault> PlanOptionSubmit( PlanOptionEntry option, bool isEdit );
 
 
     //[Inject]
@@ -33,5 +33,5 @@ public partial class PlanOptionTreeEditor {
 
 
 	[Parameter, EditorRequired]
-	public PlanOptionSubmit OnSubmit { get; set; } = null!;
+	public PlanOptionSubmit OnSubmit { get; set; } = null!; unused?
 }

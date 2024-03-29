@@ -23,7 +23,7 @@ public partial class DescriptorConditionsTreeEditor {
     public DescriptorConditionsTree Conditions { get; set; } = null!;
 
     [Parameter, EditorRequired]
-    public Action<DescriptorConditionsTree> OnSelectTree { get; set; } = null!;
+    public Action<DescriptorConditionsTree> OnTreeSelect { get; set; } = null!;
 
     [Parameter]
     public string? Style { get; set; } = null;

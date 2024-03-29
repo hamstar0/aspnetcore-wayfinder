@@ -1,16 +1,18 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
-using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries.BooleanTree;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
 
 
 public partial class DescriptorConditionsEditor {
-    public delegate Task SubmitDescriptorConditions( DescriptorConditionsTree tree, bool isEdit );
+    public delegate Task<OverridesDefault> SubmitDescriptorConditions(
+        DescriptorConditionsTree tree,
+        bool isEdit
+    );
 
 
 
@@ -38,7 +40,7 @@ public partial class DescriptorConditionsEditor {
 
 
 	[Parameter, EditorRequired]
-    public SubmitDescriptorConditions OnSubmit { get; set; } = null!;
+    public SubmitDescriptorConditions OnSubmit { get; set; } = null!;   f
 
 
 

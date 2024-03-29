@@ -60,9 +60,9 @@ Phase 1
 -	Implement the concept of plan 'options' (2)
 	-	Implement PlanOptionTreeEditor
 	-	Implement PlanOptionEditor
+
+
 	-	Implement PlanEditor
-
-
 -	Implement comparing timelines
 -	Define central data structure for global fact store of Descriptors
 -	Redefine DescriptorEntry to be simply a schedule and conditions

@@ -32,6 +32,8 @@ public partial class PlanOptionEditor {
     [Parameter, EditorRequired]
 	public PlanOptionEntry EditOption { get; set; } = null!;
 
+	private PlanOptionEntry CreateOption = new PlanOptionEntry(); f
+
 
 
 	private async Task ToggleCurrentPlanOption_UI_Async() {

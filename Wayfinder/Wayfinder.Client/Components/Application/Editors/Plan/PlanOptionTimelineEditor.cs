@@ -8,7 +8,10 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 public partial class PlanOptionTimelineEditor {
-	public delegate Task<bool> PlanOptionTimelineSubmit( Timeline<PlanOptionEntry> timeline, bool isEdit );
+	public delegate Task<OverridesDefault> PlanOptionTimelineSubmit(
+        Timeline<PlanOptionEntry> timeline,
+        bool isEdit
+    );
 
 
 	//[Inject]
