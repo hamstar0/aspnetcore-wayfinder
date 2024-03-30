@@ -8,6 +8,6 @@ namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
 
 
 public partial class DescriptorEditor {
-    public async Task<Timeline<DescriptorDataEntry>> GetConditionsEventsBetween( long minTime, long maxTime ) {
+    public async Task<TimelineEntry<DescriptorDataEntry>> GetConditionsEventsBetween( long minTime, long maxTime ) {
     }
 }

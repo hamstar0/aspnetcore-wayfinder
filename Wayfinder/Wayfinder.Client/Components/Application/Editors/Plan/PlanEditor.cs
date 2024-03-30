@@ -58,7 +58,7 @@ public partial class PlanEditor {
     }
 
 
-	public async Task EditPlanTimeline_UI_Async( Timeline<PlanOptionEntry> timeline ) {
+	public async Task EditPlanTimeline_UI_Async( TimelineEntry<PlanOptionEntry> timeline ) {
         if( !this.SubmitOnEditOnly ) {
             return;
         }
@@ -99,7 +99,7 @@ public partial class PlanEditor {
             await this.Data.EditPlan_Async( new ClientDataAccess.EditPlanParams(
                 new Optional<string?>( plan.Name ),
 				new Optional<ISet<PlanOptionEntry>>( plan.OptionsPool ),
-				new Optional<Timeline<PlanOptionEntry>>( plan.OptionTimeline )
+				new Optional<TimelineEntry<PlanOptionEntry>>( plan.OptionTimeline )
             ) );
         } else {
             await this.Data.CreatePlan_Async( new ClientDataAccess.CreatePlanParams(

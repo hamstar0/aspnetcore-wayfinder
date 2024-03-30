@@ -13,7 +13,7 @@ public partial class DataTimelineEditor {
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEvent<DescriptorDataEntry> timelineEvt in this.GetCurrentTimeline().Events ) {
+        foreach( TimelineEventEntry<DescriptorDataEntry> timelineEvt in this.GetCurrentTimeline().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
             if( x < evtStartX ) {
                 break;
@@ -34,7 +34,7 @@ public partial class DataTimelineEditor {
         this.DrawAt_Async( x );
     }
 
-    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEvent<DescriptorDataEntry> evt ) {
+    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEventEntry<DescriptorDataEntry> evt ) {
 return !this.IsDrawingSeg;
     }
 

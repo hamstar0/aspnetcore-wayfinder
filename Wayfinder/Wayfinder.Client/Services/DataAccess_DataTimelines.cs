@@ -9,8 +9,8 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class CreateDataTimelineParams( IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
-        public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
+    public class CreateDataTimelineParams( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> evts ) {
+        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Events = evts;
     }
 
     public async Task<DataTimelineEntry> CreateDataTimeline_Async( CreateDataTimelineParams parameters ) {
@@ -29,9 +29,9 @@ public partial class ClientDataAccess {
 
     public class AddDataTimelineEventsParams(
             long dataTimelineId,
-            IEnumerable<TimelineEvent<DescriptorDataEntry>> evts ) {
+            IEnumerable<TimelineEventEntry<DescriptorDataEntry>> evts ) {
         public long DataTimelineId = dataTimelineId;
-        public IEnumerable<TimelineEvent<DescriptorDataEntry>> Events = evts;
+        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Events = evts;
     }
 
     public async Task<DataTimelineEntry> AddDataTimelineEvents_Async( AddDataTimelineEventsParams parameters ) {

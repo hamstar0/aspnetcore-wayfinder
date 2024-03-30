@@ -12,15 +12,15 @@ public class DataTimelineBooleanContext {
 
 
 
-public partial class DataTimelineEntry : Timeline<DescriptorDataEntry>, IBoolean<DataTimelineBooleanContext> {
+public partial class DataTimelineEntry : TimelineEntry<DescriptorDataEntry>, IBoolean<DataTimelineBooleanContext> {
     //public DescriptorEntry For { get; set; }   // 1:1
 
     public DataTimelineEntry() : base() { }
 
-    public DataTimelineEntry( IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
+    public DataTimelineEntry( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
             : base( events ) { }
 
-    public DataTimelineEntry( long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
+    public DataTimelineEntry( long id, IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
             : base( id, events ) { }
 
 

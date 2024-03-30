@@ -6,46 +6,46 @@ using System.Text.Json.Serialization;
 namespace Wayfinder.Shared.Utility;
 
 
-public partial class Timeline<T> where T : class {
+public partial class TimelineEntry<T> where T : class {
 	public long Id { get; private set; }
 
 	[JsonIgnore]
 	public bool IsAssignedId { get; private set; } = false;
 
 
-	public IReadOnlyList<TimelineEvent<T>> Events => this._Events.AsReadOnly();
+	public IReadOnlyList<TimelineEventEntry<T>> Events => this._Events.AsReadOnly();
 
-    private IList<TimelineEvent<T>> _Events = new List<TimelineEvent<T>>();
+    private IList<TimelineEventEntry<T>> _Events = new List<TimelineEventEntry<T>>();
 
 	private IDictionary<long, int> _EventsByIds = new Dictionary<long, int>();
 
 
 
-    public Timeline() {
-        this._Events = new List<TimelineEvent<T>>();
+    public TimelineEntry() {
+        this._Events = new List<TimelineEventEntry<T>>();
     }
 
-    public Timeline( IEnumerable<TimelineEvent<T>> events ) {
+    public TimelineEntry( IEnumerable<TimelineEventEntry<T>> events ) {
 		this._Events = events.ToList();
 
-		foreach( TimelineEvent<T> evt in events ) {
+		foreach( TimelineEventEntry<T> evt in events ) {
 			this.AddEvent( evt );
 		}
     }
 
-    public Timeline( long id, IEnumerable<TimelineEvent<T>> events ) {
+    public TimelineEntry( long id, IEnumerable<TimelineEventEntry<T>> events ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 
 		this._Events = events.ToList();
 
-		foreach( TimelineEvent<T> evt in events ) {
+		foreach( TimelineEventEntry<T> evt in events ) {
 			this.AddEvent( evt );
 		}
     }
 
 
-    public bool Equals( Timeline<TimelineEvent<T>>? other ) {
+    public bool Equals( TimelineEntry<TimelineEventEntry<T>>? other ) {
         if( other is null ) {
             return false;
         }
@@ -62,7 +62,7 @@ public partial class Timeline<T> where T : class {
         return true;
 	}
 
-	public void AddEvent( TimelineEvent<T> evt ) {
+	public void AddEvent( TimelineEventEntry<T> evt ) {
 		for( int i = 0; i < this.Events.Count; i++ ) {
 			if( evt.EndTime >= this.Events[i].StartTime ) {
 				continue;
@@ -70,7 +70,7 @@ public partial class Timeline<T> where T : class {
 
 			while( this._EventsByIds.ContainsKey(evt.Id) ) {
 				int collideeIdx = this._EventsByIds[evt.Id];
-                TimelineEvent<T> collidee = this.Events[collideeIdx];
+                TimelineEventEntry<T> collidee = this.Events[collideeIdx];
 
 				if( collidee.IsAssignedId ) {
 					if( evt.IsAssignedId ) {
@@ -95,10 +95,10 @@ public partial class Timeline<T> where T : class {
 	}
 
 
-	public IList<TimelineEvent<T>> GetEventsBetween( DateTime start, DateTime end ) {
-		var evts = new List<TimelineEvent<T>>();
+	public IList<TimelineEventEntry<T>> GetEventsBetween( DateTime start, DateTime end ) {
+		var evts = new List<TimelineEventEntry<T>>();
 
-		foreach( TimelineEvent<T> evt in this.Events ) {
+		foreach( TimelineEventEntry<T> evt in this.Events ) {
 			if( evt.EndTime < start ) {
 				continue;
 			}
@@ -115,7 +115,7 @@ public partial class Timeline<T> where T : class {
 
 
 	private void ReIndexEventAt( int idx, ISet<long> alsoAvoid ) {
-		TimelineEvent<T> collidee = this.Events[ idx ];
+		TimelineEventEntry<T> collidee = this.Events[ idx ];
 
 		this._EventsByIds.Remove( collidee.Id );
 
@@ -127,13 +127,13 @@ public partial class Timeline<T> where T : class {
 	}
 
 
-	public bool ContainsTimeline( Timeline<T> other, Func<T, T, bool> validateDataContain ) {
+	public bool ContainsTimeline( TimelineEntry<T> other, Func<T, T, bool> validateDataContain ) {
 		if( other.Events.Count == 0 ) {
 			return true;
 		}
 
-		LinkedList<TimelineEvent<T>> otherList = new LinkedList<TimelineEvent<T>>( other.Events );
-        LinkedListNode<TimelineEvent<T>>? otherNode;
+		LinkedList<TimelineEventEntry<T>> otherList = new LinkedList<TimelineEventEntry<T>>( other.Events );
+        LinkedListNode<TimelineEventEntry<T>>? otherNode;
 
         for( int i=0; i<this._Events.Count; i++ ) {
             otherNode = otherList.First;

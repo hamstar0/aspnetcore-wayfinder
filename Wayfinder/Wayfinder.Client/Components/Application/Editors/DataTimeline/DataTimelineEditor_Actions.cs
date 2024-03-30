@@ -17,7 +17,7 @@ public partial class DataTimelineEditor {
         }
 
         if( this.CurrentDrawSeg is null ) {
-            this.CurrentDrawSeg = new TimelineEvent<DescriptorDataEntry>(
+            this.CurrentDrawSeg = new TimelineEventEntry<DescriptorDataEntry>(
                 start: this.ViewTimeStart + this.GetTimespanOfOffsetX(x),
                 end: this.ViewTimeStart + this.GetTimespanOfOffsetX(x + 1d),
                 data: this.CurrentDrawSegDataValue

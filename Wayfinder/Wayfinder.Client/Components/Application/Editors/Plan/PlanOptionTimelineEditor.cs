@@ -9,7 +9,7 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 public partial class PlanOptionTimelineEditor {
 	public delegate Task<OverridesDefault> PlanOptionTimelineSubmit(
-        Timeline<PlanOptionEntry> timeline,
+        TimelineEntry<PlanOptionEntry> timeline,
         bool isEdit
     );
 
@@ -32,9 +32,9 @@ public partial class PlanOptionTimelineEditor {
 
 
     [Parameter, EditorRequired]
-    public Timeline<PlanOptionEntry> EditTimeline { get; set; } = null!;
+    public TimelineEntry<PlanOptionEntry> EditTimeline { get; set; } = null!;
 
-    private Timeline<PlanOptionEntry> CreateTimeline = new Timeline<PlanOptionEntry>();
+    private TimelineEntry<PlanOptionEntry> CreateTimeline = new TimelineEntry<PlanOptionEntry>();
 
 
     [Parameter, EditorRequired]

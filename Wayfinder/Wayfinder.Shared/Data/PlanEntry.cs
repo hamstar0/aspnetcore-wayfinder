@@ -18,17 +18,17 @@ public class PlanEntry {
 
 	public IList<PlanOptionEntry> OptionsPool;
 
-	public Timeline<PlanOptionEntry> OptionTimeline;
+	public TimelineEntry<PlanOptionEntry> OptionTimeline;
 
 
 
 	public PlanEntry( GoalEntry goal ) {
 		this.Goal = goal;
 		this.OptionsPool = new List<PlanOptionEntry>();
-		this.OptionTimeline = new Timeline<PlanOptionEntry>();
+		this.OptionTimeline = new TimelineEntry<PlanOptionEntry>();
 	}
 
-	public PlanEntry( long id, string? name, GoalEntry goal, IList<PlanOptionEntry> optionsPool, Timeline<PlanOptionEntry> optionTimeline ) {
+	public PlanEntry( long id, string? name, GoalEntry goal, IList<PlanOptionEntry> optionsPool, TimelineEntry<PlanOptionEntry> optionTimeline ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Name = name;

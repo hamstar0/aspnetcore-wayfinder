@@ -15,7 +15,7 @@ public partial class TimelineDisplay<TimelineDataType> {
     }
 
     
-    public IList<TimelineEvent<TimelineDataType>> GetVisibleTimelineEvents() {
+    public IList<TimelineEventEntry<TimelineDataType>> GetVisibleTimelineEvents() {
         double maxWidth = TimelineDisplay<TimelineDataType>.MaxElementWidth;
 
         return this.Timeline.GetEventsBetween(

@@ -5,7 +5,7 @@ namespace Wayfinder.Shared.Utility;
 
 
 
-public class TimelineEvent<T> {
+public class TimelineEventEntry<T> {
 	private static long CurrentAutoId = 1;
 	
 
@@ -20,14 +20,14 @@ public class TimelineEvent<T> {
 	public T Data;
 
 
-	public TimelineEvent( DateTime start, DateTime end, T data ) {
-		this.Id = TimelineEvent<T>.CurrentAutoId++;
+	public TimelineEventEntry( DateTime start, DateTime end, T data ) {
+		this.Id = TimelineEventEntry<T>.CurrentAutoId++;
 		this.StartTime = start;
 		this.EndTime = end;
 		this.Data = data;
 	}
 
-	public TimelineEvent( long id, DateTime start, DateTime end, T data ) : this( start, end, data ) {
+	public TimelineEventEntry( long id, DateTime start, DateTime end, T data ) : this( start, end, data ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.StartTime = start;
@@ -35,7 +35,7 @@ public class TimelineEvent<T> {
 		this.Data = data;
 	}
 
-	public bool Equals( TimelineEvent<T>? other ) {
+	public bool Equals( TimelineEventEntry<T>? other ) {
 		if( other is null ) { return false; }
 		if( this.StartTime != other.StartTime ) { return false; }
 		if( this.EndTime != other.EndTime ) { return false; }
@@ -46,7 +46,7 @@ public class TimelineEvent<T> {
 	}
 
 	public void GetNewAutoId() {
-		this.Id = TimelineEvent<T>.CurrentAutoId++;
+		this.Id = TimelineEventEntry<T>.CurrentAutoId++;
 		this.IsAssignedId = false;
 	}
 }

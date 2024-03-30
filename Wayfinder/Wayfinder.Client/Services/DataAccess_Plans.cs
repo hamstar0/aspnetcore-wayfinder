@@ -12,11 +12,11 @@ public partial class ClientDataAccess {
                 string? name,
                 GoalEntry goal,
                 ISet<PlanOptionEntry> options,
-                Timeline<PlanOptionEntry> optionTimeline ) {
+                TimelineEntry<PlanOptionEntry> optionTimeline ) {
         public string? Name = name;
         public GoalEntry Goal = goal;
         public ISet<PlanOptionEntry> Options = options;
-        public Timeline<PlanOptionEntry> OptionTimeline = optionTimeline;
+        public TimelineEntry<PlanOptionEntry> OptionTimeline = optionTimeline;
     }
     
     public async Task<PlanEntry> CreatePlan_Async( CreatePlanParams parameters ) {
@@ -36,10 +36,10 @@ public partial class ClientDataAccess {
     public class EditPlanParams(
 				Optional<string?> name,
 				Optional<ISet<PlanOptionEntry>> options,
-				Optional<Timeline<PlanOptionEntry>> optionTimeline ) {
+				Optional<TimelineEntry<PlanOptionEntry>> optionTimeline ) {
         public Optional<string?> Name = name;
         public Optional<ISet<PlanOptionEntry>> Options = options;
-        public Optional<Timeline<PlanOptionEntry>> OptionTimeline = optionTimeline;
+        public Optional<TimelineEntry<PlanOptionEntry>> OptionTimeline = optionTimeline;
     }
     
     public async Task EditPlan_Async( EditPlanParams parameters ) {

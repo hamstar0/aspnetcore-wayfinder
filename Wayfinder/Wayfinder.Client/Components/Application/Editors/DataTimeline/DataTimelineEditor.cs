@@ -61,7 +61,7 @@ public partial class DataTimelineEditor {
 
 	private bool IsDrawingSeg = false;
 
-    private TimelineEvent<DescriptorDataEntry>? CurrentDrawSeg = null;
+    private TimelineEventEntry<DescriptorDataEntry>? CurrentDrawSeg = null;
 
     private DescriptorDataType CurrentDrawSegDataType = DescriptorDataType.Scalar;
 

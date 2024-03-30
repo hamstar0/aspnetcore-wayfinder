@@ -20,7 +20,7 @@ public partial class TimelineDisplay<TimelineDataType> where TimelineDataType : 
 
 
     [Parameter, EditorRequired]
-    public Timeline<TimelineDataType> Timeline { get; set; } = null!;
+    public TimelineEntry<TimelineDataType> Timeline { get; set; } = null!;
 
 
     [Parameter]
@@ -33,7 +33,7 @@ public partial class TimelineDisplay<TimelineDataType> where TimelineDataType : 
 
 
     [Parameter]
-    public Timeline<object>? ConditionWindows { get; set; } = null;
+    public TimelineEntry<object>? ConditionWindows { get; set; } = null;
 
     private bool ShowConditions = true;
 

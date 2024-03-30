@@ -82,7 +82,7 @@
             }
         }
         
-        @foreach( TimelineEvent<TimelineDataType> schedEvent in this.GetVisibleTimelineEvents() ) {
+        @foreach( TimelineEventEntry<TimelineDataType> schedEvent in this.GetVisibleTimelineEvents() ) {
             <div class="timeline-seg"
                  style= "left: @(this.ComputeSegOffset(schedEvent.StartTime))px;
                          width: @(this.ComputeSegWidth(schedEvent.StartTime, schedEvent.EndTime))px;">
@@ -90,7 +90,7 @@
         }
         
         @if( this.ConditionWindows is not null ) {
-            @foreach( TimelineEvent<object> condWindow in this.ConditionWindows.Events ) {
+            @foreach( TimelineEventEntry<object> condWindow in this.ConditionWindows.Events ) {
                 <div class="timeline-cond-seg"
                      style= "left: @(this.ComputeSegOffset(condWindow.StartTime))px;
                              width: @(this.ComputeSegWidth(condWindow.StartTime, condWindow.EndTime))px;">

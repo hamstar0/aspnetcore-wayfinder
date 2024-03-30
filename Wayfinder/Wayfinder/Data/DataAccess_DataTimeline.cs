@@ -24,7 +24,7 @@ public partial class ServerDataAccess {
     }
 
     public async Task AddDataTimelineEvents_Async( ClientDataAccess.AddDataTimelineEventsParams parameters ) {
-        foreach( TimelineEvent<DescriptorDataEntry> evt in parameters.Events ) {
+        foreach( TimelineEventEntry<DescriptorDataEntry> evt in parameters.Events ) {
             this.DataTimelines[ parameters.DataTimelineId ].AddEvent( evt );
         }
     }
@@ -34,7 +34,7 @@ public partial class ServerDataAccess {
         DataTimelineEntry dataTimeline = this.DataTimelines[ parameters.TimelineId ];
 
         foreach( long eventId in parameters.EventIds ) {
-            foreach( TimelineEvent<DescriptorDataEntry> evt in dataTimeline.Events ) {
+            foreach( TimelineEventEntry<DescriptorDataEntry> evt in dataTimeline.Events ) {
                 if( evt.Id == eventId ) {
                     dataTimeline.RemoveEventById( evt.Id );
 
