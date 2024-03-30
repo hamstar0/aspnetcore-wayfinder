@@ -1,4 +1,5 @@
-﻿using Wayfinder.Shared.Libraries;
+﻿using System.Text.Json.Serialization;
+using Wayfinder.Shared.Libraries;
 
 
 namespace Wayfinder.Shared.Data.Entries.Descriptor;
@@ -13,12 +14,28 @@ public class DescriptorConditionsTree : BooleanTree<DataTimelineEntry, DataTimel
 
 public class DescriptorEntry : IEquatable<DescriptorEntry> {
 	//[Key]
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
-	public DataTimelineEntry Facts { get; set; } = null!;
+	[JsonIgnore]
+	public bool IsAssignedId { get; private set; } = false;
 
-	public DescriptorConditionsTree Conditions { get; set; } = null!;
+	public DataTimelineEntry Facts;
 
+	public DescriptorConditionsTree Conditions;
+
+
+
+	public DescriptorEntry() {
+		this.Facts = new DataTimelineEntry();
+		this.Conditions = new DescriptorConditionsTree( true );
+	}
+
+	public DescriptorEntry( long id, DataTimelineEntry facts, DescriptorConditionsTree conditions ) {
+		this.Id = id;
+		this.IsAssignedId = true;
+		this.Facts = facts;
+		this.Conditions = conditions;
+	}
 
 
 	public bool ShallowEquals( DescriptorEntry other, bool skipRefs ) {

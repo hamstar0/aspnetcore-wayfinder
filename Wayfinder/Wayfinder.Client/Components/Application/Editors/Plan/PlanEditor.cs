@@ -78,7 +78,7 @@ public partial class PlanEditor {
 
         PlanEntry plan = this.GetCurrentPlan( out _ );
 
-		plan.Options.Add( option );
+		plan.OptionsPool.Add( option );
 
         await this.Submit_Async();
 	}
@@ -98,14 +98,14 @@ public partial class PlanEditor {
 		if( isEdit ) {
             await this.Data.EditPlan_Async( new ClientDataAccess.EditPlanParams(
                 new Optional<string?>( plan.Name ),
-				new Optional<ISet<PlanOptionEntry>>( plan.Options ),
+				new Optional<ISet<PlanOptionEntry>>( plan.OptionsPool ),
 				new Optional<Timeline<PlanOptionEntry>>( plan.OptionTimeline )
             ) );
         } else {
             await this.Data.CreatePlan_Async( new ClientDataAccess.CreatePlanParams(
 				plan.Name,
 				plan.Goal,
-				plan.Options,
+				plan.OptionsPool,
 				plan.OptionTimeline
             ) );
         }

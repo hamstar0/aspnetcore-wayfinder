@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Libraries.BooleanTree;
 
 
 namespace Wayfinder.Shared.Data.Entries;
@@ -9,11 +8,37 @@ namespace Wayfinder.Shared.Data.Entries;
 
 public class PlanOptionEntry {
 	//[Key]
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
-	public string? Name { get; set; } = null;
+	[JsonIgnore]
+	public bool IsAssignedId { get; private set; } = false;
 
-	public long MinimumEnactingDuration { get; set; }
+	public string? Name;
 
-	public DescriptorEntry ConditionsAndAction { get; set; } = null!;
+	public long MinimumEnactingDuration;
+
+	public DataTimelineEntry Actions;
+
+	public DescriptorConditionsTree Conditions;
+
+
+
+	public PlanOptionEntry() {
+		this.Actions = new DataTimelineEntry();
+		this.Conditions = new DescriptorConditionsTree( true );
+	}
+
+	public PlanOptionEntry(
+			long id,
+			string? name,
+			long minimumEnactingDuration,
+			DataTimelineEntry actions,
+			DescriptorConditionsTree conditions ) {
+		this.Id = id;
+		this.IsAssignedId = true;
+		this.Name = name;
+		this.MinimumEnactingDuration = minimumEnactingDuration;
+		this.Actions = actions;
+		this.Conditions = conditions;
+	}
 }

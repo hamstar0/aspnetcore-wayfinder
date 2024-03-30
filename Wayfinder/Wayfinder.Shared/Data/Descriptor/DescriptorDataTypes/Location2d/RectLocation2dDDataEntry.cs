@@ -7,15 +7,22 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes.Location2
 
 public class RectLocation2dDDataEntry : Location2dDDataEntry,
             IEquatable<RectLocation2dDDataEntry> {
-    public double LatitudeN { get; set; }
+    public double LatitudeN;
 
-    public double LongitudeW { get; set; }
+    public double LongitudeW;
 
-    public double LatitudeS { get; set; }
+    public double LatitudeS;
 
-    public double LongitudeE { get; set; }
+    public double LongitudeE;
 
 
+
+    public RectLocation2dDDataEntry( double latitudeN, double longitudeW, double latitudeS, double longitudeE ) {
+        this.LatitudeN = latitudeN;
+        this.LongitudeW = longitudeW;
+        this.LatitudeS = latitudeS;
+        this.LongitudeE = longitudeE;
+    }
 
     public bool Equals( RectLocation2dDDataEntry? other ) {
         if( other is null ) { return false; }

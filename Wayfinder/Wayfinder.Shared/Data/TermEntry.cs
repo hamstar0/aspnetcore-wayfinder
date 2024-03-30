@@ -1,15 +1,33 @@
-﻿namespace Wayfinder.Shared.Data.Entries;
+﻿using System.Text.Json.Serialization;
+
+namespace Wayfinder.Shared.Data.Entries;
 
 
 public class TermEntry : IEquatable<TermEntry>, IComparable, IComparable<TermEntry> {
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
-	public string Term { get; set; } = null!;
+	[JsonIgnore]
+	public bool IsAssignedId { get; private set; } = false;
 
-	public TermEntry? Context { get; set; } = null!;
+    public string Term;
 
-	public TermEntry? Alias { get; set; } = null;
+    public TermEntry? Context;
 
+    public TermEntry? Alias;
+
+
+
+    public TermEntry( string term ) {
+        this.Term = term;
+    }
+
+    public TermEntry( long id, string term, TermEntry? context, TermEntry? alias ) {
+        this.Id = id;
+        this.IsAssignedId = true;
+        this.Term = term;
+        this.Context = context;
+        this.Alias = alias;
+    }
 
 
     public bool Equals( TermEntry? other ) {

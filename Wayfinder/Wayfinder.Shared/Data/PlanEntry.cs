@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using Wayfinder.Shared.Libraries;
 
 
@@ -6,14 +7,34 @@ namespace Wayfinder.Shared.Data.Entries;
 
 
 public class PlanEntry {
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
-	public string? Name { get; set; } = null;
+	[JsonIgnore]
+	public bool IsAssignedId { get; private set; } = false;
 
-	public GoalEntry Goal { get; set; } = null!;
+	public string? Name = null;
 
-	public ISet<PlanOptionEntry> Options { get; set; } = null!;
+	public GoalEntry Goal;
 
-	public Timeline<PlanOptionEntry> OptionTimeline { get; set; } = null!;
+	public IList<PlanOptionEntry> OptionsPool;
+
+	public Timeline<PlanOptionEntry> OptionTimeline;
+
+
+
+	public PlanEntry( GoalEntry goal ) {
+		this.Goal = goal;
+		this.OptionsPool = new List<PlanOptionEntry>();
+		this.OptionTimeline = new Timeline<PlanOptionEntry>();
+	}
+
+	public PlanEntry( long id, string? name, GoalEntry goal, IList<PlanOptionEntry> optionsPool, Timeline<PlanOptionEntry> optionTimeline ) {
+		this.Id = id;
+		this.IsAssignedId = true;
+		this.Name = name;
+		this.Goal = goal;
+		this.OptionsPool = optionsPool;
+		this.OptionTimeline = optionTimeline;
+	}
 }
 

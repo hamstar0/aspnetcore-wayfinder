@@ -41,10 +41,10 @@ public partial class PlanOptionEditor {
             throw new Exception( "No plan to edit options for." );
         }
 
-        if( this.Plan.Options.Contains(this.EditOption) ) {
-            this.Plan.Options.Remove( this.EditOption );
+        if( this.Plan.OptionsPool.Contains(this.EditOption) ) {
+            this.Plan.OptionsPool.Remove( this.EditOption );
         } else {
-            this.Plan.Options.Add( this.EditOption );
+            this.Plan.OptionsPool.Add( this.EditOption );
         }
     }
 }

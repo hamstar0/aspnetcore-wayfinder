@@ -7,8 +7,13 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes.Location2
 
 public class AddressLocation2dDDataEntry : Location2dDDataEntry,
             IEquatable<AddressLocation2dDDataEntry> {
-    public string Address { get; set; } = null!;
+    public string Address;
 
+
+
+    public AddressLocation2dDDataEntry( string address ) {
+        this.Address = address;
+    }
 
 
     public bool Equals( AddressLocation2dDDataEntry? other ) {

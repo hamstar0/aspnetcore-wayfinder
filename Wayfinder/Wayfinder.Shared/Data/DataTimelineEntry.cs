@@ -18,10 +18,10 @@ public partial class DataTimelineEntry : Timeline<DescriptorDataEntry>, IBoolean
     public DataTimelineEntry() : base() { }
 
     public DataTimelineEntry( IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
-            : base(events) { }
+            : base( events ) { }
 
     public DataTimelineEntry( long id, IEnumerable<TimelineEvent<DescriptorDataEntry>> events )
-            : base(id, events) { }
+            : base( id, events ) { }
 
 
 	public bool True( DataTimelineBooleanContext context ) {

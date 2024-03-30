@@ -34,34 +34,22 @@ Phase 1
 			-	Term list input
 			-	Range input
 -	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor, PlanEditor
--	Implement tabs (1)
+-	Implement tabs (2)
 	-	Knowledge prompting (layout only)
 	-	Knowledge editor
 		-	Show searched descriptors in a large scrollable list
 		-	Clear current descriptor
 		-	DescriptorEditor search feature with submit button for edits or creates
-	-	Plan timeline editor
-		-	Implement naming of plans
-		-	Implement option scheduling (prompting)
-			-	Deploy TimelineOptionEditor in edit mode for the priority chosen option
-			-	Choose option based on 
-		-	Show queue of chosen options overlaid upon timeline (active ones highlighted and prioritized)
-		-	Show scheduled chosen options in the timeline view
-		-	Implement concept of a chosen option and a scheduled chosen option
-		-	Implement 'option' input
-			-	Show options for each given condition in the tree view (overlay)
-			-	For a given condition, implement 'option' input (TimelineOptionEditor)
-			-	Implement goal or sub-goal condition picking
-		-	Add a tree view of conditions to fulfill, starting with the top level goal
 -	Add Label to TimelineDisplay
 -	Implement DurationInput (standard) component
 -	Implement server bindings for Plan API
--	Implement the concept of plan 'options' (2)
-	-	Implement PlanOptionTreeEditor
-	-	Implement PlanOptionEditor
+-	Implement tabs (1)
+	-	Plan editor
+		-	Implement PlanOptionTreeEditor
+		-	Implement PlanOptionEditor
 
 
-	-	Implement PlanEditor
+		-	Implement PlanEditor
 -	Refactor all submit callbacks to return a boolean to interrupt or permit default action
 -	Implement comparing timelines
 -	Define central data structure for global fact store of Descriptors

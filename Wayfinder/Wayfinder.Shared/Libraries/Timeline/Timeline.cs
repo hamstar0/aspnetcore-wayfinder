@@ -7,7 +7,7 @@ namespace Wayfinder.Shared.Libraries;
 
 
 public partial class Timeline<T> where T : class {
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
 	[JsonIgnore]
 	public bool IsAssignedId { get; private set; } = false;
