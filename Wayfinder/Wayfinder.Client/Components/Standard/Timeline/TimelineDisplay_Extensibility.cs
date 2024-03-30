@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Components.Standard.Timeline;

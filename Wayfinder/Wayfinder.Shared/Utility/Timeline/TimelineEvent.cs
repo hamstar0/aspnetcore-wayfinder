@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 
-namespace Wayfinder.Shared.Libraries;
+namespace Wayfinder.Shared.Utility;
 
 
 
@@ -9,15 +9,15 @@ public class TimelineEvent<T> {
 	private static long CurrentAutoId = 1;
 	
 
-	public long Id { get; set; }
+	public long Id { get; private set; }
 
 	public bool IsAssignedId { get; private set; } = false;
 
-	public DateTime StartTime { get; set; }
+	public DateTime StartTime;
 
-	public DateTime EndTime { get; set; }
+	public DateTime EndTime;
 
-	public T Data { get; set; }
+	public T Data;
 
 
 	public TimelineEvent( DateTime start, DateTime end, T data ) {

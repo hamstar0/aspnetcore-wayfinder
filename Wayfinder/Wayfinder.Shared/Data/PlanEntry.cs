@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Shared.Data.Entries;

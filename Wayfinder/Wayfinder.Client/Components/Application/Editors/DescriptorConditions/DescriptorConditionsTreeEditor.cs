@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorConditions;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Components.Application.Editors;

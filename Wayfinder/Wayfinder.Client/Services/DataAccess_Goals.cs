@@ -2,7 +2,7 @@
 using System.Net.Http.Json;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Data;

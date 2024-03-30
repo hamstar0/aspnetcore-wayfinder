@@ -1,4 +1,4 @@
-﻿namespace Wayfinder.Shared.Libraries.BooleanTree;
+﻿namespace Wayfinder.Shared.Utility.BooleanTree;
 
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 
-namespace Wayfinder.Shared.Libraries;
+namespace Wayfinder.Shared.Utility;
 
 
 public partial class Timeline<T> where T : class {

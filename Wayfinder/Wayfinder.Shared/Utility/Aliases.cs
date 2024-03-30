@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Wayfinder.Shared.Libraries;
+namespace Wayfinder.Shared.Utility;
 
 
 

@@ -2,8 +2,8 @@
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Libraries;
-using Wayfinder.Shared.Libraries.BooleanTree;
+using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.BooleanTree;
 using Wayfinder.Client.Data;
 
 
