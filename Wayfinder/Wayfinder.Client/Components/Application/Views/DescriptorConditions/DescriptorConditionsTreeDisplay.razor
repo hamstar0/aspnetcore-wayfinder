@@ -13,17 +13,17 @@
     @for( int i=0; i<this.Tree.Children.Count; i++ ) {
         IBoolean<DescriptorFactsBooleanContext> node = this.Tree.Children[i];
 
-        @if( node is DescriptorConditionsTree ) {
+        @if( node is DescriptorConditionsTreeEntry ) {
             <DescriptorConditionsTreeDisplay
                     Style="padding-left: 8px; display: inline-block;"
-                    Tree=@((DescriptorConditionsTree)node) />
+                    Tree=@((DescriptorConditionsTreeEntry)node) />
         } else if( node is DataTimelineEntry ) {
             <div>
                 <DescriptorFactsDisplay
                         Style="padding-left: 8px; display: inline-block;"
-                        Node=@((DescriptorFacts)node) />
+                        Node=@((DescriptorFactsEntry)node) />
 
-                @this.AfterCondition?.Invoke( (DescriptorFacts)node );
+                @this.AfterCondition?.Invoke( (DescriptorFactsEntry)node );
 
                 @if( i < (this.Tree.Children.Count - 1) ) {
                     <span>@(this.Tree.IsAnd ? " AND " : " OR ")</span>
@@ -38,11 +38,11 @@
 
 @code {
     [Parameter, EditorRequired]
-    public DescriptorConditionsTree Tree { get; set; } = null!;
+    public DescriptorConditionsTreeEntry Tree { get; set; } = null!;
 
     [Parameter]
     public string? Style { get; set; } = null;
 
     [Parameter]
-    public RenderFragment<DescriptorFacts>? AfterCondition { get; set; } = null;
+    public RenderFragment<DescriptorFactsEntry>? AfterCondition { get; set; } = null;
 }

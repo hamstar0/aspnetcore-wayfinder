@@ -6,9 +6,21 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 
-public class DescriptorConditionsTree :
+public class DescriptorConditionsTreeEntry :
 			BooleanTree<DescriptorCondition, DescriptorConditionBooleanContext> {
-	public DescriptorConditionsTree( bool isAnd ) : base( isAnd ) { }
+    public long Id { get; private set; }
+
+    [JsonIgnore]
+    public bool IsAssignedId { get; private set; } = false;
+
+
+
+    public DescriptorConditionsTreeEntry( bool isAnd ) : base( isAnd ) { }
+
+    public DescriptorConditionsTreeEntry( bool isAnd, long id ) : base( isAnd ) {
+        this.Id = id;
+        this.IsAssignedId = true;
+    }
 }
 
 

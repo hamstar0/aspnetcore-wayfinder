@@ -10,7 +10,7 @@ namespace Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
 
 public partial class DescriptorConditionsEditor {
     public delegate Task<OverridesDefault> SubmitDescriptorConditions(
-        DescriptorConditionsTree tree,
+        DescriptorConditionsTreeEntry tree,
         bool isEdit
     );
 
@@ -33,10 +33,10 @@ public partial class DescriptorConditionsEditor {
     public bool CanEdit { get; set; }
 
 
-	private DescriptorConditionsTree CreateConditions { get; set; } = new DescriptorConditionsTree( true );
+	private DescriptorConditionsTreeEntry CreateConditions { get; set; } = new DescriptorConditionsTreeEntry( true );
 
 	[Parameter]
-	public DescriptorConditionsTree? EditConditions { get; set; } = null!;
+	public DescriptorConditionsTreeEntry? EditConditions { get; set; } = null!;
 
 
 	[Parameter, EditorRequired]
@@ -44,7 +44,7 @@ public partial class DescriptorConditionsEditor {
 
 
 
-    private DescriptorConditionsTree GetCurrentTree() {
+    private DescriptorConditionsTreeEntry GetCurrentTree() {
         if( this.CanEdit && this.EditConditions is not null ) {
             return this.EditConditions;
         } else if( this.CanCreate ) {
@@ -56,7 +56,7 @@ public partial class DescriptorConditionsEditor {
 	public async Task AddTreeToCurrentTree_UI_Async( DataTimelineEntry tree ) {
         if( this.Disabled ) { return; }
 
-        DescriptorConditionsTree current = this.GetCurrentTree();
+        DescriptorConditionsTreeEntry current = this.GetCurrentTree();
 
 		bool found = current.Children
             .Select( e => e as DescriptorEntry )

@@ -27,7 +27,7 @@ public partial class DescriptorEditor {
 
     private DataTimelineEntry Facts = new DataTimelineEntry();
 
-	private DescriptorConditionsTree Conditions = new DescriptorConditionsTree( true );
+	private DescriptorConditionsTreeEntry Conditions = new DescriptorConditionsTreeEntry( true );
 
 	private DescriptorEntry? SelectedDescriptor = null;
 
@@ -88,7 +88,7 @@ public partial class DescriptorEditor {
         return true;    // false posts changes to server
     }
 
-    private async Task SetConditions_UI_Async( DescriptorConditionsTree conditions ) {
+    private async Task SetConditions_UI_Async( DescriptorConditionsTreeEntry conditions ) {
         if( this.Disabled ) { return; }
 
         bool isChanged = this.Conditions is null

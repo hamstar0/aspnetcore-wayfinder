@@ -20,10 +20,10 @@ public partial class DescriptorConditionsTreeEditor {
     public bool Disabled { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public DescriptorConditionsTree Conditions { get; set; } = null!;
+    public DescriptorConditionsTreeEntry Conditions { get; set; } = null!;
 
     [Parameter, EditorRequired]
-    public Action<DescriptorConditionsTree> OnTreeSelect { get; set; } = null!;
+    public Action<DescriptorConditionsTreeEntry> OnTreeSelect { get; set; } = null!;
 
     [Parameter]
     public string? Style { get; set; } = null;
@@ -33,7 +33,7 @@ public partial class DescriptorConditionsTreeEditor {
     public async Task AddTree_UI_Async( bool isAnd ) {
         if (Disabled) { return; }
 
-        var subTree = (IBoolean<DataTimelineBooleanContext>)new DescriptorConditionsTree( isAnd );
+        var subTree = (IBoolean<DataTimelineBooleanContext>)new DescriptorConditionsTreeEntry( isAnd );
 
         this.Conditions.Add( subTree, isAnd );
     }

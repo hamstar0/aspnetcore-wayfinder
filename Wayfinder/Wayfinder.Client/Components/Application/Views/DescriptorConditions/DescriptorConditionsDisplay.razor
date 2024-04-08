@@ -6,7 +6,7 @@
 @using Wayfinder.Client.Components.Application.Views;
 @using Wayfinder.Client.Components.Application.Views.Collections;
 @using Wayfinder.Client.Components.Application.Pickers;
-@using Wayfinder.Client.Components.Application.Editors.DataTimeline;
+@using Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
 
 
 
@@ -21,5 +21,5 @@
 
 @code {
     [Parameter, EditorRequired]
-    public DescriptorConditionsTree Tree { get; set; } = null!;
+    public DescriptorConditionsTreeEntry Tree { get; set; } = null!;
 }

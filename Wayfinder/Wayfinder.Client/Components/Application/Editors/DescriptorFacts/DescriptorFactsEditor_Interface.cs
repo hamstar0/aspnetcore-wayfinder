@@ -4,7 +4,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
 
 
 public partial class DescriptorFactsEditor {

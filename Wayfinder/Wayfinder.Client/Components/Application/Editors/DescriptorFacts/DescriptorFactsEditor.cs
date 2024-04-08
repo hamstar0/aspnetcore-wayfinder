@@ -8,11 +8,11 @@ using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Standard.Timeline;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
 
 
 public partial class DescriptorFactsEditor {
-    public delegate Task<OverridesDefault> SubmitDescriptorFacts( DescriptorFacts facts, bool isEdit );
+    public delegate Task<OverridesDefault> SubmitDescriptorFacts( DescriptorFactsEntry facts, bool isEdit );
 
 
 
@@ -39,7 +39,7 @@ public partial class DescriptorFactsEditor {
 
 
 	[Parameter]
-	public DescriptorFacts? EditDescriptorFacts { get; set; } = null;
+	public DescriptorFactsEntry? EditDescriptorFacts { get; set; } = null;
 
 	private IEnumerable<TimelineEventEntry<DescriptorDataEntry>> CreateFactsTimeline
         = new List<TimelineEventEntry<DescriptorDataEntry>>();

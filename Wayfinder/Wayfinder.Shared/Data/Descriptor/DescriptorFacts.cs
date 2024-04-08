@@ -6,14 +6,14 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 
-public class DescriptorFacts :
+public class DescriptorFactsEntry :
             TimelineEntry<DescriptorDataEntry>,
             IBoolean<DescriptorFactsBooleanContext> {
-    public DescriptorFacts( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
+    public DescriptorFactsEntry( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
                 : base( events ) {
     }
 
-    public DescriptorFacts( long id, IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
+    public DescriptorFactsEntry( long id, IEnumerable<TimelineEventEntry<DescriptorDataEntry>> events )
                 : base( id, events ) {
     }
 

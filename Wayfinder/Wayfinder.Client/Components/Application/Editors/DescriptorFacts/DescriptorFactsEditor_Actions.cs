@@ -5,7 +5,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
 
 
 public partial class DescriptorFactsEditor {
@@ -70,7 +70,7 @@ public partial class DescriptorFactsEditor {
             return;
         }
 
-        DescriptorFacts newTimeline = await this.Data.CreateDescriptorFacts_Async(
+        DescriptorFactsEntry newTimeline = await this.Data.CreateDescriptorFacts_Async(
 			new ClientDataAccess.CreateDescriptorFactsParams( this.CreateDataTimeline.Events )
 		);
 		if( await this.OnSubmit.Invoke(newTimeline, false) ) {

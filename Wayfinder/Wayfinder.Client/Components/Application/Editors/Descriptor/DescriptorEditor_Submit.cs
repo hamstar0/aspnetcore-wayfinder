@@ -100,7 +100,7 @@ public partial class DescriptorEditor {
         var editParams = new ClientDataAccess.EditDescriptorParams(
             this.SelectedDescriptor!.Id,
             new Optional<DataTimelineEntry>( this.Facts! ),
-            new Optional<DescriptorConditionsTree>( this.Conditions )
+            new Optional<DescriptorConditionsTreeEntry>( this.Conditions )
         );
 
         if( this.OnDescriptorEdit is null ) {

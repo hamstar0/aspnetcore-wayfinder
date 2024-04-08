@@ -17,17 +17,17 @@ public class GoalEntry {
 
 	public string? Description = null;
 
-	public DescriptorConditionsTree Conditions;
+	public DescriptorConditionsTreeEntry Conditions;
 
 
 
-	public GoalEntry( string name, string? description, DescriptorConditionsTree conditions ) {
+	public GoalEntry( string name, string? description, DescriptorConditionsTreeEntry conditions ) {
 		this.Name = name;
 		this.Description = description;
 		this.Conditions = conditions;
 	}
 
-	public GoalEntry( long id, string name, string? description, DescriptorConditionsTree conditions ) {
+	public GoalEntry( long id, string name, string? description, DescriptorConditionsTreeEntry conditions ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Name = name;

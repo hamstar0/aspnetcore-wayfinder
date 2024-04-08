@@ -39,9 +39,9 @@ public partial class PlanOptionEditor {
 
 	private Optional<long> CreateOption_MinimumEnactingDuration = new Optional<long>();
 
-	private Optional<DescriptorFacts> CreateOption_Actions = new Optional<DescriptorFacts>();
+	private Optional<DescriptorFactsEntry> CreateOption_Actions = new Optional<DescriptorFactsEntry>();
 
-    private Optional<DescriptorConditionsTree> CreateOption_Conditions = new Optional<DescriptorConditionsTree>();
+    private Optional<DescriptorConditionsTreeEntry> CreateOption_Conditions = new Optional<DescriptorConditionsTreeEntry>();
 
 
 	[Parameter, EditorRequired]

@@ -27,7 +27,7 @@ public class DescriptorFactsController : ControllerBase {
 
 
     [HttpPost("Create")]
-    public async Task<DescriptorFacts> Create_Async( ClientDataAccess.CreateDescriptorFactsParams parameters ) {
+    public async Task<DescriptorFactsEntry> Create_Async( ClientDataAccess.CreateDescriptorFactsParams parameters ) {
         return await this.Data.CreateDescriptorFacts_Async( parameters );
     }
 

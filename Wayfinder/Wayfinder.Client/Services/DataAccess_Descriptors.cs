@@ -11,9 +11,9 @@ namespace Wayfinder.Client.Data;
 public partial class ClientDataAccess {
     public class GetDescriptorsByCriteriaParams(
             Optional<DataTimelineEntry> facts,
-            Optional<DescriptorConditionsTree> conditions ) {
+            Optional<DescriptorConditionsTreeEntry> conditions ) {
         public Optional<DataTimelineEntry> Facts = facts;
-        public Optional<DescriptorConditionsTree> Conditions = conditions;
+        public Optional<DescriptorConditionsTreeEntry> Conditions = conditions;
     }
 
     public async Task<IEnumerable<DescriptorEntry>> GetDescriptorsByCriteria_Async(
@@ -33,9 +33,9 @@ public partial class ClientDataAccess {
 
     public class CreateDescriptorParams(
             DataTimelineEntry facts,
-            DescriptorConditionsTree conditions ) {
+            DescriptorConditionsTreeEntry conditions ) {
         public DataTimelineEntry Facts = facts;
-        public DescriptorConditionsTree Conditions = conditions;
+        public DescriptorConditionsTreeEntry Conditions = conditions;
     }
 
     public async Task<DescriptorEntry> CreateDescriptor_Async( CreateDescriptorParams parameters ) {
@@ -55,10 +55,10 @@ public partial class ClientDataAccess {
     public class EditDescriptorParams(
             long id,
             Optional<DataTimelineEntry> facts,
-            Optional<DescriptorConditionsTree> conds ) {
+            Optional<DescriptorConditionsTreeEntry> conds ) {
         public long Id = id;
         public Optional<DataTimelineEntry> Facts = facts;
-        public Optional<DescriptorConditionsTree> Conditions = conds;
+        public Optional<DescriptorConditionsTreeEntry> Conditions = conds;
     }
 
     public async Task<bool> EditDescriptor_Async( EditDescriptorParams parameters ) {

@@ -13,18 +13,18 @@ public class DescriptorEntry : IEquatable<DescriptorEntry> {
 	[JsonIgnore]
 	public bool IsAssignedId { get; private set; } = false;
 
-	public DescriptorFacts Facts;
+	public DescriptorFactsEntry Facts;
 
-	public DescriptorConditionsTree Conditions;
+	public DescriptorConditionsTreeEntry Conditions;
 
 
 
-	public DescriptorEntry( DescriptorFacts facts, DescriptorConditionsTree conditions ) {
+	public DescriptorEntry( DescriptorFactsEntry facts, DescriptorConditionsTreeEntry conditions ) {
 		this.Facts = facts;
 		this.Conditions = conditions;
 	}
 
-	public DescriptorEntry( long id, DescriptorFacts facts, DescriptorConditionsTree conditions ) {
+	public DescriptorEntry( long id, DescriptorFactsEntry facts, DescriptorConditionsTreeEntry conditions ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Facts = facts;
