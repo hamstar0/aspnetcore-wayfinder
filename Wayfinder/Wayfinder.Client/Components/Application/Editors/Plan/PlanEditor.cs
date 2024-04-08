@@ -37,7 +37,11 @@ public partial class PlanEditor {
 	[Parameter]
     public PlanEntry? EditPlan { get; set; } = null;
 
-	private PlanEntry CreatePlan = new PlanEntry();
+	public Optional<string?> CreatePlan_Name = new Optional<string?>();
+
+	public Optional<ISet<PlanOptionEntry>> CreatePlan_OptionsPool = new Optional<ISet<PlanOptionEntry>>();
+
+	public Optional<TimelineEntry<PlanOptionEntry>> CreatePlan_OptionTimeline = new Optional<TimelineEntry<PlanOptionEntry>>();
 
 
 	[Parameter]
@@ -45,17 +49,29 @@ public partial class PlanEditor {
 
 
 
-	public PlanEntry GetCurrentPlan( out bool isEdit ) {
+	public ISet<PlanOptionEntry> GetCurrentOptionPool( out bool isEdit ) {
 		isEdit = this.CanEdit && this.EditPlan is not null;
 
 		if( isEdit ) {
-			return this.EditPlan!;
-        }
-        if( this.CanCreate ) {
-            return this.CreatePlan;
-        }
-        throw new Exception( "No current Plan selected." );
-    }
+			return this.EditPlan!.OptionsPool;
+		} else if( this.CanCreate ) {
+			return this.CreatePlan_OptionsPool;
+		} else {
+			throw new NotImplementedException();
+		}
+	}
+
+	public TimelineEntry<PlanOptionEntry> GetCurrentOptionTimeline( out bool isEdit ) {
+		isEdit = this.CanEdit && this.EditPlan is not null;
+
+		if( isEdit ) {
+			return this.EditPlan!.OptionTimeline;
+		} else if( this.CanCreate ) {
+			return this.CreatePlan_OptionTimeline;
+		} else {
+			throw new NotImplementedException();
+		}
+	}
 
 
 	public async Task EditPlanTimeline_UI_Async( TimelineEntry<PlanOptionEntry> timeline ) {
@@ -63,25 +79,49 @@ public partial class PlanEditor {
             return;
         }
 
-        PlanEntry plan = this.GetCurrentPlan( out _ );
-
-        plan.OptionTimeline = timeline;
+		if( this.CanEdit && this.EditPlan is not null ) {
+			this.EditPlan.OptionTimeline = timeline;
+		} else if( this.CanCreate ) {
+			this.CreatePlan_OptionTimeline = timeline;
+		} else {
+			throw new NotImplementedException();
+		}
 
         await this.Submit_Async();
 	}
-
 
 	public async Task EditPlanOption_UI_Async( PlanOptionEntry option ) {
 		if( !this.SubmitOnEditOnly ) {
 			return;
 		}
 
-        PlanEntry plan = this.GetCurrentPlan( out _ );
-
-		plan.OptionsPool.Add( option );
+		if( this.CanEdit && this.EditPlan is not null ) {
+			this.EditPlan.OptionsPool.Add( option );
+		} else if( this.CanCreate ) {
+			this.CreatePlan_OptionsPool.Add( option );
+		} else {
+			throw new NotImplementedException();
+		}
 
         await this.Submit_Async();
 	}
+
+	public async Task EditPlanOptionPool_UI_Async( ISet<PlanOptionEntry> optionPool ) {
+		if( !this.SubmitOnEditOnly ) {
+			return;
+		}
+
+		if( this.CanEdit && this.EditPlan is not null ) {
+			this.EditPlan.OptionsPool = optionPool;
+		} else if( this.CanCreate ) {
+			this.CreatePlan_OptionsPool = optionPool;
+		} else {
+			throw new NotImplementedException();
+		}
+
+        await this.Submit_Async();
+	}
+
 
 	public async Task Submit_UI_Async() {
         await this.Submit_Async();
@@ -89,7 +129,26 @@ public partial class PlanEditor {
 
 
 	private async Task Submit_Async() {
-		PlanEntry plan = this.GetCurrentPlan( out bool isEdit );
+		bool isEdit = this.CanEdit && this.EditPlan is not null;
+		bool isCreate = this.CanCreate;
+
+		PlanEntry plan = isEdit ? this.EditPlan!
+			: isCreate ? new PlanEntry(
+				this.CreatePlan_Name,
+				this.Goal,
+				this.CreatePlan_OptionsPool,
+				this.CreatePlan_OptionTimeline
+			)
+			: throw new NotImplementedException();
+		if( isCreate ) {
+			plan.Name = this.CreatePlan_Name;
+			plan.OptionsPool = this.CreatePlan_OptionsPool;
+			plan.OptionTimeline = this.CreatePlan_OptionTimeline;
+
+			if( this.CanEdit ) {
+				this.EditPlan = plan;
+			}
+		}
 
 		if( this.OnSubmit is not null && await this.OnSubmit(plan, isEdit) ) {
 			return;

@@ -15,7 +15,7 @@ public partial class ServerDataAccess {
 
 
     public async Task<DataTimelineEntry> CreateDataTimeline_Async(
-                ClientDataAccess.CreateDataTimelineParams parameters ) {
+                ClientDataAccess.CreateDescriptorFactsParams parameters ) {
         long id = this.CurrentDataTimelineId++;
 
         this.DataTimelines[ id ] = new DataTimelineEntry( id, parameters.Events );
@@ -23,14 +23,14 @@ public partial class ServerDataAccess {
         return this.DataTimelines[id];
     }
 
-    public async Task AddDataTimelineEvents_Async( ClientDataAccess.AddDataTimelineEventsParams parameters ) {
+    public async Task AddDataTimelineEvents_Async( ClientDataAccess.AddDescriptorFactsEventsParams parameters ) {
         foreach( TimelineEventEntry<DescriptorDataEntry> evt in parameters.Events ) {
-            this.DataTimelines[ parameters.DataTimelineId ].AddEvent( evt );
+            this.DataTimelines[ parameters.Id ].AddEvent( evt );
         }
     }
 
     public async Task RemoveDataTimelineEvents_Async(
-                ClientDataAccess.RemoveDataTimelineEventsParams parameters ) {
+                ClientDataAccess.RemoveDescriptorFactsEventsParams parameters ) {
         DataTimelineEntry dataTimeline = this.DataTimelines[ parameters.TimelineId ];
 
         foreach( long eventId in parameters.EventIds ) {

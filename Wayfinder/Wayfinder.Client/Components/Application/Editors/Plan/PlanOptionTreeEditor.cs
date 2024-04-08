@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Utility;
 using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Plan;
@@ -8,7 +9,7 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 public partial class PlanOptionTreeEditor {
-    public delegate Task<OverridesDefault> PlanOptionSubmit( PlanOptionEntry option, bool isEdit );
+    public delegate Task PlanOptionsSinglePoolEditSubmit( PlanOptionEntry option, bool isAdded );
 
 
     //[Inject]
@@ -18,20 +19,40 @@ public partial class PlanOptionTreeEditor {
     //public ClientDataAccess Data { get; set; } = null!;
 
 
-    [Parameter, EditorRequired]
-    public bool CanCreate { get; set; }
-
-    [Parameter, EditorRequired]
-    public bool CanEdit { get; set; }
-
     [Parameter]
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
 	[Parameter, EditorRequired]
-    public PlanEntry Plan { get; set; } = null!;
+	public GoalEntry Goal { get; set; } = null!;
+
+	[Parameter, EditorRequired]
+	public ISet<PlanOptionEntry> EditOptionsPool { get; set; } = null!;
 
 
 	[Parameter, EditorRequired]
-	public PlanOptionSubmit OnSubmit { get; set; } = null!; unused?
+	public PlanOptionsSinglePoolEditSubmit OnSubmit { get; set; } = null!;
+
+
+
+	private IEnumerable<PlanOptionEntry> GetOptionsForCondition( DescriptorCondition condition ) {
+		var options = new HashSet<PlanOptionEntry>();
+
+		foreach( PlanOptionEntry option in this.EditOptionsPool ) {
+			if( conditions.Evaluate(option.Conditions) ) {
+				options.Add( option );
+			}
+		}
+
+		return options;
+	}
+
+	private async Task SubmitOptionToggleWithinPool_UI_Async( PlanOptionEntry option ) {
+		bool isAdded = this.EditOptionsPool.Add( option );
+		if( !isAdded ) {
+			this.EditOptionsPool.Remove( option );
+		}
+
+		await this.OnSubmit( option, isAdded );
+	}
 }

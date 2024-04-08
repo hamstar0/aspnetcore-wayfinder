@@ -1,7 +1,5 @@
 ﻿using System.Net.Http.Json;
-using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Data;
@@ -9,60 +7,60 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class CreateDataTimelineParams( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> evts ) {
-        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Events = evts;
+    public class CreateDescriptorFactsParams( IEnumerable<DescriptorFacts> factses ) {
+        public IEnumerable<DescriptorFacts> Factses = factses;
     }
 
-    public async Task<DataTimelineEntry> CreateDataTimeline_Async( CreateDataTimelineParams parameters ) {
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Create", parameters );
+    public async Task<DescriptorFacts> CreateDescriptorFacts_Async( CreateDescriptorFactsParams parameters ) {
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DescriptorFacts/Create", parameters );
 
         msg.EnsureSuccessStatusCode();
 
-        DataTimelineEntry? ret = await msg.Content.ReadFromJsonAsync<DataTimelineEntry>();
+        DescriptorFacts? ret = await msg.Content.ReadFromJsonAsync<DescriptorFacts>();
         if( ret is null ) {
-            throw new InvalidDataException( "Could not deserialize DataTimelineEntry" );
+            throw new InvalidDataException( "Could not deserialize DescriptorFacts" );
         }
 
         return ret;
     }
 
 
-    public class AddDataTimelineEventsParams(
-            long dataTimelineId,
-            IEnumerable<TimelineEventEntry<DescriptorDataEntry>> evts ) {
-        public long DataTimelineId = dataTimelineId;
-        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Events = evts;
+    public class AddDescriptorFactsEventsParams(
+            long id,
+            IEnumerable<DescriptorFacts> factses ) {
+        public long Id = id;
+        public IEnumerable<DescriptorFacts> Factses = factses;
     }
 
-    public async Task<DataTimelineEntry> AddDataTimelineEvents_Async( AddDataTimelineEventsParams parameters ) {
+    public async Task<DescriptorFacts> AddDescriptorFactsEvents_Async( AddDescriptorFactsEventsParams parameters ) {
         //foreach( TimelineEventEntry evt in parameters.Events ) {
         //    if( evt.Id == -1 ) {
         //        throw new InvalidDataException( "Invalid TimelineEventEntry id" );
         //    }
         //}
 
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Edit", parameters );
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DescriptorFacts/Edit", parameters );
 
         msg.EnsureSuccessStatusCode();
 
-		DataTimelineEntry? ret = await msg.Content.ReadFromJsonAsync<DataTimelineEntry>();
+        DescriptorFacts? ret = await msg.Content.ReadFromJsonAsync<DescriptorFacts>();
 		if( ret is null ) {
-			throw new InvalidDataException( "Could not deserialize DataTimelineEntry" );
+			throw new InvalidDataException( "Could not deserialize DescriptorFacts" );
 		}
 
 		return ret;
 	}
 
 
-    public class RemoveDataTimelineEventsParams(
-            long timelineId,
-            IList<long> eventIds ) {
-        public long TimelineId = timelineId;
-        public IList<long> EventIds = eventIds;
+    public class RemoveDescriptorFactsEventsParams(
+            long id,
+            IList<long> factsesIds ) {
+        public long Id = id;
+        public IList<long> FactsesIds = factsesIds;
     }
 
-    public async Task RemoveDataTimelineEvents_Async( RemoveDataTimelineEventsParams parameters ) {
-        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DataTimeline/Remove", parameters );
+    public async Task RemoveDataTimelineEvents_Async( RemoveDescriptorFactsEventsParams parameters ) {
+        HttpResponseMessage msg = await this.Http.PostAsJsonAsync( "DescriptorFacts/Remove", parameters );
 
         msg.EnsureSuccessStatusCode();
     }

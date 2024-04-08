@@ -6,12 +6,6 @@ namespace Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 
-public class DescriptorConditionsTree : BooleanTree<DataTimelineEntry, DataTimelineBooleanContext> {
-	public DescriptorConditionsTree( bool isAnd ) : base( isAnd ) { }
-}
-
-
-
 public class DescriptorEntry : IEquatable<DescriptorEntry> {
 	//[Key]
 	public long Id { get; private set; }
@@ -19,18 +13,18 @@ public class DescriptorEntry : IEquatable<DescriptorEntry> {
 	[JsonIgnore]
 	public bool IsAssignedId { get; private set; } = false;
 
-	public DataTimelineEntry Facts;
+	public DescriptorFacts Facts;
 
 	public DescriptorConditionsTree Conditions;
 
 
 
-	public DescriptorEntry() {
-		this.Facts = new DataTimelineEntry();
-		this.Conditions = new DescriptorConditionsTree( true );
+	public DescriptorEntry( DescriptorFacts facts, DescriptorConditionsTree conditions ) {
+		this.Facts = facts;
+		this.Conditions = conditions;
 	}
 
-	public DescriptorEntry( long id, DataTimelineEntry facts, DescriptorConditionsTree conditions ) {
+	public DescriptorEntry( long id, DescriptorFacts facts, DescriptorConditionsTree conditions ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Facts = facts;

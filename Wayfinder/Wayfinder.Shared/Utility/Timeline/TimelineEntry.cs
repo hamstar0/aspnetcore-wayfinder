@@ -21,10 +21,6 @@ public partial class TimelineEntry<T> where T : class {
 
 
 
-    public TimelineEntry() {
-        this._Events = new List<TimelineEventEntry<T>>();
-    }
-
     public TimelineEntry( IEnumerable<TimelineEventEntry<T>> events ) {
 		this._Events = events.ToList();
 

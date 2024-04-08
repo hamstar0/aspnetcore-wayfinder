@@ -38,5 +38,18 @@ public partial class PlanOptionTimelineEditor {
 
 
     [Parameter, EditorRequired]
-    public PlanOptionTimelineSubmit OnSubmit { get; set; } = null!;
+    public PlanOptionTimelineSubmit OnSubmit {f get; set; } = null!;
+
+
+
+    private void GetPlanTimeline() {
+    }
+
+    private async Task OnMouseDown_UI_Async() {
+        f
+    }
+
+	private async Task OnMouseUp_UI_Async() {
+        f
+    }
 }

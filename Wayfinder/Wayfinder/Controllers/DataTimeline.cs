@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Wayfinder.Client.Data;
 using Wayfinder.Data;
 using Wayfinder.Shared.Data;
+using Wayfinder.Shared.Data.Entries.Descriptor;
 
 
 namespace Wayfinder;
@@ -9,34 +10,34 @@ namespace Wayfinder;
 
 
 [ApiController]
-//[Route( "DataTimeline" )]
+//[Route( "DescriptorFacts" )]
 [Route("[controller]")]
-public class DataTimelineController : ControllerBase {
-	//private readonly ILogger<DataTimelineController> _logger;
-	private readonly ServerDataAccess Data;
+public class DescriptorFactsController : ControllerBase {
+    //private readonly ILogger<DescriptorFactsController> _logger;
+    private readonly ServerDataAccess Data;
 
 
 
-	//public DataTimelineController( ILogger<DataTimelineController> logger ) {
-	//    this._logger = logger;
-	//}
-	public DataTimelineController( ServerDataAccess data ) {
+    //public DescriptorFactsController( ILogger<DescriptorFactsController> logger ) {
+    //    this._logger = logger;
+    //}
+    public DescriptorFactsController( ServerDataAccess data ) {
         this.Data = data;
     }
 
 
     [HttpPost("Create")]
-    public async Task<DataTimelineEntry> Create_Async( ClientDataAccess.CreateDataTimelineParams parameters ) {
-        return await this.Data.CreateDataTimeline_Async( parameters );
+    public async Task<DescriptorFacts> Create_Async( ClientDataAccess.CreateDescriptorFactsParams parameters ) {
+        return await this.Data.CreateDescriptorFacts_Async( parameters );
     }
 
     [HttpPost("Edit")]
-    public async Task Edit_Async( ClientDataAccess.AddDataTimelineEventsParams parameters ) {
-        await this.Data.AddDataTimelineEvents_Async( parameters );
+    public async Task Edit_Async( ClientDataAccess.AddDescriptorFactsEventsParams parameters ) {
+        await this.Data.AddDescriptorFactsEvents_Async( parameters );
     }
 
     [HttpPost("Remove")]
-    public async Task Remove_Async( ClientDataAccess.RemoveDataTimelineEventsParams parameters ) {
-        await this.Data.RemoveDataTimelineEvents_Async( parameters );
+    public async Task Remove_Async( ClientDataAccess.RemoveDescriptorFactsEventsParams parameters ) {
+        await this.Data.RemoveDescriptorFactsEvents_Async( parameters );
     }
 }

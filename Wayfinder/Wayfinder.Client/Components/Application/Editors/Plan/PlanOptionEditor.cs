@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Plan;
@@ -7,11 +9,12 @@ namespace Wayfinder.Client.Components.Application.Editors.Plan;
 
 
 public partial class PlanOptionEditor {
-    //[Inject]
-    //public IJSRuntime Js { get; set; } = null!;
+	public delegate Task<OverridesDefault> PlanOptionSubmit( PlanOptionEntry option, bool isEdit );
+	//[Inject]
+	//public IJSRuntime Js { get; set; } = null!;
 
-    //[Inject]
-    //public ClientDataAccess Data { get; set; } = null!;
+	//[Inject]
+	//public ClientDataAccess Data { get; set; } = null!;
 
 
 	[Parameter, EditorRequired]
@@ -29,10 +32,20 @@ public partial class PlanOptionEditor {
     public PlanEntry? Plan { get; set; } = null;
 
 
-    [Parameter, EditorRequired]
-	public PlanOptionEntry EditOption { get; set; } = null!;
+    [Parameter]
+	public PlanOptionEntry? EditOption { get; set; } = null;
 
-	private PlanOptionEntry CreateOption = new PlanOptionEntry(); f
+	private Optional<string?> CreateOption_Name = new Optional<string?>();
+
+	private Optional<long> CreateOption_MinimumEnactingDuration = new Optional<long>();
+
+	private Optional<DescriptorFacts> CreateOption_Actions = new Optional<DescriptorFacts>();
+
+    private Optional<DescriptorConditionsTree> CreateOption_Conditions = new Optional<DescriptorConditionsTree>();
+
+
+	[Parameter, EditorRequired]
+	public PlanOptionSubmit OnSubmit { get; set; } = null!;
 
 
 
@@ -46,5 +59,9 @@ public partial class PlanOptionEditor {
         } else {
             this.Plan.OptionsPool.Add( this.EditOption );
         }
+    }
+
+    private async Task Submit_UI_Async() {
+        
     }
 }

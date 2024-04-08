@@ -7,13 +7,13 @@ using Wayfinder.Shared.Utility;
 namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
-public partial class DataTimelineEditor {
+public partial class DescriptorFactsEditor {
     private async Task OnMouseDown_UI_Async( MouseEventArgs evt ) {
         if( !this.CanEditOrCreate() ) { return; }
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEventEntry<DescriptorDataEntry> timelineEvt in this.GetCurrentTimeline().Events ) {
+        foreach( TimelineEventEntry<DescriptorDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
             if( x < evtStartX ) {
                 break;

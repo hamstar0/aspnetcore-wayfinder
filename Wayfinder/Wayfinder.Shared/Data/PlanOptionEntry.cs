@@ -17,23 +17,29 @@ public class PlanOptionEntry {
 
 	public long MinimumEnactingDuration;
 
-	public DataTimelineEntry Actions;
+	public DescriptorFacts Actions;
 
 	public DescriptorConditionsTree Conditions;
 
 
 
-	public PlanOptionEntry() {
-		this.Actions = new DataTimelineEntry();
-		this.Conditions = new DescriptorConditionsTree( true );
+	public PlanOptionEntry(
+				string? name,
+				long minimumEnactingDuration,
+                DescriptorFacts actions,
+				DescriptorConditionsTree conditions ) {
+		this.Name = name;
+		this.MinimumEnactingDuration = minimumEnactingDuration;
+		this.Actions = actions;
+		this.Conditions = conditions;
 	}
 
 	public PlanOptionEntry(
-			long id,
-			string? name,
-			long minimumEnactingDuration,
-			DataTimelineEntry actions,
-			DescriptorConditionsTree conditions ) {
+				long id,
+				string? name,
+				long minimumEnactingDuration,
+                DescriptorFacts actions,
+				DescriptorConditionsTree conditions ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Name = name;

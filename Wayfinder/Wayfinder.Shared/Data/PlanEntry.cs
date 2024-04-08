@@ -16,19 +16,29 @@ public class PlanEntry {
 
 	public GoalEntry Goal;
 
-	public IList<PlanOptionEntry> OptionsPool;
+	public ISet<PlanOptionEntry> OptionsPool;
 
 	public TimelineEntry<PlanOptionEntry> OptionTimeline;
 
 
 
-	public PlanEntry( GoalEntry goal ) {
+	public PlanEntry(
+				string? name,
+				GoalEntry goal,
+				ISet<PlanOptionEntry> optionsPool,
+				TimelineEntry<PlanOptionEntry> optionTimeline ) {
+		this.Name = name;
 		this.Goal = goal;
-		this.OptionsPool = new List<PlanOptionEntry>();
-		this.OptionTimeline = new TimelineEntry<PlanOptionEntry>();
+		this.OptionsPool = optionsPool;
+		this.OptionTimeline = optionTimeline;
 	}
 
-	public PlanEntry( long id, string? name, GoalEntry goal, IList<PlanOptionEntry> optionsPool, TimelineEntry<PlanOptionEntry> optionTimeline ) {
+	public PlanEntry(
+				long id,
+				string? name,
+				GoalEntry goal,
+				ISet<PlanOptionEntry> optionsPool,
+				TimelineEntry<PlanOptionEntry> optionTimeline ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.Name = name;

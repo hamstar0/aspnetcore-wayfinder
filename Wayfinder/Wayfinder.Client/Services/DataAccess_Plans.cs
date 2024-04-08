@@ -11,7 +11,7 @@ public partial class ClientDataAccess {
     public class CreatePlanParams(
                 string? name,
                 GoalEntry goal,
-                ISet<PlanOptionEntry> options,
+				ISet<PlanOptionEntry> options,
                 TimelineEntry<PlanOptionEntry> optionTimeline ) {
         public string? Name = name;
         public GoalEntry Goal = goal;
@@ -34,9 +34,9 @@ public partial class ClientDataAccess {
 
     
     public class EditPlanParams(
-				Optional<string?> name,
-				Optional<ISet<PlanOptionEntry>> options,
-				Optional<TimelineEntry<PlanOptionEntry>> optionTimeline ) {
+			    Optional<string?> name,
+			    Optional<ISet<PlanOptionEntry>> options,
+			    Optional<TimelineEntry<PlanOptionEntry>> optionTimeline ) {
         public Optional<string?> Name = name;
         public Optional<ISet<PlanOptionEntry>> Options = options;
         public Optional<TimelineEntry<PlanOptionEntry>> OptionTimeline = optionTimeline;

@@ -11,8 +11,8 @@ using Wayfinder.Client.Components.Standard.Timeline;
 namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
-public partial class DataTimelineEditor {
-    public delegate Task<OverridesDefault> SubmitDataTimeline( DataTimelineEntry timeline, bool isEdit );
+public partial class DescriptorFactsEditor {
+    public delegate Task<OverridesDefault> SubmitDescriptorFacts( DescriptorFacts facts, bool isEdit );
 
 
 
@@ -39,9 +39,10 @@ public partial class DataTimelineEditor {
 
 
 	[Parameter]
-	public DataTimelineEntry? EditDataTimeline { get; set; } = null;
+	public DescriptorFacts? EditDescriptorFacts { get; set; } = null;
 
-	private DataTimelineEntry CreateDataTimeline = new DataTimelineEntry();
+	private IEnumerable<TimelineEventEntry<DescriptorDataEntry>> CreateFactsTimeline
+        = new List<TimelineEventEntry<DescriptorDataEntry>>();
 
 
 	[Parameter]
@@ -51,7 +52,7 @@ public partial class DataTimelineEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
     [Parameter, EditorRequired]
-    public SubmitDataTimeline OnSubmit { get; set; } = null!;
+    public SubmitDescriptorFacts OnSubmit { get; set; } = null!;
 
 
     [Parameter]
@@ -94,30 +95,12 @@ public partial class DataTimelineEditor {
     }
 
 
-    private DataTimelineEntry GetCurrentTimeline() {
-        if( this.CanEdit ) {
-            if( this.EditDataTimeline is null ) {
-				throw new InvalidDataException( "No edit DataTimelineEntry available." );
-			}
-			return this.EditDataTimeline;
-		}
-        if( this.CanCreate ) {
-			if( this.CreateDataTimeline is null ) {
-				throw new InvalidDataException( "No create DataTimelineEntry available." );
-			}
-			return this.CreateDataTimeline;
-		}
-		throw new InvalidDataException( "DataTimelineEditor cannot create or edit DataTimelines (!)" );
-	}
-
 	public bool CanEditOrCreate() {
 		if( this.Disabled ) {
 			return false;
 		}
-		if( this.CanEdit && this.EditDataTimeline is null ) {
-            if( this.CanCreate && this.CreateDataTimeline is null ) {
-                return false;
-            }
+		if( this.CanEdit && this.EditDescriptorFacts is null ) {
+            return this.CanCreate;
 		}
 		return true;
 	}

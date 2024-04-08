@@ -17,8 +17,10 @@ public class TermEntry : IEquatable<TermEntry>, IComparable, IComparable<TermEnt
 
 
 
-    public TermEntry( string term ) {
+    public TermEntry( string term, TermEntry? context, TermEntry? alias ) {
         this.Term = term;
+        this.Context = context;
+        this.Alias = alias;
     }
 
     public TermEntry( long id, string term, TermEntry? context, TermEntry? alias ) {

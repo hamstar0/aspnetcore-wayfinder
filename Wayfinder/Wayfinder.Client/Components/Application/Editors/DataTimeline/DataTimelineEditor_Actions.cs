@@ -8,7 +8,7 @@ using Wayfinder.Shared.Utility;
 namespace Wayfinder.Client.Components.Application.Editors.DataTimeline;
 
 
-public partial class DataTimelineEditor {
+public partial class DescriptorFactsEditor {
     private void DrawAt_Async( double x ) {
         this.IsDrawingSeg = true;
 
@@ -40,7 +40,7 @@ public partial class DataTimelineEditor {
             return;
         }
 
-        this.GetCurrentTimeline().AddEvent( this.CurrentDrawSeg );
+        this.GetCurrentFacts().AddEvent( this.CurrentDrawSeg );
 
         this.CurrentDrawSeg = null;
         this.IsDrawingSeg = false;
@@ -58,7 +58,7 @@ public partial class DataTimelineEditor {
 	}
 
     private async Task AttemptSubmit_Async() {
-        if( this.CanEdit && this.EditDataTimeline is not null ) {
+        if( this.CanEdit && this.EditDescriptorFacts is not null ) {
 			await this.AttemptEditSubmit_Async();
 		} else if( this.CanCreate && this.CreateDataTimeline is not null ) {
 			await this.AttemptCreateSubmit_Async();
@@ -70,8 +70,8 @@ public partial class DataTimelineEditor {
             return;
         }
 
-		DataTimelineEntry newTimeline = await this.Data.CreateDataTimeline_Async(
-			new ClientDataAccess.CreateDataTimelineParams( this.CreateDataTimeline.Events )
+        DescriptorFacts newTimeline = await this.Data.CreateDescriptorFacts_Async(
+			new ClientDataAccess.CreateDescriptorFactsParams( this.CreateDataTimeline.Events )
 		);
 		if( await this.OnSubmit.Invoke(newTimeline, false) ) {
 			return;
@@ -82,14 +82,14 @@ public partial class DataTimelineEditor {
         if( this.OnSubmit is null ) {
             throw new InvalidDataException( "Missing OnSubmit handler for edits" );
         }
-        if( this.EditDataTimeline is null ) {
-            throw new InvalidDataException( "Missing EditDataTimeline" );
+        if( this.EditDescriptorFacts is null ) {
+            throw new InvalidDataException( "Missing EditDescriptorFacts" );
         }
-        if( !await this.OnSubmit.Invoke(this.EditDataTimeline, true) ) {
-			this.EditDataTimeline = await this.Data.AddDataTimelineEvents_Async(
-				new ClientDataAccess.AddDataTimelineEventsParams(
-                    this.EditDataTimeline.Id,
-					this.EditDataTimeline.Events
+        if( !await this.OnSubmit.Invoke(this.EditDescriptorFacts, true) ) {
+			this.EditDescriptorFacts = await this.Data.AddDescriptorFactsEvents_Async(
+				new ClientDataAccess.AddDescriptorFactsEventsParams(
+                    this.EditDescriptorFacts.Id,
+					this.EditDescriptorFacts.Events
 				)
 			);
 		}

@@ -14,19 +14,20 @@
 
 	<PlanOptionTimelineEditor Label="Current plan timeline"
 			CanCreate=@false CanEdit=@true SubmitOnEditOnly=@true
-			EditTimeline=@(this.GetCurrentPlan(out _).OptionTimeline)
+			EditTimeline=@(this.GetCurrentOptionTimeline(out _))
 			OnSubmit=@(async (timeline, _) => {
 				await this.EditPlanTimeline_UI_Async(timeline);
 				return true;
-			} ) />
+			} ) />	@* <- TODO Edit plan options with popup PlanOptionEditor? *@
 	
 	<PlanOptionTreeEditor
-			CanCreate=@true CanEdit=@true SubmitOnEditOnly=@true
-			Plan=@(this.GetCurrentPlan(out _))
-			OnSubmit=@(async (option, _) => {
-				await this.EditPlanOption_UI_Async( option );
+			SubmitOnEditOnly=@true
+			Goal=@this.Goal
+			EditOptionsPool=@(this.GetCurrentOptionPool(out _))
+			OnSubmit=@(async (optionPool) => {
+				await this.EditPlanOptionPool_UI_Async( optionPool );
 				return true;
-			} ) />	@* <- Edit plan options with popup PlanOptionEditor *@
+			} ) />	@* <- TODO Edit plan options with popup PlanOptionEditor *@
 	
 	@if( !this.SubmitOnEditOnly ) {
 		<button @onclick=@(async e => await this.Submit_UI_Async())>Submit</button>

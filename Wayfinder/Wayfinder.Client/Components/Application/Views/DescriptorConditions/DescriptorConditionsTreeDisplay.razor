@@ -11,25 +11,30 @@
         style=@this.Style
         class="basic" >
     @for( int i=0; i<this.Tree.Children.Count; i++ ) {
-        IBoolean<DataTimelineBooleanContext> node = this.Tree.Children[i];
+        IBoolean<DescriptorFactsBooleanContext> node = this.Tree.Children[i];
 
         @if( node is DescriptorConditionsTree ) {
             <DescriptorConditionsTreeDisplay
                     Style="padding-left: 8px; display: inline-block;"
                     Tree=@((DescriptorConditionsTree)node) />
-        } else {
+        } else if( node is DataTimelineEntry ) {
             <div>
-                <DescriptorDisplay
+                <DescriptorFactsDisplay
                         Style="padding-left: 8px; display: inline-block;"
-                        Descriptor=@((DescriptorEntry)node) />
+                        Node=@((DescriptorFacts)node) />
+
+                @this.AfterCondition?.Invoke( (DescriptorFacts)node );
 
                 @if( i < (this.Tree.Children.Count - 1) ) {
                     <span>@(this.Tree.IsAnd ? " AND " : " OR ")</span>
                 }
             </div>
+        } else {
+            throw new NotImplementedException();
         }
     }
 </div>
+
 
 @code {
     [Parameter, EditorRequired]
@@ -37,4 +42,7 @@
 
     [Parameter]
     public string? Style { get; set; } = null;
+
+    [Parameter]
+    public RenderFragment<DescriptorFacts>? AfterCondition { get; set; } = null;
 }

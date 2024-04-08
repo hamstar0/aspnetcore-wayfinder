@@ -8,11 +8,18 @@
 
 
 <div component-name="PlanOptionTreeEditor" class="basic">
-	<DescriptorDisplay Descriptor=@this.OptionFor />
-
-	<DescriptorConditionsTreeDisplay Tree=@this.OptionFor.Conditions>
-		<AfterCondition Condition=@condition>
-			<PlanOptionEditor EditOption=@(this.Plan.GetOptionForCondition(condition)) />
+	<GoalDisplay Goal=@this.Goal />
+	<DescriptorConditionsTreeDisplay Tree=@this.Goal.Conditions>
+		<AfterCondition>
+			<PlanOptionEditor
+					CanEdit=@false
+					CanRemove=@true
+					CanCreate=@true
+					EditOption=@(this.GetOptionsForCondition(context).First())
+					OnSubmit=@(async (option, isEdit) => {
+						await this.SubmitOptionToggleWithinPool_UI_Async( option );
+						return true;
+					} ) />
 		</AfterCondition>
 	</DescriptorConditionsTreeDisplay>
 </div>

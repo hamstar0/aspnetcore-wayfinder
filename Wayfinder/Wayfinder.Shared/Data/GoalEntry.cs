@@ -21,9 +21,10 @@ public class GoalEntry {
 
 
 
-	public GoalEntry( string name ) {
+	public GoalEntry( string name, string? description, DescriptorConditionsTree conditions ) {
 		this.Name = name;
-		this.Conditions = new DescriptorConditionsTree( true );
+		this.Description = description;
+		this.Conditions = conditions;
 	}
 
 	public GoalEntry( long id, string name, string? description, DescriptorConditionsTree conditions ) {

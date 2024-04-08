@@ -45,8 +45,9 @@ Phase 1
 -	Implement server bindings for Plan API
 -	Implement tabs (1)
 	-	Plan editor
-		-	Implement PlanOptionTreeEditor
 		-	Implement PlanOptionEditor
+		-	Implement PlanOptionTimelineEditor
+		-	Implement PlanOptionTreeEditor
 
 
 		-	Implement PlanEditor
