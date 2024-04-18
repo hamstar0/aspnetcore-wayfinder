@@ -41,11 +41,10 @@ public partial class ServerDataAccess {
                 goals = goals.Where( g => g.Name.Contains(parameters.DescPattern.Value) );
             }
         }
-        if( parameters.Subject.HasValue ) {
-            goals = goals.Where( g => g.Needed.TermSubj.Equals(parameters.Subject) );
-        }
-        if( parameters.Relationship.HasValue ) {
-            goals = goals.Where( g => g.Needed.TermRel.Equals(parameters.Relationship) );
+        if( parameters.Conditions.HasValue ) {
+            goals = goals.Where( g => g.Conditions
+                .True( new DescriptorConditionBooleanContext( parameters.Conditions.Value! ) )
+            );
         }
 
         return goals;
@@ -53,12 +52,12 @@ public partial class ServerDataAccess {
 
 
     public async Task<GoalEntry> CreateGoal_Async( ClientDataAccess.CreateGoalParams parameters ) {
-        var goal = new GoalEntry {
-            Id = this.CurrentGoalId++,
-            Name = parameters.Name,
-            Description = parameters.Description,
-            Needed = parameters.Needed
-        };
+        var goal = new GoalEntry(
+            this.CurrentGoalId++,
+            parameters.Name,
+            parameters.Description,
+            parameters.Needed
+        );
 
         this.Goals[goal.Id] = goal;
 

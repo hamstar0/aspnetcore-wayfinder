@@ -42,6 +42,13 @@ public class DescriptorCondition :
 
 
 public class DescriptorConditionBooleanContext {
+    //public DescriptorConditionsTreeEntry Context;
+
+
+
+    //public DescriptorConditionBooleanContext( DescriptorConditionsTreeEntry context ) {
+    //    this.Context = context;
+    //}
 }
 
 

@@ -21,12 +21,12 @@ public partial class ServerDataAccess {
 
 
 	public async Task<TermEntry> CreateTerm_Async( ClientDataAccess.CreateTermParams parameters ) {
-		var term = new TermEntry {
-			Id = this.CurrentTermId++,
-			Term = parameters.TermPattern,
-			Alias = parameters.Alias,
-			Context = parameters.Context
-		};
+		var term = new TermEntry(
+			id: this.CurrentTermId++,
+			term: parameters.TermPattern,
+			context: parameters.Context,
+			alias: parameters.Alias
+		);
 
 		this.Terms[ term.Id ] = term;
 

@@ -58,6 +58,12 @@ public partial class TimelineEntry<T> where T : class {
         return true;
 	}
 
+
+	public void Clear() {
+		this._Events.Clear();
+		this._EventsByIds.Clear();
+    }
+
 	public void AddEvent( TimelineEventEntry<T> evt ) {
 		for( int i = 0; i < this.Events.Count; i++ ) {
 			if( evt.EndTime >= this.Events[i].StartTime ) {
@@ -122,6 +128,10 @@ public partial class TimelineEntry<T> where T : class {
 		this._EventsByIds[ collidee.Id ] = idx;
 	}
 
+
+	public bool ContainsTimeline( TimelineEntry<T> other ) {
+		return this.ContainsTimeline( other, (t1, t2) => t1.Equals(t2) );
+	}
 
 	public bool ContainsTimeline( TimelineEntry<T> other, Func<T, T, bool> validateDataContain ) {
 		if( other.Events.Count == 0 ) {

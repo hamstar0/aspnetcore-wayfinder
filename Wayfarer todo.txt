@@ -10,6 +10,7 @@ Phase 3
 		-	Add alias picker
 		-	Add context picker
 -	Implement Abridged parameter for deploying ScheduleEditor popup
+-	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor, PlanEditor
 Phase 2
 -	Implement tabs (2)
 	-	Map editor
@@ -33,7 +34,6 @@ Phase 1
 			-	Range input
 			-	Term list input
 			-	Range input
--	Add reset button (CanReset=true) for DescriptorEditor, GoalEditor, PlanEditor
 -	Implement tabs (2)
 	-	Knowledge prompting (layout only)
 	-	Knowledge editor

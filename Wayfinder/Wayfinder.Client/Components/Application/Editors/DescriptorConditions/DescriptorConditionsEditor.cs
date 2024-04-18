@@ -33,27 +33,38 @@ public partial class DescriptorConditionsEditor {
     public bool CanEdit { get; set; }
 
 
-	private DescriptorConditionsTreeEntry CreateConditions { get; set; } = new DescriptorConditionsTreeEntry( true );
+    private DescriptorConditionsTreeEntry? SelectedConditionTree {
+        get => this.Edit;
+        set => this.Edit = value;
+    }
+
+
+    private DescriptorConditionsTreeEntry Create_Conditions { get; set; } = new DescriptorConditionsTreeEntry( true );
+
 
 	[Parameter]
-	public DescriptorConditionsTreeEntry? EditConditions { get; set; } = null!;
+	public DescriptorConditionsTreeEntry? Edit { get; set; } = null!;
+
+    private DescriptorConditionsTreeEntry? Edit_Tree = null;
+
+    private bool IsModified => this.Edit_Tree is not null;
 
 
-	[Parameter, EditorRequired]
+    [Parameter, EditorRequired]
     public SubmitDescriptorConditions OnSubmit { get; set; } = null!;   f
 
 
 
     private DescriptorConditionsTreeEntry GetCurrentTree() {
-        if( this.CanEdit && this.EditConditions is not null ) {
-            return this.EditConditions;
+        if( this.CanEdit && this.Edit is not null ) {
+            return this.Edit;
         } else if( this.CanCreate ) {
-            return this.CreateConditions;
+            return this.Create_Conditions;
         }
         throw new Exception( "No current tree defined." );
     }
 
-	public async Task AddTreeToCurrentTree_UI_Async( DataTimelineEntry tree ) {
+	public async Task AddTreeToCurrentTree_UI_Async( DescriptorConditionsTreeEntry tree ) {
         if( this.Disabled ) { return; }
 
         DescriptorConditionsTreeEntry current = this.GetCurrentTree();

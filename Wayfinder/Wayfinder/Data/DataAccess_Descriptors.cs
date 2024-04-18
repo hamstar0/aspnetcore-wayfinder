@@ -15,10 +15,10 @@ public partial class ServerDataAccess {
 		IEnumerable<DescriptorEntry> descriptors = this.Descriptors.Values;
 
         if( parameters.Facts.HasValue ) {
-            descriptors = descriptors.Where( d => parameters.Facts.Value!.ContainsTimeline( d.Facts ) );
+            descriptors = descriptors.Where( d => parameters.Facts.Value!.ContainsTimeline(d.Facts) );
         }
         if( parameters.Conditions.HasValue ) {
-            descriptors = descriptors.Where( d => parameters.Conditions.Value!.Equals( d.Conditions ) );
+            descriptors = descriptors.Where( d => parameters.Conditions.Value!.Equals(d.Conditions) );
         }
 
         return descriptors;
@@ -27,11 +27,11 @@ public partial class ServerDataAccess {
 
 	public async Task<DescriptorEntry> CreateDescriptor_Async(
 				ClientDataAccess.CreateDescriptorParams parameters ) {
-		var entry = new DescriptorEntry {
-			Id = this.CurrentDescriptorId++,
-			Facts = parameters.Facts,
-			Conditions = parameters.Conditions
-        };
+		var entry = new DescriptorEntry(
+			this.CurrentDescriptorId++,
+			parameters.Facts,
+			parameters.Conditions
+        );
 
 		this.Descriptors[entry.Id] = entry;
 

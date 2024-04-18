@@ -47,13 +47,11 @@ public partial class ClientDataAccess {
 
     public class GetGoalsByCriteriaParams(
                 Optional<string> namePattern,
-                Optional<string?> descPattern = default,
-                Optional<TermEntry> subj = default,
-                Optional<TermEntry> rel = default ) {
+                Optional<string?> descPattern,
+                Optional<DescriptorConditionsTreeEntry> conditions ) {
         public Optional<string> NamePattern = namePattern;
         public Optional<string?> DescPattern = descPattern;
-        public Optional<TermEntry> Subject = subj;
-        public Optional<TermEntry> Relationship = rel;
+        public Optional<DescriptorConditionsTreeEntry> Conditions = conditions;
     }
     
     public async Task<IEnumerable<GoalEntry>> GetGoalsByCriteria_Async( GetGoalsByCriteriaParams parameters ) {
@@ -73,10 +71,10 @@ public partial class ClientDataAccess {
     public class CreateGoalParams(
                 string name,
                 string? desc,
-                DescriptorEntry needed ) {
+                DescriptorConditionsTreeEntry needed ) {
         public string Name = name;
         public string? Description = desc;
-        public DescriptorEntry Needed = needed;
+        public DescriptorConditionsTreeEntry Needed = needed;
     }
     
     public async Task<GoalEntry> CreateGoal_Async( CreateGoalParams parameters ) {

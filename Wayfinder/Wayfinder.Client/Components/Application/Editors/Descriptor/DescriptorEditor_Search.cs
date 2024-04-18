@@ -10,27 +10,39 @@ namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
 
 public partial class DescriptorEditor {
     private async Task UpdateDescriptorSearchResults_Async() {
-        if( this.Facts is null ) {
-            return;
-        }
+        DescriptorFactsEntry facts = this.Search_Facts;
+        DescriptorConditionsTreeEntry conds = this.Search_Conditions;
 
-        this.SearchOptions = await this.Data.GetDescriptorsByCriteria_Async(
+        if( facts.Events.Count == 0 && conds.Children.Count == 0 ) {
+            this.SearchResults = [];
+        } else {
+            this.SearchResults = await this.SearchForOptions_Async( facts, conds );
+        }
+    }
+
+    private async Task<IEnumerable<DescriptorEntry>> SearchForOptions_Async(
+                DescriptorFactsEntry facts,
+                DescriptorConditionsTreeEntry conds ) {
+        return await this.Data.GetDescriptorsByCriteria_Async(
             new ClientDataAccess.GetDescriptorsByCriteriaParams(
-                new Optional<DataTimelineEntry>( this.Facts ),
-                new Optional<DescriptorConditionsTreeEntry>( this.Conditions )
+                new Optional<DescriptorFactsEntry>( facts ),
+                new Optional<DescriptorConditionsTreeEntry>( conds )
             )
         );
     }
+
 
     private async Task SelectSearchResults_UI_Async( DescriptorEntry descriptor ) {
         if( this.Disabled ) { return; }
 
         this.SelectedDescriptor = descriptor;
 
-        this.Facts = descriptor.Facts;
-        this.Conditions = descriptor.Conditions;
+        this.Create_Facts.Clear();
+        this.Create_Conditions.Clear();
 
-        this.IsModified = false;
+        this.Edit = descriptor;
+        this.EditChanged_Facts = null;
+        this.EditChanged_Conditions = null;
 
         await this.OnDescriptorSelect( this.SelectedDescriptor );
     }

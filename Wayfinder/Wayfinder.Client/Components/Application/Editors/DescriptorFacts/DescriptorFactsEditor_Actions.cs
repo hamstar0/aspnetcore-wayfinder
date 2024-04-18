@@ -5,7 +5,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
 
 
 public partial class DescriptorFactsEditor {
@@ -58,9 +58,9 @@ public partial class DescriptorFactsEditor {
 	}
 
     private async Task AttemptSubmit_Async() {
-        if( this.CanEdit && this.EditDescriptorFacts is not null ) {
+        if( this.CanEdit && this.Edit is not null ) {
 			await this.AttemptEditSubmit_Async();
-		} else if( this.CanCreate && this.CreateDataTimeline is not null ) {
+		} else if( this.CanCreate && this.Create_FactsEvents is not null ) {
 			await this.AttemptCreateSubmit_Async();
 		}
 	}
@@ -71,7 +71,7 @@ public partial class DescriptorFactsEditor {
         }
 
         DescriptorFactsEntry newTimeline = await this.Data.CreateDescriptorFacts_Async(
-			new ClientDataAccess.CreateDescriptorFactsParams( this.CreateDataTimeline.Events )
+			new ClientDataAccess.CreateDescriptorFactsParams( this.Create_FactsEvents )
 		);
 		if( await this.OnSubmit.Invoke(newTimeline, false) ) {
 			return;
@@ -82,14 +82,14 @@ public partial class DescriptorFactsEditor {
         if( this.OnSubmit is null ) {
             throw new InvalidDataException( "Missing OnSubmit handler for edits" );
         }
-        if( this.EditDescriptorFacts is null ) {
+        if( this.Edit is null ) {
             throw new InvalidDataException( "Missing EditDescriptorFacts" );
         }
-        if( !await this.OnSubmit.Invoke(this.EditDescriptorFacts, true) ) {
-			this.EditDescriptorFacts = await this.Data.AddDescriptorFactsEvents_Async(
+        if( !await this.OnSubmit.Invoke(this.Edit, true) ) {
+			this.Edit = await this.Data.AddDescriptorFactsEvents_Async(
 				new ClientDataAccess.AddDescriptorFactsEventsParams(
-                    this.EditDescriptorFacts.Id,
-					this.EditDescriptorFacts.Events
+                    this.Edit.Id,
+					this.Edit.Events
 				)
 			);
 		}

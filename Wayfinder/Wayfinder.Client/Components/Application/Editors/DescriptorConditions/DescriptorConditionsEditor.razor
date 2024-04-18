@@ -6,7 +6,7 @@
 @using Wayfinder.Client.Components.Application.Views;
 @using Wayfinder.Client.Components.Application.Views.Collections;
 @using Wayfinder.Client.Components.Application.Pickers;
-@using Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
+@using Wayfinder.Client.Components.Application.Editors.DescriptorConditions;
 
 
 
@@ -17,7 +17,7 @@
 
     <DescriptorConditionsTreeEditor
             Disabled=@this.Disabled
-            Conditions=@this.EditConditions
+            Conditions=@this.Edit
             OnTreeSelect=@(tree => this.SelectedConditionTree = tree) />
 
     <component-label>Add condition</component-label>

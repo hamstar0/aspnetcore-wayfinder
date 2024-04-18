@@ -8,10 +8,28 @@ public interface IBoolean<Context> {
 
 
 
-public class BooleanTree<NodeData, NodeContext>
-		: IEquatable<BooleanTree<NodeData, NodeContext>?>
+public class BooleanTree<NodeData, NodeContext> :
+		IEquatable<BooleanTree<NodeData, NodeContext>?>,
+		IBoolean<NodeContext>
 			where NodeData : IBoolean<NodeContext> {
-	public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
+    /*public static IEnumerable<IBoolean<NodeContext>> Flatten(
+				BooleanTree<NodeData, NodeContext> tree ) {
+		var flattened = tree.Children.SelectMany( node => {
+            var subtree = node as BooleanTree<NodeData, NodeContext>;
+			if( subtree is null ) {
+				return [];
+			}
+			return BooleanTree<NodeData, NodeContext>.Flatten( subtree );
+		} );
+
+		return flattened.Concat(
+			tree.Children.Where( node => node is not BooleanTree<NodeData, NodeContext> )
+		);
+    }*/
+
+
+
+    public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
 
 	public bool IsAnd;
 
@@ -38,14 +56,19 @@ public class BooleanTree<NodeData, NodeContext>
 	}
 
 
+	public void Clear() {
+		this.Children.Clear();
+	}
+
+
 	public bool True( NodeContext context ) {
 		IEnumerable<IBoolean<NodeContext>> children = this.Children
 			.Where( c => c is not BooleanTree<NodeData, NodeContext>
 				|| ((BooleanTree<NodeData, NodeContext>)c).Children.Count > 0 );
 
-		return IsAnd
-			? children.All( b => b.True( context ) )
-			: children.Any( b => b.True( context ) );
+		return this.IsAnd
+			? children.All( b => b.True(context) )
+			: children.Any( b => b.True(context) );
 	}
 
 

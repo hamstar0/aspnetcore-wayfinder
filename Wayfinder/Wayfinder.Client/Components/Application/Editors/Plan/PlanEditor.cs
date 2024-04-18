@@ -30,44 +30,55 @@ public partial class PlanEditor {
     public bool SubmitOnEditOnly { get; set; } = false;
 
 
+	public bool IsModified => this.Edit_Name.HasValue || this.Edit_OptionsPool.HasValue;
+
 	[Parameter, EditorRequired]
 	public GoalEntry Goal { get; set; } = null!;
 
 
+	private string? Create_Name = null;
+
+    private ISet<PlanOptionEntry> Create_OptionsPool = new HashSet<PlanOptionEntry>();
+
+    private TimelineEntry<PlanOptionEntry> Create_OptionTimeline = new TimelineEntry<PlanOptionEntry>(
+
+	);
+
+
 	[Parameter]
-    public PlanEntry? EditPlan { get; set; } = null;
+    public PlanEntry? Edit { get; set; } = null;
 
-	public Optional<string?> CreatePlan_Name = new Optional<string?>();
+    public Optional<string?> Create_Name = new Optional<string?>();
 
-	public Optional<ISet<PlanOptionEntry>> CreatePlan_OptionsPool = new Optional<ISet<PlanOptionEntry>>();
+    public Optional<ISet<PlanOptionEntry>> Create_OptionsPool = new Optional<ISet<PlanOptionEntry>>();
 
-	public Optional<TimelineEntry<PlanOptionEntry>> CreatePlan_OptionTimeline = new Optional<TimelineEntry<PlanOptionEntry>>();
+    public Optional<TimelineEntry<PlanOptionEntry>> Create_OptionTimeline = new Optional<TimelineEntry<PlanOptionEntry>>();
 
 
-	[Parameter]
+    [Parameter]
 	public OnSubmitPlan? OnSubmit { get; set; } = null;
 
 
 
 	public ISet<PlanOptionEntry> GetCurrentOptionPool( out bool isEdit ) {
-		isEdit = this.CanEdit && this.EditPlan is not null;
+		isEdit = this.CanEdit && this.Edit is not null;
 
 		if( isEdit ) {
-			return this.EditPlan!.OptionsPool;
+			return this.Edit!.OptionsPool;
 		} else if( this.CanCreate ) {
-			return this.CreatePlan_OptionsPool;
+			return this.Create_OptionsPool;
 		} else {
 			throw new NotImplementedException();
 		}
 	}
 
 	public TimelineEntry<PlanOptionEntry> GetCurrentOptionTimeline( out bool isEdit ) {
-		isEdit = this.CanEdit && this.EditPlan is not null;
+		isEdit = this.CanEdit && this.Edit is not null;
 
 		if( isEdit ) {
-			return this.EditPlan!.OptionTimeline;
+			return this.Edit!.OptionTimeline;
 		} else if( this.CanCreate ) {
-			return this.CreatePlan_OptionTimeline;
+			return this.Create_OptionTimeline;
 		} else {
 			throw new NotImplementedException();
 		}
@@ -79,10 +90,10 @@ public partial class PlanEditor {
             return;
         }
 
-		if( this.CanEdit && this.EditPlan is not null ) {
-			this.EditPlan.OptionTimeline = timeline;
+		if( this.CanEdit && this.Edit is not null ) {
+			this.Edit.OptionTimeline = timeline;
 		} else if( this.CanCreate ) {
-			this.CreatePlan_OptionTimeline = timeline;
+			this.Create_OptionTimeline = timeline;
 		} else {
 			throw new NotImplementedException();
 		}
@@ -95,10 +106,10 @@ public partial class PlanEditor {
 			return;
 		}
 
-		if( this.CanEdit && this.EditPlan is not null ) {
-			this.EditPlan.OptionsPool.Add( option );
+		if( this.CanEdit && this.Edit is not null ) {
+			this.Edit.OptionsPool.Add( option );
 		} else if( this.CanCreate ) {
-			this.CreatePlan_OptionsPool.Add( option );
+			this.Create_OptionsPool.Add( option );
 		} else {
 			throw new NotImplementedException();
 		}
@@ -111,10 +122,10 @@ public partial class PlanEditor {
 			return;
 		}
 
-		if( this.CanEdit && this.EditPlan is not null ) {
-			this.EditPlan.OptionsPool = optionPool;
+		if( this.CanEdit && this.Edit is not null ) {
+			this.Edit.OptionsPool = optionPool;
 		} else if( this.CanCreate ) {
-			this.CreatePlan_OptionsPool = optionPool;
+			this.Create_OptionsPool = optionPool;
 		} else {
 			throw new NotImplementedException();
 		}
@@ -129,24 +140,24 @@ public partial class PlanEditor {
 
 
 	private async Task Submit_Async() {
-		bool isEdit = this.CanEdit && this.EditPlan is not null;
+		bool isEdit = this.CanEdit && this.Edit is not null;
 		bool isCreate = this.CanCreate;
 
-		PlanEntry plan = isEdit ? this.EditPlan!
+		PlanEntry plan = isEdit ? this.Edit!
 			: isCreate ? new PlanEntry(
-				this.CreatePlan_Name,
+				this.Create_Name,
 				this.Goal,
-				this.CreatePlan_OptionsPool,
-				this.CreatePlan_OptionTimeline
+				this.Create_OptionsPool,
+				this.Create_OptionTimeline
 			)
 			: throw new NotImplementedException();
 		if( isCreate ) {
-			plan.Name = this.CreatePlan_Name;
-			plan.OptionsPool = this.CreatePlan_OptionsPool;
-			plan.OptionTimeline = this.CreatePlan_OptionTimeline;
+			plan.Name = this.Create_Name;
+			plan.OptionsPool = this.Create_OptionsPool;
+			plan.OptionTimeline = this.Create_OptionTimeline;
 
 			if( this.CanEdit ) {
-				this.EditPlan = plan;
+				this.Edit = plan;
 			}
 		}
 

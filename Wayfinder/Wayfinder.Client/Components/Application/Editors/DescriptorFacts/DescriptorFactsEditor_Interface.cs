@@ -4,7 +4,7 @@ using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
 
 
 public partial class DescriptorFactsEditor {
@@ -15,7 +15,7 @@ public partial class DescriptorFactsEditor {
 
         foreach( TimelineEventEntry<DescriptorDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
-            if( x < evtStartX ) {
+            if( x < evtStartX ) { f
                 break;
             }
 

@@ -8,7 +8,7 @@ using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Standard.Timeline;
 
 
-namespace Wayfinder.Client.Components.Application.Editors.DescriptorFactsTimeline;
+namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
 
 
 public partial class DescriptorFactsEditor {
@@ -38,10 +38,16 @@ public partial class DescriptorFactsEditor {
     public bool CanCreate { get; set; }
 
 
-	[Parameter]
-	public DescriptorFactsEntry? EditDescriptorFacts { get; set; } = null;
+    public bool IsModified => this.EditChanges is not null;
 
-	private IEnumerable<TimelineEventEntry<DescriptorDataEntry>> CreateFactsTimeline
+
+	[Parameter]
+	public DescriptorFactsEntry? Edit { get; set; } = null;
+
+	private DescriptorFactsEntry? EditChanges { get; set; } = null;
+
+
+	private IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Create_FactsEvents
         = new List<TimelineEventEntry<DescriptorDataEntry>>();
 
 
@@ -73,6 +79,11 @@ public partial class DescriptorFactsEditor {
 
 
 
+    private DescriptorFactsEntry GetCurrentFacts() {
+
+    }
+
+
     private void SetCurrentSegValue( DescriptorDataType dataType, object value ) {
         switch( this.CurrentDrawSegDataType ) {
             case DescriptorDataType.Scalar:
@@ -99,7 +110,7 @@ public partial class DescriptorFactsEditor {
 		if( this.Disabled ) {
 			return false;
 		}
-		if( this.CanEdit && this.EditDescriptorFacts is null ) {
+		if( this.CanEdit && this.Edit is null ) {
             return this.CanCreate;
 		}
 		return true;
