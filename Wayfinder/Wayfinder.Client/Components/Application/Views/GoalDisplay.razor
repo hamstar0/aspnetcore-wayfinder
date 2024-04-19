@@ -1,16 +1,15 @@
 ﻿@using Wayfinder.Shared.Data.Entries;
+@using Wayfinder.Client.Components.Application.Views.DescriptorConditions
 
 
 
 @if( this.OnClick is not null ) {
     <div component-name="GoalDisplay" class="basic" @onclick=@(async e => await this.OnClick(e))>
-        @this.Goal.Name
-        - <DescriptorDisplay Descriptor=@this.Goal.Needed />
+        @(this.Goal.Name) - <DescriptorConditionsDisplay Conditions=@this.Goal.Conditions />
     </div>
 } else {
     <div component-name="GoalDisplay" class="basic">
-        @this.Goal.Name
-        - <DescriptorDisplay Descriptor=@this.Goal.Needed />
+        @(this.Goal.Name) - <DescriptorConditionsDisplay Conditions=@this.Goal.Conditions />
     </div>
 }
 

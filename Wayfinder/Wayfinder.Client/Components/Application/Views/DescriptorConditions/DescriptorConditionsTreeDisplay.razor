@@ -11,19 +11,19 @@
         style=@this.Style
         class="basic" >
     @for( int i=0; i<this.Tree.Children.Count; i++ ) {
-        IBoolean<DescriptorFactsBooleanContext> node = this.Tree.Children[i];
+        IBoolean<DescriptorConditionBooleanContext> node = this.Tree.Children[i];
 
-        @if( node is DescriptorConditionsTreeEntry ) {
-            <DescriptorConditionsTreeDisplay
+        @if( node is DescriptorCondition ) {
+            <DescriptorConditionDisplay
                     Style="padding-left: 8px; display: inline-block;"
-                    Tree=@((DescriptorConditionsTreeEntry)node) />
-        } else if( node is DataTimelineEntry ) {
+                    Condition=@((DescriptorCondition)node) />
+        } else if( node is DescriptorConditionsTreeEntry ) {
             <div>
-                <DescriptorFactsDisplay
+                <DescriptorConditionsTreeDisplay
                         Style="padding-left: 8px; display: inline-block;"
-                        Node=@((DescriptorFactsEntry)node) />
+                        Node=@((DescriptorConditionsTreeEntry)node) />
 
-                @this.AfterCondition?.Invoke( (DescriptorFactsEntry)node );
+                @this.AfterCondition?.Invoke( (DescriptorCondition)node );
 
                 @if( i < (this.Tree.Children.Count - 1) ) {
                     <span>@(this.Tree.IsAnd ? " AND " : " OR ")</span>
