@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Utility;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
-using Wayfinder.Shared.Data.Entries.Descriptor.DescriptorDataTypes;
 using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Standard.Timeline;
+using Wayfinder.Shared.Utility.Timeline.Data;
+using Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
@@ -47,8 +48,8 @@ public partial class DescriptorFactsEditor {
 	private DescriptorFactsEntry? EditChanges { get; set; } = null;
 
 
-	private IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Create_FactsEvents
-        = new List<TimelineEventEntry<DescriptorDataEntry>>();
+	private IEnumerable<TimelineEventEntry<TimelineDataEntry>> Create_FactsEvents
+        = new List<TimelineEventEntry<TimelineDataEntry>>();
 
 
 	[Parameter]
@@ -68,14 +69,14 @@ public partial class DescriptorFactsEditor {
 
 	private bool IsDrawingSeg = false;
 
-    private TimelineEventEntry<DescriptorDataEntry>? CurrentDrawSeg = null;
+    private TimelineEventEntry<TimelineDataEntry>? CurrentDrawSeg = null;
 
     private DescriptorDataType CurrentDrawSegDataType = DescriptorDataType.Scalar;
 
-    private DescriptorDataEntry? CurrentDrawSegDataValue = null;
+    private TimelineDataEntry? CurrentDrawSegDataValue = null;
 
 
-    private TimelineDisplay<DescriptorDataEntry> DisplayComponent = null!;
+    private TimelineDisplay<TimelineDataEntry> DisplayComponent = null!;
 
 
 

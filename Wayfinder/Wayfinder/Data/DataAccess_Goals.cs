@@ -43,7 +43,7 @@ public partial class ServerDataAccess {
         }
         if( parameters.Conditions.HasValue ) {
             goals = goals.Where( g => g.Conditions
-                .True( new DescriptorConditionBooleanContext( parameters.Conditions.Value! ) )
+                .True( new DescriptorConditionBooleanContext(parameters.Conditions.Value!) )
             );
         }
 

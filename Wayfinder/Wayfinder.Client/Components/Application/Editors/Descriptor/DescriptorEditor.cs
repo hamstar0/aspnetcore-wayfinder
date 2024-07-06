@@ -4,6 +4,7 @@ using Wayfinder.Shared.Utility;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Descriptor;
@@ -33,7 +34,7 @@ public partial class DescriptorEditor {
     private DescriptorConditionsTreeEntry Search_Conditions => this.Create_Conditions;
 
 
-    private DescriptorFactsEntry Create_Facts = new( new List<TimelineEventEntry<DescriptorDataEntry>>() );
+    private DescriptorFactsEntry Create_Facts = new( new List<TimelineEventEntry<TimelineDataEntry>>() );
 
     private DescriptorConditionsTreeEntry Create_Conditions = new( true );
 

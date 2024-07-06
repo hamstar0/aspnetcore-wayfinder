@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components.Web;
-using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
@@ -13,7 +13,7 @@ public partial class DescriptorFactsEditor {
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEventEntry<DescriptorDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
+        foreach( TimelineEventEntry<TimelineDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
             if( x < evtStartX ) { f
                 break;
@@ -34,7 +34,7 @@ public partial class DescriptorFactsEditor {
         this.DrawAt_Async( x );
     }
 
-    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEventEntry<DescriptorDataEntry> evt ) {
+    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEventEntry<TimelineDataEntry> evt ) {
 return !this.IsDrawingSeg;
     }
 

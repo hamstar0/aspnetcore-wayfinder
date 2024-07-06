@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Client.Data;
@@ -8,8 +9,8 @@ namespace Wayfinder.Client.Data;
 
 
 public partial class ClientDataAccess {
-    public class CreateDescriptorFactsParams( IEnumerable<TimelineEventEntry<DescriptorDataEntry>> factses ) {
-        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Factses = factses;
+    public class CreateDescriptorFactsParams( IEnumerable<TimelineEventEntry<TimelineDataEntry>> factses ) {
+        public IEnumerable<TimelineEventEntry<TimelineDataEntry>> Factses = factses;
     }
 
     public async Task<DescriptorFactsEntry> CreateDescriptorFacts_Async( CreateDescriptorFactsParams parameters ) {
@@ -28,9 +29,9 @@ public partial class ClientDataAccess {
 
     public class AddDescriptorFactsEventsParams(
             long id,
-            IEnumerable<TimelineEventEntry<DescriptorDataEntry>> factses ) {
+            IEnumerable<TimelineEventEntry<TimelineDataEntry>> factses ) {
         public long Id = id;
-        public IEnumerable<TimelineEventEntry<DescriptorDataEntry>> Factses = factses;
+        public IEnumerable<TimelineEventEntry<TimelineDataEntry>> Factses = factses;
     }
 
     public async Task<DescriptorFactsEntry> AddDescriptorFactsEvents_Async( AddDescriptorFactsEventsParams parameters ) {

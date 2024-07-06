@@ -2,6 +2,7 @@
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Data;
@@ -14,7 +15,7 @@ public partial class ServerDataAccess {
 
 
 
-    public async Task<DescriptorFactsEntry> CreateDataTimeline_Async(
+    public async Task<DescriptorFactsEntry> CreateDescriptorFacts_Async(
                 ClientDataAccess.CreateDescriptorFactsParams parameters ) {
         long id = this.CurrentDataTimelineId++;
 
@@ -23,18 +24,18 @@ public partial class ServerDataAccess {
         return this.FactsesById[id];
     }
 
-    public async Task AddDataTimelineEvents_Async( ClientDataAccess.AddDescriptorFactsEventsParams parameters ) {
-        foreach( TimelineEventEntry<DescriptorDataEntry> evt in parameters.Factses ) {
+    public async Task AddDescriptorFactsEvents_Async( ClientDataAccess.AddDescriptorFactsEventsParams parameters ) {
+        foreach( TimelineEventEntry<TimelineDataEntry> evt in parameters.Factses ) {
             this.FactsesById[ parameters.Id ].AddEvent( evt );
         }
     }
 
-    public async Task RemoveDataTimelineEvents_Async(
+    public async Task RemoveDescriptorFactsEvents_Async(
                 ClientDataAccess.RemoveDescriptorFactsEventsParams parameters ) {
         DescriptorFactsEntry facts = this.FactsesById[ parameters.Id ];
 
         foreach( long id in parameters.FactsesIds ) {
-            foreach( TimelineEventEntry<DescriptorDataEntry> fact in facts.Events ) {
+            foreach( TimelineEventEntry<TimelineDataEntry> fact in facts.Events ) {
                 if( fact.Id == id ) {
                     facts.RemoveEventById( fact.Id );
 

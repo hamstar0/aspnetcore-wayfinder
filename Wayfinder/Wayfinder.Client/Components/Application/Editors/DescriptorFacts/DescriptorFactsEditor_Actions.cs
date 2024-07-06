@@ -3,6 +3,7 @@ using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;
@@ -17,7 +18,7 @@ public partial class DescriptorFactsEditor {
         }
 
         if( this.CurrentDrawSeg is null ) {
-            this.CurrentDrawSeg = new TimelineEventEntry<DescriptorDataEntry>(
+            this.CurrentDrawSeg = new TimelineEventEntry<TimelineDataEntry>(
                 start: this.ViewTimeStart + this.GetTimespanOfOffsetX(x),
                 end: this.ViewTimeStart + this.GetTimespanOfOffsetX(x + 1d),
                 data: this.CurrentDrawSegDataValue
