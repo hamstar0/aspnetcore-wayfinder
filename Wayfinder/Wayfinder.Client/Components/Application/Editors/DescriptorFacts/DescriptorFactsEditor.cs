@@ -71,7 +71,7 @@ public partial class DescriptorFactsEditor {
 
     private TimelineEventEntry<TimelineDataEntry>? CurrentDrawSeg = null;
 
-    private DescriptorDataType CurrentDrawSegDataType = DescriptorDataType.Scalar;
+    private TimelineDataType CurrentDrawSegDataType = TimelineDataType.Scalar;
 
     private TimelineDataEntry? CurrentDrawSegDataValue = null;
 
@@ -85,9 +85,9 @@ public partial class DescriptorFactsEditor {
     }
 
 
-    private void SetCurrentSegValue( DescriptorDataType dataType, object value ) {
+    private void SetCurrentSegValue( TimelineDataType dataType, object value ) {
         switch( this.CurrentDrawSegDataType ) {
-            case DescriptorDataType.Scalar:
+            case TimelineDataType.Scalar:
                 this.CurrentDrawSegDataValue = new ScalarDDataEntry( (double)value );
                 break;
         }

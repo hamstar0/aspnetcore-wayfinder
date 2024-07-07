@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
 
 
 
-public class ScalarDDataEntry : TimelineDataEntry, IEquatable<ScalarDDataEntry> {
+public class ScalarDDataEntry : ITimelineDataEntry, IEquatable<ScalarDDataEntry> {
 	public double Value { get; private set; }
 
 
 
-	public ScalarDDataEntry( double value ) : base( DescriptorDataType.ScalarRange ) {
+	public ScalarDDataEntry( double value ) {
 		Value = value;
 	}
 
@@ -23,15 +22,13 @@ public class ScalarDDataEntry : TimelineDataEntry, IEquatable<ScalarDDataEntry> 
 	}
 
 
-	protected override bool ValidateOtherWithSelf( TimelineDataEntry rawValidator ) {
-		if( rawValidator is null || rawValidator is not ScalarRangeDDataEntry ) {
-			throw new ArgumentException();
-		}
-		var validator = (ScalarRangeDDataEntry)rawValidator;
+	public bool Contains( ITimelineDataEntry data ) {
+		var validator = data as ScalarRangeDDataEntry;
+		if( validator is null ) { return false; }
 
-		return Value < validator.MinValue
+		return this.Value < validator.MinValue
 			? false
-			: Value > validator.MaxValue
+			: this.Value > validator.MaxValue
 			? false
 			: true;
 	}

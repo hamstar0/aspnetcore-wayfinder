@@ -6,44 +6,44 @@ namespace Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
 
 
 
-public class ScalarRangeDDataEntry : TimelineDataEntry, IEquatable<ScalarRangeDDataEntry> {
+public class ScalarRangeDDataEntry : ITimelineDataEntry, IEquatable<ScalarRangeDDataEntry> {
 	public double MinValue { get; private set; }
 	public double MaxValue { get; private set; }
 
 
 
-	public ScalarRangeDDataEntry( double minValue, double maxValue )
-				: base( DescriptorDataType.ScalarRange ) {
+	public ScalarRangeDDataEntry( double minValue, double maxValue ) {
 		if( minValue > maxValue ) {
 			throw new ArgumentException();
 		}
 
-		MinValue = minValue;
-		MaxValue = maxValue;
+		this.MinValue = minValue;
+		this.MaxValue = maxValue;
 	}
 
 	public bool Equals( ScalarRangeDDataEntry? other ) {
 		if( other is null ) { return false; }
 		//if( this.For != other.For ) { return false; }
-		if( MinValue != other.MinValue ) { return false; }
-		if( MaxValue != other.MaxValue ) { return false; }
+		if( this.MinValue != other.MinValue ) { return false; }
+		if( this.MaxValue != other.MaxValue ) { return false; }
 		return true;
 	}
 
 
-	protected override bool ValidateOtherWithSelf( TimelineDataEntry rawValidator ) {
-		var validator = (ScalarRangeDDataEntry)rawValidator;
+	public bool Contains( ITimelineDataEntry data ) {
+		var validator = data as ScalarRangeDDataEntry;
+		if( validator is null ) { return false; }
 
-		if( MinValue == validator.MinValue && MaxValue == validator.MaxValue ) {
+		if( this.MinValue == validator.MinValue && MaxValue == validator.MaxValue ) {
 			return true;//0;
 		}
-		if( MinValue <= validator.MinValue && MaxValue >= validator.MaxValue ) {
+		if( this.MinValue <= validator.MinValue && this.MaxValue >= validator.MaxValue ) {
 			return true;//1;
 		}
-		if( MinValue > validator.MinValue && MaxValue > validator.MaxValue ) {
+		if( this.MinValue > validator.MinValue && this.MaxValue > validator.MaxValue ) {
 			return true;//0;
 		}
-		if( MinValue < validator.MinValue && MaxValue < validator.MaxValue ) {
+		if( this.MinValue < validator.MinValue && this.MaxValue < validator.MaxValue ) {
 			return true;//0;
 		}
 		return false;//-1;

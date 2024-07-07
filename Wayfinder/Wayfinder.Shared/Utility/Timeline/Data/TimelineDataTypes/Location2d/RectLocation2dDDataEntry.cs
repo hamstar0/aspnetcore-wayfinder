@@ -35,7 +35,7 @@ public class RectLocation2dDDataEntry : Location2dDDataEntry,
 		return true;
 	}
 
-	protected override bool ValidateOtherWithSelf( TimelineDataEntry rawValidator ) {
+	public override bool Contains( ITimelineDataEntry data ) {
 		throw new NotImplementedException();
 	}
 }

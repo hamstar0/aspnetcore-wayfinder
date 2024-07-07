@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Shared.Data.Entries;
 
 
-public class PlanOptionEntry {
+public class PlanOptionEntry : ITimelineDataEntry {
 	//[Key]
 	public long Id { get; private set; }
 
@@ -46,5 +47,9 @@ public class PlanOptionEntry {
 		this.MinimumEnactingDuration = minimumEnactingDuration;
 		this.Actions = actions;
 		this.Conditions = conditions;
+	}
+
+	public bool Contains( ITimelineDataEntry data ) {
+		throw new NotImplementedException();
 	}
 }

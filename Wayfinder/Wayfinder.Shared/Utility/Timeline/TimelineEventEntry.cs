@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Shared.Utility;
 
 
 
-public class TimelineEventEntry<T> {
+public class TimelineEventEntry {
 	private static long CurrentAutoId = 1;
 	
 
@@ -17,17 +18,18 @@ public class TimelineEventEntry<T> {
 
 	public DateTime EndTime;
 
-	public T Data;
+	public ITimelineDataEntry Data;
 
 
-	public TimelineEventEntry( DateTime start, DateTime end, T data ) {
-		this.Id = TimelineEventEntry<T>.CurrentAutoId++;
+	public TimelineEventEntry( DateTime start, DateTime end, ITimelineDataEntry data ) {
+		this.Id = TimelineEventEntry.CurrentAutoId++;
 		this.StartTime = start;
 		this.EndTime = end;
 		this.Data = data;
 	}
 
-	public TimelineEventEntry( long id, DateTime start, DateTime end, T data ) : this( start, end, data ) {
+	public TimelineEventEntry( long id, DateTime start, DateTime end, ITimelineDataEntry data )
+				: this( start, end, data ) {
 		this.Id = id;
 		this.IsAssignedId = true;
 		this.StartTime = start;
@@ -35,7 +37,7 @@ public class TimelineEventEntry<T> {
 		this.Data = data;
 	}
 
-	public bool Equals( TimelineEventEntry<T>? other ) {
+	public bool Equals( TimelineEventEntry? other ) {
 		if( other is null ) { return false; }
 		if( this.StartTime != other.StartTime ) { return false; }
 		if( this.EndTime != other.EndTime ) { return false; }
@@ -46,7 +48,7 @@ public class TimelineEventEntry<T> {
 	}
 
 	public void GetNewAutoId() {
-		this.Id = TimelineEventEntry<T>.CurrentAutoId++;
+		this.Id = TimelineEventEntry.CurrentAutoId++;
 		this.IsAssignedId = false;
 	}
 }
