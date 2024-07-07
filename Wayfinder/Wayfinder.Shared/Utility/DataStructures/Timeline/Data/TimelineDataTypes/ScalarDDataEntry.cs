@@ -5,7 +5,7 @@ namespace Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
 
 
 
-public class ScalarDDataEntry : ITimelineDataEntry, IEquatable<ScalarDDataEntry> {
+public class ScalarDDataEntry : TimelineEventDataEntry, IEquatable<ScalarDDataEntry> {
 	public double Value { get; private set; }
 
 
@@ -22,7 +22,7 @@ public class ScalarDDataEntry : ITimelineDataEntry, IEquatable<ScalarDDataEntry>
 	}
 
 
-	public bool Contains( ITimelineDataEntry data ) {
+	public override bool Contains( TimelineEventDataEntry data ) {
 		var validator = data as ScalarRangeDDataEntry;
 		if( validator is null ) { return false; }
 

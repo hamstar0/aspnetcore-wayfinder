@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.DataStructures;
 using Wayfinder.Shared.Utility.Timeline.Data;
 
 
@@ -27,12 +27,12 @@ public class DescriptorConditionsTreeEntry :
 
 
 public class DescriptorCondition :
-			TimelineEntry<TimelineDataEntry>,
+			TimelineEntry<TimelineEventDataEntry>,
 			IBoolean<DescriptorConditionBooleanContext> {
-	public DescriptorCondition( IEnumerable<TimelineEventEntry<TimelineDataEntry>> events ) : base( events ) {
+	public DescriptorCondition( IEnumerable<TimelineEventEntry<TimelineEventDataEntry>> events ) : base( events ) {
 	}
 
-	public DescriptorCondition( long id, IEnumerable<TimelineEventEntry<TimelineDataEntry>> events ) : base( id, events ) {
+	public DescriptorCondition( long id, IEnumerable<TimelineEventEntry<TimelineEventDataEntry>> events ) : base( id, events ) {
 	}
 
 
@@ -44,11 +44,11 @@ public class DescriptorCondition :
 
 
 public class DescriptorConditionBooleanContext {
-	public TimelineEntry<TimelineDataEntry> Context;
+	public TimelineEntry<TimelineEventDataEntry> Context;
 
 
 
-	public DescriptorConditionBooleanContext( TimelineEntry<TimelineDataEntry> context ) {
+	public DescriptorConditionBooleanContext( TimelineEntry<TimelineEventDataEntry> context ) {
 		this.Context = context;
 	}
 }

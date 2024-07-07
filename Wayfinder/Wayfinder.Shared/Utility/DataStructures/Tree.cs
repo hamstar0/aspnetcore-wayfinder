@@ -1,4 +1,4 @@
-﻿namespace Wayfinder.Shared.Utility;
+﻿namespace Wayfinder.Shared.Utility.DataStructures;
 
 
 

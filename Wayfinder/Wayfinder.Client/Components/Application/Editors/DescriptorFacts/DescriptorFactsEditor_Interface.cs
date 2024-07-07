@@ -12,7 +12,7 @@ public partial class DescriptorFactsEditor {
 
         double x = evt.OffsetX;
 
-        foreach( TimelineEventEntry<TimelineDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
+        foreach( TimelineEventEntry<TimelineEventDataEntry> timelineEvt in this.GetCurrentFacts().Events ) {
             double evtStartX = this.GetOffsetXOfTimestamp( timelineEvt.StartTime );
             if( x < evtStartX ) { f
                 break;
@@ -33,7 +33,7 @@ public partial class DescriptorFactsEditor {
         this.DrawAt_Async( x );
     }
 
-    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEventEntry<TimelineDataEntry> evt ) {
+    private async Task<bool> OnMouseDownOverSeg_Async( double x, TimelineEventEntry<TimelineEventDataEntry> evt ) {
 return !this.IsDrawingSeg;
     }
 

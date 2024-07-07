@@ -14,21 +14,22 @@ public class TimelineEventEntry {
 
 	public bool IsAssignedId { get; private set; } = false;
 
+
 	public DateTime StartTime;
 
 	public DateTime EndTime;
 
-	public ITimelineDataEntry Data;
+	public TimelineEventDataEntry Data;
 
 
-	public TimelineEventEntry( DateTime start, DateTime end, ITimelineDataEntry data ) {
+	public TimelineEventEntry( DateTime start, DateTime end, TimelineEventDataEntry data ) {
 		this.Id = CurrentAutoId++;
 		this.StartTime = start;
 		this.EndTime = end;
 		this.Data = data;
 	}
 
-	public TimelineEventEntry( long id, DateTime start, DateTime end, ITimelineDataEntry data )
+	public TimelineEventEntry( long id, DateTime start, DateTime end, TimelineEventDataEntry data )
 				: this( start, end, data ) {
 		this.Id = id;
 		this.IsAssignedId = true;

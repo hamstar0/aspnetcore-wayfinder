@@ -48,8 +48,8 @@ public partial class DescriptorFactsEditor {
 	private DescriptorFactsEntry? EditChanges { get; set; } = null;
 
 
-	private IEnumerable<TimelineEventEntry<TimelineDataEntry>> Create_FactsEvents
-        = new List<TimelineEventEntry<TimelineDataEntry>>();
+	private IEnumerable<TimelineEventEntry<TimelineEventDataEntry>> Create_FactsEvents
+        = new List<TimelineEventEntry<TimelineEventDataEntry>>();
 
 
 	[Parameter]
@@ -69,14 +69,14 @@ public partial class DescriptorFactsEditor {
 
 	private bool IsDrawingSeg = false;
 
-    private TimelineEventEntry<TimelineDataEntry>? CurrentDrawSeg = null;
+    private TimelineEventEntry<TimelineEventDataEntry>? CurrentDrawSeg = null;
 
     private TimelineDataType CurrentDrawSegDataType = TimelineDataType.Scalar;
 
-    private TimelineDataEntry? CurrentDrawSegDataValue = null;
+    private TimelineEventDataEntry? CurrentDrawSegDataValue = null;
 
 
-    private TimelineDisplay<TimelineDataEntry> DisplayComponent = null!;
+    private TimelineDisplay<TimelineEventDataEntry> DisplayComponent = null!;
 
 
 

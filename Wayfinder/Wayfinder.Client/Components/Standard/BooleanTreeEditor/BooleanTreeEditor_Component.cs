@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.DataStructures;
 
 
 namespace Wayfinder.Client.Components.Standard.BooleanTreeEditor;

@@ -1,4 +1,4 @@
-﻿namespace Wayfinder.Shared.Utility;
+﻿namespace Wayfinder.Shared.Utility.DataStructures;
 
 
 
@@ -12,7 +12,7 @@ public class BooleanTree<NodeData, NodeContext> :
 		IEquatable<BooleanTree<NodeData, NodeContext>?>,
 		IBoolean<NodeContext>
 			where NodeData : IBoolean<NodeContext> {
-    /*public static IEnumerable<IBoolean<NodeContext>> Flatten(
+	/*public static IEnumerable<IBoolean<NodeContext>> Flatten(
 				BooleanTree<NodeData, NodeContext> tree ) {
 		var flattened = tree.Children.SelectMany( node => {
             var subtree = node as BooleanTree<NodeData, NodeContext>;
@@ -29,14 +29,14 @@ public class BooleanTree<NodeData, NodeContext> :
 
 
 
-    public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
+	public IList<IBoolean<NodeContext>> Children = new List<IBoolean<NodeContext>>();
 
 	public bool IsAnd;
 
 
 
 	public BooleanTree( bool isAnd ) {
-		this.IsAnd = isAnd;
+		IsAnd = isAnd;
 	}
 
 	public override bool Equals( object? test ) {
@@ -47,28 +47,28 @@ public class BooleanTree<NodeData, NodeContext> :
 
 	public bool Equals( BooleanTree<NodeData, NodeContext>? other ) {
 		return other is not null
-			&& this.IsAnd == other.IsAnd
-			&& EqualityComparer<IList<IBoolean<NodeContext>>>.Default.Equals( this.Children, other.Children );
+			&& IsAnd == other.IsAnd
+			&& EqualityComparer<IList<IBoolean<NodeContext>>>.Default.Equals( Children, other.Children );
 	}
 
 	public override int GetHashCode() {
-		return HashCode.Combine( this.Children, this.IsAnd );
+		return HashCode.Combine( Children, IsAnd );
 	}
 
 
 	public void Clear() {
-		this.Children.Clear();
+		Children.Clear();
 	}
 
 
 	public bool True( NodeContext context ) {
-		IEnumerable<IBoolean<NodeContext>> children = this.Children
+		IEnumerable<IBoolean<NodeContext>> children = Children
 			.Where( c => c is not BooleanTree<NodeData, NodeContext>
 				|| ((BooleanTree<NodeData, NodeContext>)c).Children.Count > 0 );
 
-		return this.IsAnd
-			? children.All( b => b.True(context) )
-			: children.Any( b => b.True(context) );
+		return IsAnd
+			? children.All( b => b.True( context ) )
+			: children.Any( b => b.True( context ) );
 	}
 
 
@@ -77,15 +77,15 @@ public class BooleanTree<NodeData, NodeContext> :
 			throw new ArgumentException();
 		}
 
-		if( this.IsAnd == isAnd ) {
-			this.Children.Add( child );
+		if( IsAnd == isAnd ) {
+			Children.Add( child );
 		} else {
-			var innerTree = new BooleanTree<NodeData, NodeContext>( this.IsAnd );
+			var innerTree = new BooleanTree<NodeData, NodeContext>( IsAnd );
 			innerTree.Children = Children;
 
-			this.IsAnd = isAnd;
-			this.Children = new List<IBoolean<NodeContext>> {
-				(IBoolean<NodeContext>)innerTree,
+			IsAnd = isAnd;
+			Children = new List<IBoolean<NodeContext>> {
+				innerTree,
 				child
 			};
 		}

@@ -34,7 +34,7 @@ public partial class DescriptorEditor {
     private DescriptorConditionsTreeEntry Search_Conditions => this.Create_Conditions;
 
 
-    private DescriptorFactsEntry Create_Facts = new( new List<TimelineEventEntry<TimelineDataEntry>>() );
+    private DescriptorFactsEntry Create_Facts = new( new List<TimelineEventEntry<TimelineEventDataEntry>>() );
 
     private DescriptorConditionsTreeEntry Create_Conditions = new( true );
 

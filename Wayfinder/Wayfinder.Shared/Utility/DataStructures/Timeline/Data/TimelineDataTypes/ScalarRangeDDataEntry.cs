@@ -6,7 +6,7 @@ namespace Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
 
 
 
-public class ScalarRangeDDataEntry : ITimelineDataEntry, IEquatable<ScalarRangeDDataEntry> {
+public class ScalarRangeDDataEntry : TimelineEventDataEntry, IEquatable<ScalarRangeDDataEntry> {
 	public double MinValue { get; private set; }
 	public double MaxValue { get; private set; }
 
@@ -30,7 +30,7 @@ public class ScalarRangeDDataEntry : ITimelineDataEntry, IEquatable<ScalarRangeD
 	}
 
 
-	public bool Contains( ITimelineDataEntry data ) {
+	public override bool Contains( TimelineEventDataEntry data ) {
 		var validator = data as ScalarRangeDDataEntry;
 		if( validator is null ) { return false; }
 

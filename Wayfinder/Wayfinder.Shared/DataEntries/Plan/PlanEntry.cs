@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 
-namespace Wayfinder.Shared.DataEntries;
+namespace Wayfinder.Shared.DataEntries.Plan;
 
 
 public class PlanEntry {
@@ -26,10 +26,10 @@ public class PlanEntry {
 				GoalEntry goal,
 				ISet<PlanOptionEntry> optionsPool,
 				TimelineEntry<PlanOptionEntry> optionTimeline ) {
-		this.Name = name;
-		this.Goal = goal;
-		this.OptionsPool = optionsPool;
-		this.OptionTimeline = optionTimeline;
+		Name = name;
+		Goal = goal;
+		OptionsPool = optionsPool;
+		OptionTimeline = optionTimeline;
 	}
 
 	public PlanEntry(
@@ -38,12 +38,12 @@ public class PlanEntry {
 				GoalEntry goal,
 				ISet<PlanOptionEntry> optionsPool,
 				TimelineEntry<PlanOptionEntry> optionTimeline ) {
-		this.Id = id;
-		this.IsAssignedId = true;
-		this.Name = name;
-		this.Goal = goal;
-		this.OptionsPool = optionsPool;
-		this.OptionTimeline = optionTimeline;
+		Id = id;
+		IsAssignedId = true;
+		Name = name;
+		Goal = goal;
+		OptionsPool = optionsPool;
+		OptionTimeline = optionTimeline;
 	}
 }
 

@@ -35,7 +35,7 @@ public class RectLocation2dDDataEntry : Location2dDDataEntry,
 		return true;
 	}
 
-	public override bool Contains( ITimelineDataEntry data ) {
+	public override bool Contains( TimelineEventDataEntry data ) {
 		throw new NotImplementedException();
 	}
 }

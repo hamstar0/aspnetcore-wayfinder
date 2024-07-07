@@ -1,5 +1,4 @@
 ﻿using System;
-using Wayfinder.Shared.Utility.Timeline.Data;
 
 
 namespace Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes.Location2d;
@@ -24,7 +23,7 @@ public class AddressLocation2dDDataEntry : Location2dDDataEntry,
 		return true;
 	}
 
-	public override bool Contains( ITimelineDataEntry data ) {
+	public override bool Contains( TimelineEventDataEntry data ) {
 		throw new NotImplementedException();
 	}
 }

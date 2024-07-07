@@ -3,6 +3,7 @@ using Wayfinder.Shared.Utility;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.DataEntries;
+using Wayfinder.Shared.DataEntries.Plan;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Plan;

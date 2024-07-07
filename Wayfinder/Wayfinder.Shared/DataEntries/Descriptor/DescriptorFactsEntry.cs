@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using Wayfinder.Shared.Utility;
+using Wayfinder.Shared.Utility.DataStructures;
 using Wayfinder.Shared.Utility.Timeline.Data;
 
 
@@ -8,13 +8,13 @@ namespace Wayfinder.Shared.DataEntries.Descriptor;
 
 
 public class DescriptorFactsEntry :
-			TimelineEntry<TimelineDataEntry>,
+			TimelineEntry<TimelineEventDataEntry>,
 			IBoolean<DescriptorFactsBooleanContext> {
-	public DescriptorFactsEntry( IEnumerable<TimelineEventEntry<TimelineDataEntry>> events )
+	public DescriptorFactsEntry( IEnumerable<TimelineEventEntry<TimelineEventDataEntry>> events )
 				: base( events ) {
 	}
 
-	public DescriptorFactsEntry( long id, IEnumerable<TimelineEventEntry<TimelineDataEntry>> events )
+	public DescriptorFactsEntry( long id, IEnumerable<TimelineEventEntry<TimelineEventDataEntry>> events )
 				: base( id, events ) {
 	}
 

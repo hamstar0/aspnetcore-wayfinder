@@ -2,7 +2,7 @@
 using Wayfinder.Shared.Data;
 using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Utility;
-using Wayfinder.Shared.Utility.BooleanTree;
+using Wayfinder.Shared.Utility.DataStructures.BooleanTree;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.DataEntries.Descriptor;
 

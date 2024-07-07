@@ -7,7 +7,7 @@ using Wayfinder.Shared.Utility.Timeline.Data;
 namespace Wayfinder.Shared.Utility.Timeline;
 
 
-public partial class TimelineEntry {
+public abstract partial class TimelineEntry {
 	public long Id { get; private set; }
 
 	[JsonIgnore]
@@ -136,7 +136,7 @@ public partial class TimelineEntry {
 
 	public bool ContainsTimeline(
 				TimelineEntry other,
-				Func<ITimelineDataEntry, ITimelineDataEntry, bool> validateDataContain ) {
+				Func<TimelineEventDataEntry, TimelineEventDataEntry, bool> validateDataContain ) {
 		if( other.Events.Count == 0 ) {
 			return true;
 		}
