@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Shared.Data.Entries;
+namespace Wayfinder.Shared.DataEntries;
 
 
 public class PlanEntry {

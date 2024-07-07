@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Components;
 using Wayfinder.Shared.Utility;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Client.Data;
 using Wayfinder.Client.Components.Standard.Timeline;
 using Wayfinder.Shared.Utility.Timeline.Data;
 using Wayfinder.Shared.Utility.Timeline.Data.TimelineDataTypes;
+using Wayfinder.Shared.DataEntries.Descriptor;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.DescriptorFacts;

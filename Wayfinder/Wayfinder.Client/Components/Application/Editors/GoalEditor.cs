@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Wayfinder.Client.Data;
-using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries;
+using Wayfinder.Shared.DataEntries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 

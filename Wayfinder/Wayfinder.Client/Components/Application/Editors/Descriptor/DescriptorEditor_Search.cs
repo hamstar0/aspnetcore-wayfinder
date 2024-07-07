@@ -1,8 +1,8 @@
 ﻿using System;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries.Descriptor;
 using Wayfinder.Shared.Utility;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.DataEntries.Descriptor;
 
 
 namespace Wayfinder.Client.Components.Application.Editors.Descriptor;

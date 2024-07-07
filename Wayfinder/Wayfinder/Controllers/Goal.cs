@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Wayfinder.Client.Data;
 using Wayfinder.Data;
-using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.DataEntries;
 
 
 namespace Wayfinder;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Wayfinder.Client.Data;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries.Descriptor;
 using Wayfinder.Shared.Utility;
 using Wayfinder.Shared.Utility.Timeline.Data;
 

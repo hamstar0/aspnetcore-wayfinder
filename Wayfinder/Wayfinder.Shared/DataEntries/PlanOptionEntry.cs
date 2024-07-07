@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries.Descriptor;
 using Wayfinder.Shared.Utility.Timeline.Data;
 
 
-namespace Wayfinder.Shared.Data.Entries;
+namespace Wayfinder.Shared.DataEntries;
 
 
 public class PlanOptionEntry : ITimelineDataEntry {
@@ -27,7 +27,7 @@ public class PlanOptionEntry : ITimelineDataEntry {
 	public PlanOptionEntry(
 				string? name,
 				long minimumEnactingDuration,
-                DescriptorFactsEntry actions,
+				DescriptorFactsEntry actions,
 				DescriptorConditionsTreeEntry conditions ) {
 		this.Name = name;
 		this.MinimumEnactingDuration = minimumEnactingDuration;
@@ -39,7 +39,7 @@ public class PlanOptionEntry : ITimelineDataEntry {
 				long id,
 				string? name,
 				long minimumEnactingDuration,
-                DescriptorFactsEntry actions,
+				DescriptorFactsEntry actions,
 				DescriptorConditionsTreeEntry conditions ) {
 		this.Id = id;
 		this.IsAssignedId = true;

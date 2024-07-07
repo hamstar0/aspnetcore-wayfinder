@@ -1,5 +1,5 @@
-﻿using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Client.Data;
+﻿using Wayfinder.Client.Data;
+using Wayfinder.Shared.DataEntries;
 
 
 namespace Wayfinder.Data;

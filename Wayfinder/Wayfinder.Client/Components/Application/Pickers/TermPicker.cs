@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using Wayfinder.Client.Data;
-using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.DataEntries;
 
 
 namespace Wayfinder.Client.Components.Application.Pickers;

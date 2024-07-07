@@ -2,13 +2,13 @@
 using Wayfinder.Shared.Utility.Timeline.Data;
 
 
-namespace Wayfinder.Shared.Utility;
+namespace Wayfinder.Shared.Utility.Timeline;
 
 
 
 public class TimelineEventEntry {
 	private static long CurrentAutoId = 1;
-	
+
 
 	public long Id { get; private set; }
 
@@ -22,7 +22,7 @@ public class TimelineEventEntry {
 
 
 	public TimelineEventEntry( DateTime start, DateTime end, ITimelineDataEntry data ) {
-		this.Id = TimelineEventEntry.CurrentAutoId++;
+		this.Id = CurrentAutoId++;
 		this.StartTime = start;
 		this.EndTime = end;
 		this.Data = data;
@@ -42,13 +42,13 @@ public class TimelineEventEntry {
 		if( this.StartTime != other.StartTime ) { return false; }
 		if( this.EndTime != other.EndTime ) { return false; }
 		if( this.Data is not null ) {
-			if( !this.Data.Equals(other.Data) ) { return false; }
+			if( !this.Data.Equals( other.Data ) ) { return false; }
 		}
 		return true;
 	}
 
 	public void GetNewAutoId() {
-		this.Id = TimelineEventEntry.CurrentAutoId++;
+		this.Id = CurrentAutoId++;
 		this.IsAssignedId = false;
 	}
 }

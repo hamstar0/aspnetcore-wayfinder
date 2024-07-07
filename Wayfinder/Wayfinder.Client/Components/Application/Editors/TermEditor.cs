@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
-using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Client.Data;
+using Wayfinder.Shared.DataEntries;
 
 
 namespace Wayfinder.Client.Components.Application.Editors;

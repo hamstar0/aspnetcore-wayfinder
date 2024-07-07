@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http.Json;
-using Wayfinder.Shared.Data.Entries;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries;
+using Wayfinder.Shared.DataEntries.Descriptor;
 using Wayfinder.Shared.Utility;
 
 

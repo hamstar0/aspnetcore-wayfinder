@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Wayfinder.Client.Data;
 using Wayfinder.Data;
 using Wayfinder.Shared.Data;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries.Descriptor;
 
 
 namespace Wayfinder;

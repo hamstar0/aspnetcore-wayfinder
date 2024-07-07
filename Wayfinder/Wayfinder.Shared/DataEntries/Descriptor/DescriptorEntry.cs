@@ -2,7 +2,7 @@
 using Wayfinder.Shared.Utility;
 
 
-namespace Wayfinder.Shared.Data.Entries.Descriptor;
+namespace Wayfinder.Shared.DataEntries.Descriptor;
 
 
 
@@ -43,9 +43,9 @@ public class DescriptorEntry : IEquatable<DescriptorEntry> {
 
 	public bool Equals( DescriptorEntry? other ) {
 		if( other is null ) { return false; }
-		if( !this.ShallowEquals(other, true) ) { return false; }
-		if( !this.Facts.Equals(other.Facts) ) { return false; }
-		if( !this.Conditions.Equals(other.Conditions) ) { return false; }
+		if( !this.ShallowEquals( other, true ) ) { return false; }
+		if( !this.Facts.Equals( other.Facts ) ) { return false; }
+		if( !this.Conditions.Equals( other.Conditions ) ) { return false; }
 		return true;
 	}
 }

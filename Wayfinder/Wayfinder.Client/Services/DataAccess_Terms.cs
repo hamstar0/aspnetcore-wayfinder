@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using Wayfinder.Shared.Data.Entries;
+using Wayfinder.Shared.DataEntries;
 
 
 namespace Wayfinder.Client.Data;

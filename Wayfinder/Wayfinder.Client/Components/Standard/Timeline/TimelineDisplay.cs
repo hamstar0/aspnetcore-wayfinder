@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
-using Wayfinder.Shared.Utility;
 
 
 namespace Wayfinder.Client.Components.Standard.Timeline;

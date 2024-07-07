@@ -1,6 +1,6 @@
 ﻿using Wayfinder.Client.Data;
-using Wayfinder.Shared.Data.Entries;
 using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries;
 using Wayfinder.Shared.Utility;
 
 

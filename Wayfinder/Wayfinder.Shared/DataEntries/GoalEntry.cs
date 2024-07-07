@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Wayfinder.Shared.Data.Entries.Descriptor;
+using Wayfinder.Shared.DataEntries.Descriptor;
 
 
-namespace Wayfinder.Shared.Data.Entries;
+namespace Wayfinder.Shared.DataEntries;
 
 
 public class GoalEntry {
